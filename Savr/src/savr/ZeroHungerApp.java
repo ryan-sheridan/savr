@@ -5,6 +5,7 @@
 package savr;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -38,31 +39,21 @@ public class ZeroHungerApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        rCardView2 = new com.savrui.components.RCardView();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rCardView2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rCardView2, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
         );
 
         pack();
@@ -77,6 +68,20 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
+            javax.swing.UIManager.put("Panel.background", new Color(30, 30, 30));
+            javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
+            javax.swing.UIManager.put("Button.foreground", Color.WHITE);
+            javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
+            javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
+            javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
+            javax.swing.UIManager.put("Label.foreground", Color.WHITE);
+            javax.swing.UIManager.put("TextArea.background", new Color(40, 40, 40));
+            javax.swing.UIManager.put("TextArea.foreground", Color.WHITE);
+            javax.swing.UIManager.put("ComboBox.background", new Color(40, 40, 40));
+            javax.swing.UIManager.put("ComboBox.foreground", Color.WHITE);
+            javax.swing.UIManager.put("ComboBox.selectionBackground", new Color(60, 60, 60));
+            javax.swing.UIManager.put("ComboBox.selectionForeground", Color.WHITE);
+            
             javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
 
         } catch (UnsupportedLookAndFeelException e) {
@@ -119,6 +124,7 @@ public class ZeroHungerApp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private com.savrui.components.RCardView rCardView2;
     // End of variables declaration//GEN-END:variables
 }
