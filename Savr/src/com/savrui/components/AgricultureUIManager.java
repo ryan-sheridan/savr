@@ -4,6 +4,11 @@
  */
 package com.savrui.components;
 
+import java.awt.Color;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+import savr.ZeroHungerApp;
+
 /**
  *
  * @author User
@@ -26,57 +31,1698 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        donorTypeBTNGROUP = new javax.swing.ButtonGroup();
+        viewDonorTypeBTNGROUP = new javax.swing.ButtonGroup();
+        menuPanel = new javax.swing.JPanel();
+        menuCreateDonoPanel = new javax.swing.JPanel();
+        menuCreateDonoLBL = new javax.swing.JLabel();
+        menuViewDonoPanel = new javax.swing.JPanel();
+        menuViewDonoLBL = new javax.swing.JLabel();
+        exitAppPanel = new javax.swing.JPanel();
+        exitAppLBL = new javax.swing.JLabel();
+        backToMenuPanel = new javax.swing.JPanel();
+        backToMenuLBL = new javax.swing.JLabel();
+        OverlayPanel = new javax.swing.JPanel();
+        createDonorPanel = new javax.swing.JPanel();
+        createItemDetailsPanel = new javax.swing.JPanel();
+        itemNameLBL = new javax.swing.JLabel();
+        itemNameTF = new com.ryansheridan.rfields.RTextField();
+        ItemTypeLBL = new javax.swing.JLabel();
+        itemTypeFT = new com.ryansheridan.rfields.RTextField();
+        itemQuantityLBL = new javax.swing.JLabel();
+        itemQuantityTF = new com.ryansheridan.rfields.RTextField();
+        itemConditionLBL = new javax.swing.JLabel();
+        itemConditionCB = new javax.swing.JComboBox<>();
+        itemElectricalChB = new javax.swing.JCheckBox();
+        itemDateReceivedLBL = new javax.swing.JLabel();
+        itemDateReceivedTF1 = new com.ryansheridan.rfields.RTextField();
+        donorTypePanel = new javax.swing.JPanel();
+        createCorpDonorPanel = new javax.swing.JPanel();
+        corpNameLBL = new javax.swing.JLabel();
+        corpNameTF = new com.ryansheridan.rfields.RTextField();
+        corpFoundingYearTF = new com.ryansheridan.rfields.RTextField();
+        corpFoundingYearLBL = new javax.swing.JLabel();
+        corpHQAddressLBL = new javax.swing.JLabel();
+        corpHQAddressTF = new com.ryansheridan.rfields.RTextField();
+        corpEmailLBL = new javax.swing.JLabel();
+        corpEmailTF = new com.ryansheridan.rfields.RTextField();
+        corpPhoneNumberLBL = new javax.swing.JLabel();
+        corpPhoneNumberTF = new com.ryansheridan.rfields.RTextField();
+        addCorpBTN = new javax.swing.JButton();
+        createIndiDonorPanel = new javax.swing.JPanel();
+        indiFirstNameLBL = new javax.swing.JLabel();
+        indiFirstNameTF = new com.ryansheridan.rfields.RTextField();
+        indiDoBLBL = new javax.swing.JLabel();
+        indiDoBTF = new com.ryansheridan.rfields.RTextField();
+        indiAddressLBL = new javax.swing.JLabel();
+        indiAddressTF = new com.ryansheridan.rfields.RTextField();
+        indiEmailLBL = new javax.swing.JLabel();
+        indiEmailTF = new com.ryansheridan.rfields.RTextField();
+        indiPhoneNumberLBL = new javax.swing.JLabel();
+        indiPhoneNumberTF = new com.ryansheridan.rfields.RTextField();
+        addIndiBTN = new javax.swing.JButton();
+        indiSurnameLBL = new javax.swing.JLabel();
+        indiSurnameTF = new com.ryansheridan.rfields.RTextField();
+        donorTypeSelectorPanel = new javax.swing.JPanel();
+        corpSelectorBTN = new javax.swing.JRadioButton();
+        indiSelectorBTN = new javax.swing.JRadioButton();
+        createEmptyPanel = new javax.swing.JPanel();
+        createDonorTitlePanel = new javax.swing.JPanel();
+        createDonorTitleLBL = new javax.swing.JLabel();
+        viewDonorPanel = new javax.swing.JPanel();
+        viewDonorTypeSelectorPanel = new javax.swing.JPanel();
+        viewCorpSelectorBTN = new javax.swing.JRadioButton();
+        viewIndiSelectorBTN = new javax.swing.JRadioButton();
+        viewSearchPanel = new javax.swing.JPanel();
+        searchTF = new com.ryansheridan.rfields.RTextField();
+        searchBTN = new javax.swing.JButton();
+        viewTitlePanel = new javax.swing.JPanel();
+        viewTitleLBL = new javax.swing.JLabel();
+        viewItemDetailsPanel = new javax.swing.JPanel();
+        viewItemNameLBL = new javax.swing.JLabel();
+        viewItemNameTF = new com.ryansheridan.rfields.RTextField();
+        viewItemTypeLBL = new javax.swing.JLabel();
+        viewItemTypeFT = new com.ryansheridan.rfields.RTextField();
+        viewItemQuantityLBL = new javax.swing.JLabel();
+        viewItemQuantityTF = new com.ryansheridan.rfields.RTextField();
+        viewItemConditionLBL = new javax.swing.JLabel();
+        viewItemConditionCB = new javax.swing.JComboBox<>();
+        viewItemElectricalChB = new javax.swing.JCheckBox();
+        viewItemDateReceivedLBL = new javax.swing.JLabel();
+        viewItemDateReceivedTF = new com.ryansheridan.rfields.RTextField();
+        viewItemIDLBL = new javax.swing.JLabel();
+        viewItemIDTF = new com.ryansheridan.rfields.RTextField();
+        viewDonorTypePanel = new javax.swing.JPanel();
+        viewCorpDonorPanel = new javax.swing.JPanel();
+        updateCorpBTN = new javax.swing.JButton();
+        corpPhoneNumberTF1 = new com.ryansheridan.rfields.RTextField();
+        corpPhoneNumberLBL1 = new javax.swing.JLabel();
+        corpEmailTF1 = new com.ryansheridan.rfields.RTextField();
+        corpEmailLBL1 = new javax.swing.JLabel();
+        viewCorpHQAddressTF = new com.ryansheridan.rfields.RTextField();
+        viewCorpFoundingYearTF = new com.ryansheridan.rfields.RTextField();
+        viewDonorIDTF = new com.ryansheridan.rfields.RTextField();
+        deleteCorpBTN = new javax.swing.JButton();
+        viewCorpHQAddressLBL = new javax.swing.JLabel();
+        viewCorpNameTF = new com.ryansheridan.rfields.RTextField();
+        viewCorpFoundingYearLBL = new javax.swing.JLabel();
+        viewCorpNameLBL = new javax.swing.JLabel();
+        viewCorpDonorIDLBL = new javax.swing.JLabel();
+        viewIndiDonorPanel = new javax.swing.JPanel();
+        updateIndiBTN = new javax.swing.JButton();
+        deleteIndiBTN = new javax.swing.JButton();
+        viewIndiEmailTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiPhoneNumberTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiPhoneNumberLBL = new javax.swing.JLabel();
+        viewIndiFirstNameLBL = new javax.swing.JLabel();
+        viewIndiDOBTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiEmailLBL = new javax.swing.JLabel();
+        viewIndiAddressTF1 = new com.ryansheridan.rfields.RTextField();
+        viewIndiDOBLBL = new javax.swing.JLabel();
+        viewIndiFirstNameTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiSurnameTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiAddressLBL = new javax.swing.JLabel();
+        viewIndiSurnameLBL = new javax.swing.JLabel();
+        viewIndiEmailTF1 = new com.ryansheridan.rfields.RTextField();
+        viewIndiDonorIDLBL = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(187, 187, 187));
+        setBackground(new java.awt.Color(80, 80, 80));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jPanel1.setBackground(new java.awt.Color(55, 55, 55));
+        menuPanel.setBackground(new java.awt.Color(55, 55, 55));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+        menuCreateDonoPanel.setBackground(new java.awt.Color(55, 55, 55));
+        menuCreateDonoPanel.setPreferredSize(new java.awt.Dimension(188, 40));
+        menuCreateDonoPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuCreateDonoPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuCreateDonoPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                menuCreateDonoPanelMouseExited(evt);
+            }
+        });
+
+        menuCreateDonoLBL.setBackground(new java.awt.Color(55, 55, 55));
+        menuCreateDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuCreateDonoLBL.setText("CREATE DONATION");
+        menuCreateDonoLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout menuCreateDonoPanelLayout = new javax.swing.GroupLayout(menuCreateDonoPanel);
+        menuCreateDonoPanel.setLayout(menuCreateDonoPanelLayout);
+        menuCreateDonoPanelLayout.setHorizontalGroup(
+            menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        menuCreateDonoPanelLayout.setVerticalGroup(
+            menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
-        jPanel2.setBackground(new java.awt.Color(40, 40, 40));
+        menuViewDonoPanel.setBackground(new java.awt.Color(55, 55, 55));
+        menuViewDonoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuViewDonoPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuViewDonoPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuViewDonoPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                menuViewDonoPanelMouseExited(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        menuViewDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuViewDonoLBL.setText("VIEW DONATIONS");
+
+        javax.swing.GroupLayout menuViewDonoPanelLayout = new javax.swing.GroupLayout(menuViewDonoPanel);
+        menuViewDonoPanel.setLayout(menuViewDonoPanelLayout);
+        menuViewDonoPanelLayout.setHorizontalGroup(
+            menuViewDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuViewDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        menuViewDonoPanelLayout.setVerticalGroup(
+            menuViewDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuViewDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        exitAppPanel.setBackground(new java.awt.Color(55, 55, 55));
+        exitAppPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitAppPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitAppPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitAppPanelMouseExited(evt);
+            }
+        });
+
+        exitAppLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exitAppLBL.setText("EXIT");
+        exitAppLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout exitAppPanelLayout = new javax.swing.GroupLayout(exitAppPanel);
+        exitAppPanel.setLayout(exitAppPanelLayout);
+        exitAppPanelLayout.setHorizontalGroup(
+            exitAppPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitAppLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+        );
+        exitAppPanelLayout.setVerticalGroup(
+            exitAppPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(exitAppLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        backToMenuPanel.setBackground(new java.awt.Color(55, 55, 55));
+        backToMenuPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        backToMenuPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backToMenuPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backToMenuPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backToMenuPanelMouseExited(evt);
+            }
+        });
+
+        backToMenuLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        backToMenuLBL.setText("RETURN");
+
+        javax.swing.GroupLayout backToMenuPanelLayout = new javax.swing.GroupLayout(backToMenuPanel);
+        backToMenuPanel.setLayout(backToMenuPanelLayout);
+        backToMenuPanelLayout.setHorizontalGroup(
+            backToMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backToMenuLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+        );
+        backToMenuPanelLayout.setVerticalGroup(
+            backToMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(backToMenuLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
+                        .addComponent(backToMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backToMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        OverlayPanel.setBackground(new java.awt.Color(40, 40, 40));
+        OverlayPanel.setLayout(new javax.swing.OverlayLayout(OverlayPanel));
+
+        createItemDetailsPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        itemNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemNameLBL.setText("Item Name:");
+
+        itemNameTF.setBorderBottom(false);
+        itemNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        itemNameTF.setPlaceholder("");
+
+        ItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ItemTypeLBL.setText("Item Type:");
+
+        itemTypeFT.setBorderBottom(false);
+        itemTypeFT.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        itemTypeFT.setPlaceholder("");
+        itemTypeFT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemTypeFTActionPerformed(evt);
+            }
+        });
+
+        itemQuantityLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemQuantityLBL.setText("Item Quantity:");
+
+        itemQuantityTF.setBorderBottom(false);
+        itemQuantityTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        itemQuantityTF.setPlaceholder("");
+        itemQuantityTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemQuantityTFActionPerformed(evt);
+            }
+        });
+
+        itemConditionLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemConditionLBL.setText("Item Condition:");
+
+        itemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        itemConditionCB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        itemElectricalChB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemElectricalChB.setForeground(new java.awt.Color(240, 240, 240));
+        itemElectricalChB.setText("Item Electrical");
+        itemElectricalChB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        itemDateReceivedLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        itemDateReceivedLBL.setText("Date Received:");
+
+        itemDateReceivedTF1.setBorderBottom(false);
+        itemDateReceivedTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        itemDateReceivedTF1.setPlaceholder("");
+        itemDateReceivedTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemDateReceivedTF1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createItemDetailsPanelLayout = new javax.swing.GroupLayout(createItemDetailsPanel);
+        createItemDetailsPanel.setLayout(createItemDetailsPanelLayout);
+        createItemDetailsPanelLayout.setHorizontalGroup(
+            createItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createItemDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(itemQuantityTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemTypeFT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemConditionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addGroup(createItemDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(createItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(itemNameLBL)
+                            .addComponent(ItemTypeLBL)
+                            .addComponent(itemQuantityLBL)
+                            .addComponent(itemConditionLBL)
+                            .addComponent(itemDateReceivedLBL))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(itemDateReceivedTF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        createItemDetailsPanelLayout.setVerticalGroup(
+            createItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createItemDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(itemNameLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ItemTypeLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemTypeFT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(itemQuantityLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemQuantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(itemConditionLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemConditionCB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(itemElectricalChB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(itemDateReceivedLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(itemDateReceivedTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        donorTypePanel.setBackground(new java.awt.Color(70, 70, 70));
+        donorTypePanel.setLayout(new javax.swing.OverlayLayout(donorTypePanel));
+
+        createCorpDonorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        corpNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpNameLBL.setText("Corporation Name:");
+
+        corpNameTF.setBorderBottom(false);
+        corpNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpNameTF.setPlaceholder("");
+        corpNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpNameTFActionPerformed(evt);
+            }
+        });
+
+        corpFoundingYearTF.setBorderBottom(false);
+        corpFoundingYearTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpFoundingYearTF.setPlaceholder("");
+        corpFoundingYearTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpFoundingYearTFActionPerformed(evt);
+            }
+        });
+
+        corpFoundingYearLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpFoundingYearLBL.setText("Corporation Founding Year:");
+
+        corpHQAddressLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpHQAddressLBL.setText("Corporation Headquarter Address:");
+
+        corpHQAddressTF.setBorderBottom(false);
+        corpHQAddressTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpHQAddressTF.setPlaceholder("");
+        corpHQAddressTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpHQAddressTFActionPerformed(evt);
+            }
+        });
+
+        corpEmailLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpEmailLBL.setText("Corporation Email Address:");
+
+        corpEmailTF.setBorderBottom(false);
+        corpEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpEmailTF.setPlaceholder("");
+        corpEmailTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpEmailTFActionPerformed(evt);
+            }
+        });
+
+        corpPhoneNumberLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpPhoneNumberLBL.setText("Corporation Phone Number:");
+
+        corpPhoneNumberTF.setBorderBottom(false);
+        corpPhoneNumberTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpPhoneNumberTF.setPlaceholder("");
+        corpPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpPhoneNumberTFActionPerformed(evt);
+            }
+        });
+
+        addCorpBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addCorpBTN.setText("ADD DONOR");
+        addCorpBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addCorpBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+
+        javax.swing.GroupLayout createCorpDonorPanelLayout = new javax.swing.GroupLayout(createCorpDonorPanel);
+        createCorpDonorPanel.setLayout(createCorpDonorPanelLayout);
+        createCorpDonorPanelLayout.setHorizontalGroup(
+            createCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createCorpDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(corpEmailTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(corpFoundingYearTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(corpHQAddressTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(corpNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(corpPhoneNumberTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, createCorpDonorPanelLayout.createSequentialGroup()
+                        .addGroup(createCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(corpNameLBL)
+                            .addComponent(corpFoundingYearLBL)
+                            .addComponent(corpHQAddressLBL)
+                            .addComponent(corpEmailLBL)
+                            .addComponent(corpPhoneNumberLBL))
+                        .addGap(0, 113, Short.MAX_VALUE))
+                    .addComponent(addCorpBTN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        createCorpDonorPanelLayout.setVerticalGroup(
+            createCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createCorpDonorPanelLayout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(corpNameLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpFoundingYearLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpFoundingYearTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpHQAddressLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpHQAddressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpEmailLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpPhoneNumberLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpPhoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addCorpBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        donorTypePanel.add(createCorpDonorPanel);
+
+        createIndiDonorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        indiFirstNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiFirstNameLBL.setText("First Name:");
+
+        indiFirstNameTF.setBorderBottom(false);
+        indiFirstNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiFirstNameTF.setPlaceholder("");
+        indiFirstNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiFirstNameTFActionPerformed(evt);
+            }
+        });
+
+        indiDoBLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiDoBLBL.setText("Date of Birth:");
+
+        indiDoBTF.setBorderBottom(false);
+        indiDoBTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiDoBTF.setPlaceholder("");
+        indiDoBTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiDoBTFActionPerformed(evt);
+            }
+        });
+
+        indiAddressLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiAddressLBL.setText("Address:");
+
+        indiAddressTF.setBorderBottom(false);
+        indiAddressTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiAddressTF.setPlaceholder("");
+        indiAddressTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiAddressTFActionPerformed(evt);
+            }
+        });
+
+        indiEmailLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiEmailLBL.setText("Email Address:");
+
+        indiEmailTF.setBorderBottom(false);
+        indiEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiEmailTF.setPlaceholder("");
+        indiEmailTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiEmailTFActionPerformed(evt);
+            }
+        });
+
+        indiPhoneNumberLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiPhoneNumberLBL.setText("Phone Number:");
+
+        indiPhoneNumberTF.setBorderBottom(false);
+        indiPhoneNumberTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiPhoneNumberTF.setPlaceholder("");
+        indiPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiPhoneNumberTFActionPerformed(evt);
+            }
+        });
+
+        addIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addIndiBTN.setText("ADD DONOR");
+        addIndiBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+
+        indiSurnameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiSurnameLBL.setText("Surname:");
+
+        indiSurnameTF.setBorderBottom(false);
+        indiSurnameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        indiSurnameTF.setPlaceholder("");
+        indiSurnameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiSurnameTFActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout createIndiDonorPanelLayout = new javax.swing.GroupLayout(createIndiDonorPanel);
+        createIndiDonorPanel.setLayout(createIndiDonorPanelLayout);
+        createIndiDonorPanelLayout.setHorizontalGroup(
+            createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createIndiDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(indiDoBTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(indiAddressTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(indiEmailTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(indiPhoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addIndiBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, createIndiDonorPanelLayout.createSequentialGroup()
+                        .addGroup(createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(indiFirstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(indiDoBLBL)
+                            .addComponent(indiAddressLBL)
+                            .addComponent(indiEmailLBL)
+                            .addComponent(indiPhoneNumberLBL)
+                            .addComponent(indiFirstNameLBL))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(indiSurnameLBL)
+                            .addComponent(indiSurnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
+        createIndiDonorPanelLayout.setVerticalGroup(
+            createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createIndiDonorPanelLayout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addGroup(createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(indiFirstNameLBL)
+                    .addComponent(indiSurnameLBL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(createIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(indiFirstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(indiSurnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(indiDoBLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(indiDoBTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(indiAddressLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(indiAddressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(indiEmailLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(indiEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(indiPhoneNumberLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(indiPhoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addIndiBTN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        donorTypePanel.add(createIndiDonorPanel);
+
+        donorTypeSelectorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        donorTypeBTNGROUP.add(corpSelectorBTN);
+        corpSelectorBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpSelectorBTN.setText("CorporationDonor");
+        corpSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        corpSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        corpSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpSelectorBTNActionPerformed(evt);
+            }
+        });
+
+        donorTypeBTNGROUP.add(indiSelectorBTN);
+        indiSelectorBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        indiSelectorBTN.setText("Individual Donor");
+        indiSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        indiSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        indiSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                indiSelectorBTNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout donorTypeSelectorPanelLayout = new javax.swing.GroupLayout(donorTypeSelectorPanel);
+        donorTypeSelectorPanel.setLayout(donorTypeSelectorPanelLayout);
+        donorTypeSelectorPanelLayout.setHorizontalGroup(
+            donorTypeSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(donorTypeSelectorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(donorTypeSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(corpSelectorBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(indiSelectorBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        donorTypeSelectorPanelLayout.setVerticalGroup(
+            donorTypeSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(donorTypeSelectorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(corpSelectorBTN)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(indiSelectorBTN))
+        );
+
+        createEmptyPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        javax.swing.GroupLayout createEmptyPanelLayout = new javax.swing.GroupLayout(createEmptyPanel);
+        createEmptyPanel.setLayout(createEmptyPanelLayout);
+        createEmptyPanelLayout.setHorizontalGroup(
+            createEmptyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+        createEmptyPanelLayout.setVerticalGroup(
+            createEmptyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 65, Short.MAX_VALUE)
+        );
+
+        createDonorTitlePanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        createDonorTitleLBL.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        createDonorTitleLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        createDonorTitleLBL.setText("Add Donor");
+
+        javax.swing.GroupLayout createDonorTitlePanelLayout = new javax.swing.GroupLayout(createDonorTitlePanel);
+        createDonorTitlePanel.setLayout(createDonorTitlePanelLayout);
+        createDonorTitlePanelLayout.setHorizontalGroup(
+            createDonorTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(createDonorTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        createDonorTitlePanelLayout.setVerticalGroup(
+            createDonorTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(createDonorTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout createDonorPanelLayout = new javax.swing.GroupLayout(createDonorPanel);
+        createDonorPanel.setLayout(createDonorPanelLayout);
+        createDonorPanelLayout.setHorizontalGroup(
+            createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createItemDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createDonorTitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(donorTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(donorTypeSelectorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createEmptyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        createDonorPanelLayout.setVerticalGroup(
+            createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(createDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(createEmptyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createDonorTitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(createDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(createDonorPanelLayout.createSequentialGroup()
+                        .addComponent(donorTypeSelectorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(donorTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(createItemDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        OverlayPanel.add(createDonorPanel);
+
+        viewDonorTypeSelectorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        donorTypeBTNGROUP.add(viewCorpSelectorBTN);
+        viewCorpSelectorBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewCorpSelectorBTN.setText("CorporationDonor");
+        viewCorpSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewCorpSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewCorpSelectorBTN.setPreferredSize(new java.awt.Dimension(136, 18));
+        viewCorpSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCorpSelectorBTNActionPerformed(evt);
+            }
+        });
+
+        donorTypeBTNGROUP.add(viewIndiSelectorBTN);
+        viewIndiSelectorBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiSelectorBTN.setText("Individual Donor");
+        viewIndiSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        viewIndiSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewIndiSelectorBTN.setPreferredSize(new java.awt.Dimension(125, 18));
+        viewIndiSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiSelectorBTNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewDonorTypeSelectorPanelLayout = new javax.swing.GroupLayout(viewDonorTypeSelectorPanel);
+        viewDonorTypeSelectorPanel.setLayout(viewDonorTypeSelectorPanelLayout);
+        viewDonorTypeSelectorPanelLayout.setHorizontalGroup(
+            viewDonorTypeSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(viewCorpSelectorBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewIndiSelectorBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        viewDonorTypeSelectorPanelLayout.setVerticalGroup(
+            viewDonorTypeSelectorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDonorTypeSelectorPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewCorpSelectorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiSelectorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        viewSearchPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        searchTF.setBorderBottom(false);
+        searchTF.setPlaceholder("");
+
+        searchBTN.setText("SEARCH");
+
+        javax.swing.GroupLayout viewSearchPanelLayout = new javax.swing.GroupLayout(viewSearchPanel);
+        viewSearchPanel.setLayout(viewSearchPanelLayout);
+        viewSearchPanelLayout.setHorizontalGroup(
+            viewSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewSearchPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(searchTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(searchBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        viewSearchPanelLayout.setVerticalGroup(
+            viewSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewSearchPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(viewSearchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(searchBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        viewTitlePanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        viewTitleLBL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        viewTitleLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        viewTitleLBL.setText("VIEW DONATIONS");
+
+        javax.swing.GroupLayout viewTitlePanelLayout = new javax.swing.GroupLayout(viewTitlePanel);
+        viewTitlePanel.setLayout(viewTitlePanelLayout);
+        viewTitlePanelLayout.setHorizontalGroup(
+            viewTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewTitlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        viewTitlePanelLayout.setVerticalGroup(
+            viewTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewTitlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        viewItemDetailsPanel.setBackground(new java.awt.Color(70, 70, 70));
+        viewItemDetailsPanel.setPreferredSize(new java.awt.Dimension(119, 530));
+
+        viewItemNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemNameLBL.setText("Item Name:");
+
+        viewItemNameTF.setBorderBottom(false);
+        viewItemNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemNameTF.setPlaceholder("");
+
+        viewItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemTypeLBL.setText("Item Type:");
+
+        viewItemTypeFT.setBorderBottom(false);
+        viewItemTypeFT.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemTypeFT.setPlaceholder("");
+        viewItemTypeFT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemTypeFTActionPerformed(evt);
+            }
+        });
+
+        viewItemQuantityLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemQuantityLBL.setText("Item Quantity:");
+
+        viewItemQuantityTF.setBorderBottom(false);
+        viewItemQuantityTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemQuantityTF.setPlaceholder("");
+        viewItemQuantityTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemQuantityTFActionPerformed(evt);
+            }
+        });
+
+        viewItemConditionLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemConditionLBL.setText("Item Condition:");
+
+        viewItemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        viewItemConditionCB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        viewItemElectricalChB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemElectricalChB.setForeground(new java.awt.Color(240, 240, 240));
+        viewItemElectricalChB.setText("Item Electrical");
+        viewItemElectricalChB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        viewItemDateReceivedLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemDateReceivedLBL.setText("Date Received:");
+
+        viewItemDateReceivedTF.setBorderBottom(false);
+        viewItemDateReceivedTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemDateReceivedTF.setPlaceholder("");
+        viewItemDateReceivedTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemDateReceivedTFActionPerformed(evt);
+            }
+        });
+
+        viewItemIDLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewItemIDLBL.setText("Item ID:");
+
+        viewItemIDTF.setBorderBottom(false);
+        viewItemIDTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemIDTF.setPlaceholder("");
+        viewItemIDTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewItemIDTFActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout viewItemDetailsPanelLayout = new javax.swing.GroupLayout(viewItemDetailsPanel);
+        viewItemDetailsPanel.setLayout(viewItemDetailsPanelLayout);
+        viewItemDetailsPanelLayout.setHorizontalGroup(
+            viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemTypeFT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemConditionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemDateReceivedTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
+                        .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewItemNameLBL)
+                            .addComponent(viewItemTypeLBL)
+                            .addComponent(viewItemQuantityLBL)
+                            .addComponent(viewItemConditionLBL)
+                            .addComponent(viewItemDateReceivedLBL)
+                            .addComponent(viewItemIDLBL))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(viewItemIDTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        viewItemDetailsPanelLayout.setVerticalGroup(
+            viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewItemIDLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemNameLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewItemTypeLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemTypeFT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewItemQuantityLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewItemConditionLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemConditionCB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewItemElectricalChB, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewItemDateReceivedLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewItemDateReceivedTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        viewDonorTypePanel.setBackground(new java.awt.Color(70, 70, 70));
+        viewDonorTypePanel.setLayout(new javax.swing.OverlayLayout(viewDonorTypePanel));
+
+        viewCorpDonorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        updateCorpBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        updateCorpBTN.setText("UPDATE");
+        updateCorpBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateCorpBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+        updateCorpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateCorpBTNActionPerformed(evt);
+            }
+        });
+
+        corpPhoneNumberTF1.setBorderBottom(false);
+        corpPhoneNumberTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpPhoneNumberTF1.setPlaceholder("");
+        corpPhoneNumberTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpPhoneNumberTF1ActionPerformed(evt);
+            }
+        });
+
+        corpPhoneNumberLBL1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpPhoneNumberLBL1.setText("Corporation Phone Number:");
+
+        corpEmailTF1.setBorderBottom(false);
+        corpEmailTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        corpEmailTF1.setPlaceholder("");
+        corpEmailTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                corpEmailTF1ActionPerformed(evt);
+            }
+        });
+
+        corpEmailLBL1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        corpEmailLBL1.setText("Corporation Email Address:");
+
+        viewCorpHQAddressTF.setBorderBottom(false);
+        viewCorpHQAddressTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewCorpHQAddressTF.setPlaceholder("");
+        viewCorpHQAddressTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCorpHQAddressTFActionPerformed(evt);
+            }
+        });
+
+        viewCorpFoundingYearTF.setBorderBottom(false);
+        viewCorpFoundingYearTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewCorpFoundingYearTF.setPlaceholder("");
+        viewCorpFoundingYearTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCorpFoundingYearTFActionPerformed(evt);
+            }
+        });
+
+        viewDonorIDTF.setBorderBottom(false);
+        viewDonorIDTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewDonorIDTF.setPlaceholder("");
+        viewDonorIDTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewDonorIDTFActionPerformed(evt);
+            }
+        });
+
+        deleteCorpBTN.setText("DELETE");
+
+        viewCorpHQAddressLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewCorpHQAddressLBL.setText("Corporation Headquarter Address:");
+
+        viewCorpNameTF.setBorderBottom(false);
+        viewCorpNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewCorpNameTF.setPlaceholder("");
+        viewCorpNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCorpNameTFActionPerformed(evt);
+            }
+        });
+
+        viewCorpFoundingYearLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewCorpFoundingYearLBL.setText("Corporation Founding Year:");
+
+        viewCorpNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewCorpNameLBL.setText("Coporation Name:");
+
+        viewCorpDonorIDLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewCorpDonorIDLBL.setText("Donor ID:");
+
+        javax.swing.GroupLayout viewCorpDonorPanelLayout = new javax.swing.GroupLayout(viewCorpDonorPanel);
+        viewCorpDonorPanel.setLayout(viewCorpDonorPanelLayout);
+        viewCorpDonorPanelLayout.setHorizontalGroup(
+            viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewCorpDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(corpEmailTF1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(corpPhoneNumberTF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCorpHQAddressTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCorpFoundingYearTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewDonorIDTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewCorpDonorPanelLayout.createSequentialGroup()
+                        .addComponent(updateCorpBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteCorpBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                    .addComponent(viewCorpNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewCorpDonorPanelLayout.createSequentialGroup()
+                        .addGroup(viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(corpEmailLBL1)
+                            .addComponent(corpPhoneNumberLBL1)
+                            .addComponent(viewCorpHQAddressLBL)
+                            .addComponent(viewCorpFoundingYearLBL)
+                            .addComponent(viewCorpNameLBL)
+                            .addComponent(viewCorpDonorIDLBL))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        viewCorpDonorPanelLayout.setVerticalGroup(
+            viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewCorpDonorPanelLayout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
+                .addComponent(viewCorpDonorIDLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewDonorIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCorpNameLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCorpNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(viewCorpFoundingYearLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCorpFoundingYearTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCorpHQAddressLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewCorpHQAddressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpEmailLBL1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpEmailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(corpPhoneNumberLBL1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(corpPhoneNumberTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteCorpBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateCorpBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        viewDonorTypePanel.add(viewCorpDonorPanel);
+
+        viewIndiDonorPanel.setBackground(new java.awt.Color(70, 70, 70));
+
+        updateIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        updateIndiBTN.setText("UPDATE");
+        updateIndiBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+
+        deleteIndiBTN.setText("DELETE");
+
+        viewIndiEmailTF.setBorderBottom(false);
+        viewIndiEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiEmailTF.setPlaceholder("");
+        viewIndiEmailTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiEmailTFActionPerformed(evt);
+            }
+        });
+
+        viewIndiPhoneNumberTF.setBorderBottom(false);
+        viewIndiPhoneNumberTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiPhoneNumberTF.setPlaceholder("");
+        viewIndiPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiPhoneNumberTFActionPerformed(evt);
+            }
+        });
+
+        viewIndiPhoneNumberLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiPhoneNumberLBL.setText("Phone Number:");
+
+        viewIndiFirstNameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiFirstNameLBL.setText("First Name:");
+
+        viewIndiDOBTF.setBorderBottom(false);
+        viewIndiDOBTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiDOBTF.setPlaceholder("");
+        viewIndiDOBTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiDOBTFActionPerformed(evt);
+            }
+        });
+
+        viewIndiEmailLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiEmailLBL.setText("Email Address:");
+
+        viewIndiAddressTF1.setBorderBottom(false);
+        viewIndiAddressTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiAddressTF1.setPlaceholder("");
+        viewIndiAddressTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiAddressTF1ActionPerformed(evt);
+            }
+        });
+
+        viewIndiDOBLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiDOBLBL.setText("Date of Birth:");
+
+        viewIndiFirstNameTF.setBorderBottom(false);
+        viewIndiFirstNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiFirstNameTF.setPlaceholder("");
+        viewIndiFirstNameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiFirstNameTFActionPerformed(evt);
+            }
+        });
+
+        viewIndiSurnameTF.setBorderBottom(false);
+        viewIndiSurnameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiSurnameTF.setPlaceholder("");
+        viewIndiSurnameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiSurnameTFActionPerformed(evt);
+            }
+        });
+
+        viewIndiAddressLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiAddressLBL.setText("Address:");
+
+        viewIndiSurnameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiSurnameLBL.setText("Surname:");
+
+        viewIndiEmailTF1.setBorderBottom(false);
+        viewIndiEmailTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiEmailTF1.setPlaceholder("");
+        viewIndiEmailTF1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiEmailTF1ActionPerformed(evt);
+            }
+        });
+
+        viewIndiDonorIDLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        viewIndiDonorIDLBL.setText("Donor ID:");
+
+        javax.swing.GroupLayout viewIndiDonorPanelLayout = new javax.swing.GroupLayout(viewIndiDonorPanel);
+        viewIndiDonorPanel.setLayout(viewIndiDonorPanelLayout);
+        viewIndiDonorPanelLayout.setHorizontalGroup(
+            viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                        .addComponent(updateIndiBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(deleteIndiBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
+                    .addComponent(viewIndiPhoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewIndiDOBTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewIndiAddressTF1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                        .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewIndiPhoneNumberLBL)
+                            .addComponent(viewIndiEmailLBL)
+                            .addComponent(viewIndiAddressLBL)
+                            .addComponent(viewIndiFirstNameLBL)
+                            .addComponent(viewIndiFirstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewIndiSurnameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                                .addComponent(viewIndiSurnameLBL)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(viewIndiEmailTF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                        .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewIndiDOBLBL)
+                            .addComponent(viewIndiDonorIDLBL))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        viewIndiDonorPanelLayout.setVerticalGroup(
+            viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(viewIndiDonorIDLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewIndiSurnameLBL)
+                    .addComponent(viewIndiFirstNameLBL, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewIndiSurnameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewIndiFirstNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiDOBLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiDOBTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiAddressLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiAddressTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewIndiEmailLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiEmailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(viewIndiPhoneNumberLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(viewIndiPhoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(deleteIndiBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(updateIndiBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        viewDonorTypePanel.add(viewIndiDonorPanel);
+
+        javax.swing.GroupLayout viewDonorPanelLayout = new javax.swing.GroupLayout(viewDonorPanel);
+        viewDonorPanel.setLayout(viewDonorPanelLayout);
+        viewDonorPanelLayout.setHorizontalGroup(
+            viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(viewTitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(viewDonorTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewSearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewDonorTypeSelectorPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        viewDonorPanelLayout.setVerticalGroup(
+            viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(viewTitlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewSearchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(viewDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(viewDonorPanelLayout.createSequentialGroup()
+                        .addComponent(viewDonorTypeSelectorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(viewDonorTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewItemDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        OverlayPanel.add(viewDonorPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(OverlayPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(OverlayPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void menuCreateDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseEntered
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_menuCreateDonoPanelMouseEntered
+
+    private void menuCreateDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseExited
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_menuCreateDonoPanelMouseExited
+
+    private void menuCreateDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseClicked
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(70,70,70));
+        menuViewDonoPanel.setBackground(new Color(55,55,55));
+        
+        menuCreateDonoLBL.setForeground(new Color(255,255,200));
+        menuViewDonoLBL.setForeground(new Color(240,240,240));
+        
+        createDonorPanel.setVisible(true);
+        viewDonorPanel.setVisible(false);
+        
+        createCorpDonorPanel.setVisible(false);
+        createIndiDonorPanel.setVisible(false);
+    }//GEN-LAST:event_menuCreateDonoPanelMouseClicked
+
+    private void menuViewDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseEntered
+        // TODO add your handling code here:
+        menuViewDonoPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_menuViewDonoPanelMouseEntered
+
+    private void menuViewDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseExited
+        // TODO add your handling code here:
+        menuViewDonoPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_menuViewDonoPanelMouseExited
+
+    private void menuViewDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseClicked
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(55,55,55));
+        menuViewDonoPanel.setBackground(new Color(70,70,70));
+        
+        menuViewDonoLBL.setForeground(new Color(255,255,200));
+        menuCreateDonoLBL.setForeground(new Color(240,240,240));
+        
+        createDonorPanel.setVisible(false);
+        viewDonorPanel.setVisible(true);
+        
+        viewCorpDonorPanel.setVisible(false);
+        viewIndiDonorPanel.setVisible(false);
+        
+        //updateCorpBTN1.setVisible(false);
+        //viewDonorIDTF1.setVisible(false);
+    }//GEN-LAST:event_menuViewDonoPanelMouseClicked
+
+    private void itemTypeFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemTypeFTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemTypeFTActionPerformed
+
+    private void itemQuantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuantityTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemQuantityTFActionPerformed
+
+    private void corpFoundingYearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpFoundingYearTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpFoundingYearTFActionPerformed
+
+    private void itemDateReceivedTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDateReceivedTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemDateReceivedTF1ActionPerformed
+
+    private void corpNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpNameTFActionPerformed
+
+    private void corpHQAddressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpHQAddressTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpHQAddressTFActionPerformed
+
+    private void corpEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpEmailTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpEmailTFActionPerformed
+
+    private void corpPhoneNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpPhoneNumberTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpPhoneNumberTFActionPerformed
+
+    private void corpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpSelectorBTNActionPerformed
+        createCorpDonorPanel.setVisible(true);
+        createIndiDonorPanel.setVisible(false);
+    }//GEN-LAST:event_corpSelectorBTNActionPerformed
+
+    private void indiSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiSelectorBTNActionPerformed
+        createCorpDonorPanel.setVisible(false);
+        createIndiDonorPanel.setVisible(true);
+    }//GEN-LAST:event_indiSelectorBTNActionPerformed
+
+    private void indiFirstNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiFirstNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiFirstNameTFActionPerformed
+
+    private void indiDoBTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiDoBTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiDoBTFActionPerformed
+
+    private void indiAddressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiAddressTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiAddressTFActionPerformed
+
+    private void indiEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiEmailTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiEmailTFActionPerformed
+
+    private void indiPhoneNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiPhoneNumberTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiPhoneNumberTFActionPerformed
+
+    private void indiSurnameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiSurnameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_indiSurnameTFActionPerformed
+
+    private void exitAppPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitAppPanelMouseClicked
+
+    private void backToMenuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseClicked
+        ZeroHungerApp zerohunger = new ZeroHungerApp();
+        zerohunger.setVisible(true);
+        
+        Window pFrame = SwingUtilities.getWindowAncestor(this);
+        if(pFrame !=null){
+            pFrame.dispose();
+        }
+    }//GEN-LAST:event_backToMenuPanelMouseClicked
+
+    private void exitAppPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseEntered
+        // TODO add your handling code here:
+        exitAppPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_exitAppPanelMouseEntered
+
+    private void exitAppPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseExited
+        // TODO add your handling code here:
+        exitAppPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_exitAppPanelMouseExited
+
+    private void backToMenuPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseEntered
+        // TODO add your handling code here:
+        backToMenuPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_backToMenuPanelMouseEntered
+
+    private void backToMenuPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseExited
+        // TODO add your handling code here:
+        backToMenuPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_backToMenuPanelMouseExited
+
+    private void viewItemTypeFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemTypeFTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewItemTypeFTActionPerformed
+
+    private void viewItemQuantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemQuantityTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewItemQuantityTFActionPerformed
+
+    private void viewItemDateReceivedTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemDateReceivedTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewItemDateReceivedTFActionPerformed
+
+    private void corpPhoneNumberTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpPhoneNumberTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpPhoneNumberTF1ActionPerformed
+
+    private void corpEmailTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpEmailTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_corpEmailTF1ActionPerformed
+
+    private void viewCorpHQAddressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpHQAddressTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewCorpHQAddressTFActionPerformed
+
+    private void updateCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCorpBTNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateCorpBTNActionPerformed
+
+    private void viewCorpFoundingYearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpFoundingYearTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewCorpFoundingYearTFActionPerformed
+
+    private void viewDonorIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDonorIDTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewDonorIDTFActionPerformed
+
+    private void viewCorpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNActionPerformed
+        // TODO add your handling code here:
+        viewCorpDonorPanel.setVisible(true);
+        viewIndiDonorPanel.setVisible(false);
+        
+        searchBTN.setVisible(true);
+        searchTF.setVisible(true);
+    }//GEN-LAST:event_viewCorpSelectorBTNActionPerformed
+
+    private void viewIndiSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiSelectorBTNActionPerformed
+        // TODO add your handling code here:
+        viewCorpDonorPanel.setVisible(false);
+        viewIndiDonorPanel.setVisible(true);
+        
+        searchBTN.setVisible(true);
+        searchTF.setVisible(true);
+    }//GEN-LAST:event_viewIndiSelectorBTNActionPerformed
+
+    private void viewItemIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemIDTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewItemIDTFActionPerformed
+
+    private void viewIndiEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiEmailTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiEmailTFActionPerformed
+
+    private void viewIndiPhoneNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiPhoneNumberTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiPhoneNumberTFActionPerformed
+
+    private void viewIndiDOBTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiDOBTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiDOBTFActionPerformed
+
+    private void viewIndiAddressTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiAddressTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiAddressTF1ActionPerformed
+
+    private void viewIndiFirstNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiFirstNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiFirstNameTFActionPerformed
+
+    private void viewIndiSurnameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiSurnameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiSurnameTFActionPerformed
+
+    private void viewIndiEmailTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiEmailTF1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewIndiEmailTF1ActionPerformed
+
+    private void viewCorpNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpNameTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewCorpNameTFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel ItemTypeLBL;
+    private javax.swing.JPanel OverlayPanel;
+    private javax.swing.JButton addCorpBTN;
+    private javax.swing.JButton addIndiBTN;
+    private javax.swing.JLabel backToMenuLBL;
+    private javax.swing.JPanel backToMenuPanel;
+    private javax.swing.JLabel corpEmailLBL;
+    private javax.swing.JLabel corpEmailLBL1;
+    private com.ryansheridan.rfields.RTextField corpEmailTF;
+    private com.ryansheridan.rfields.RTextField corpEmailTF1;
+    private javax.swing.JLabel corpFoundingYearLBL;
+    private com.ryansheridan.rfields.RTextField corpFoundingYearTF;
+    private javax.swing.JLabel corpHQAddressLBL;
+    private com.ryansheridan.rfields.RTextField corpHQAddressTF;
+    private javax.swing.JLabel corpNameLBL;
+    private com.ryansheridan.rfields.RTextField corpNameTF;
+    private javax.swing.JLabel corpPhoneNumberLBL;
+    private javax.swing.JLabel corpPhoneNumberLBL1;
+    private com.ryansheridan.rfields.RTextField corpPhoneNumberTF;
+    private com.ryansheridan.rfields.RTextField corpPhoneNumberTF1;
+    private javax.swing.JRadioButton corpSelectorBTN;
+    public static javax.swing.JPanel createCorpDonorPanel;
+    private javax.swing.JPanel createDonorPanel;
+    private javax.swing.JLabel createDonorTitleLBL;
+    private javax.swing.JPanel createDonorTitlePanel;
+    private javax.swing.JPanel createEmptyPanel;
+    public static javax.swing.JPanel createIndiDonorPanel;
+    private javax.swing.JPanel createItemDetailsPanel;
+    private javax.swing.JButton deleteCorpBTN;
+    private javax.swing.JButton deleteIndiBTN;
+    private javax.swing.ButtonGroup donorTypeBTNGROUP;
+    private javax.swing.JPanel donorTypePanel;
+    private javax.swing.JPanel donorTypeSelectorPanel;
+    private javax.swing.JLabel exitAppLBL;
+    private javax.swing.JPanel exitAppPanel;
+    private javax.swing.JLabel indiAddressLBL;
+    private com.ryansheridan.rfields.RTextField indiAddressTF;
+    private javax.swing.JLabel indiDoBLBL;
+    private com.ryansheridan.rfields.RTextField indiDoBTF;
+    private javax.swing.JLabel indiEmailLBL;
+    private com.ryansheridan.rfields.RTextField indiEmailTF;
+    private javax.swing.JLabel indiFirstNameLBL;
+    private com.ryansheridan.rfields.RTextField indiFirstNameTF;
+    private javax.swing.JLabel indiPhoneNumberLBL;
+    private com.ryansheridan.rfields.RTextField indiPhoneNumberTF;
+    private javax.swing.JRadioButton indiSelectorBTN;
+    private javax.swing.JLabel indiSurnameLBL;
+    private com.ryansheridan.rfields.RTextField indiSurnameTF;
+    private javax.swing.JComboBox<String> itemConditionCB;
+    private javax.swing.JLabel itemConditionLBL;
+    private javax.swing.JLabel itemDateReceivedLBL;
+    private com.ryansheridan.rfields.RTextField itemDateReceivedTF1;
+    private javax.swing.JCheckBox itemElectricalChB;
+    private javax.swing.JLabel itemNameLBL;
+    private com.ryansheridan.rfields.RTextField itemNameTF;
+    private javax.swing.JLabel itemQuantityLBL;
+    private com.ryansheridan.rfields.RTextField itemQuantityTF;
+    private com.ryansheridan.rfields.RTextField itemTypeFT;
+    public static javax.swing.JLabel menuCreateDonoLBL;
+    private javax.swing.JPanel menuCreateDonoPanel;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JLabel menuViewDonoLBL;
+    private javax.swing.JPanel menuViewDonoPanel;
+    private javax.swing.JButton searchBTN;
+    private com.ryansheridan.rfields.RTextField searchTF;
+    private javax.swing.JButton updateCorpBTN;
+    private javax.swing.JButton updateIndiBTN;
+    private javax.swing.JLabel viewCorpDonorIDLBL;
+    private javax.swing.JPanel viewCorpDonorPanel;
+    private javax.swing.JLabel viewCorpFoundingYearLBL;
+    private com.ryansheridan.rfields.RTextField viewCorpFoundingYearTF;
+    private javax.swing.JLabel viewCorpHQAddressLBL;
+    private com.ryansheridan.rfields.RTextField viewCorpHQAddressTF;
+    private javax.swing.JLabel viewCorpNameLBL;
+    private com.ryansheridan.rfields.RTextField viewCorpNameTF;
+    private javax.swing.JRadioButton viewCorpSelectorBTN;
+    private com.ryansheridan.rfields.RTextField viewDonorIDTF;
+    private javax.swing.JPanel viewDonorPanel;
+    private javax.swing.ButtonGroup viewDonorTypeBTNGROUP;
+    private javax.swing.JPanel viewDonorTypePanel;
+    private javax.swing.JPanel viewDonorTypeSelectorPanel;
+    private javax.swing.JLabel viewIndiAddressLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiAddressTF1;
+    private javax.swing.JLabel viewIndiDOBLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiDOBTF;
+    private javax.swing.JLabel viewIndiDonorIDLBL;
+    private javax.swing.JPanel viewIndiDonorPanel;
+    private javax.swing.JLabel viewIndiEmailLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiEmailTF;
+    private com.ryansheridan.rfields.RTextField viewIndiEmailTF1;
+    private javax.swing.JLabel viewIndiFirstNameLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiFirstNameTF;
+    private javax.swing.JLabel viewIndiPhoneNumberLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiPhoneNumberTF;
+    private javax.swing.JRadioButton viewIndiSelectorBTN;
+    private javax.swing.JLabel viewIndiSurnameLBL;
+    private com.ryansheridan.rfields.RTextField viewIndiSurnameTF;
+    private javax.swing.JComboBox<String> viewItemConditionCB;
+    private javax.swing.JLabel viewItemConditionLBL;
+    private javax.swing.JLabel viewItemDateReceivedLBL;
+    private com.ryansheridan.rfields.RTextField viewItemDateReceivedTF;
+    private javax.swing.JPanel viewItemDetailsPanel;
+    private javax.swing.JCheckBox viewItemElectricalChB;
+    private javax.swing.JLabel viewItemIDLBL;
+    private com.ryansheridan.rfields.RTextField viewItemIDTF;
+    private javax.swing.JLabel viewItemNameLBL;
+    private com.ryansheridan.rfields.RTextField viewItemNameTF;
+    private javax.swing.JLabel viewItemQuantityLBL;
+    private com.ryansheridan.rfields.RTextField viewItemQuantityTF;
+    private com.ryansheridan.rfields.RTextField viewItemTypeFT;
+    private javax.swing.JLabel viewItemTypeLBL;
+    private javax.swing.JPanel viewSearchPanel;
+    private javax.swing.JLabel viewTitleLBL;
+    private javax.swing.JPanel viewTitlePanel;
     // End of variables declaration//GEN-END:variables
 }
