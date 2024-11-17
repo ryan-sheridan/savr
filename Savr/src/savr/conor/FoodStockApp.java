@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author conor
  * 
- * just defining the class to get rid of red lines - ryan
+ * 
  * 
  */
 public class FoodStockApp {

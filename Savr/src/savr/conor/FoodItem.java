@@ -16,6 +16,7 @@ public abstract class FoodItem {
     protected String name, type;
     protected Date expiryDate;
 
+    //add constructor
     public FoodItem() {
     }
 
@@ -27,12 +28,58 @@ public abstract class FoodItem {
         this.expiryDate = expiryDate;
     }
     
-    // Method to check if the food item is expired
+    //method to check if the food item is expired
     public boolean isExpired() {
-        Date currentDate = new Date();
+        Date currentDate = new Date();//get current date and put in new obj
+        //make sure its not null and if expiry date is before the current date
         return expiryDate != null && expiryDate.before(currentDate);
     }
+    
+    //abstract method
+    public abstract boolean needsRefrigeration();
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getExpiryDate() {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date expiryDate) {
+        this.expiryDate = expiryDate;
+    }
+    
     
     
 }
 
+    
