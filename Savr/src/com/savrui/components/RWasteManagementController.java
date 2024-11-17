@@ -28,12 +28,12 @@ public class RWasteManagementController extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         rWasteSourceController1 = new com.savrui.components.RWasteSourceController();
-        rWasteSourceController2 = new com.savrui.components.RWasteSourceController();
-        rWasteSourceController3 = new com.savrui.components.RWasteSourceController();
+        rFoodSaverController1 = new com.savrui.components.RFoodSaverController();
+        rRedistributionController1 = new com.savrui.components.RRedistributionController();
 
         jTabbedPane1.addTab("Waste Source Controller", rWasteSourceController1);
-        jTabbedPane1.addTab("tab2", rWasteSourceController2);
-        jTabbedPane1.addTab("tab3", rWasteSourceController3);
+        jTabbedPane1.addTab("Food Saver Controller", rFoodSaverController1);
+        jTabbedPane1.addTab("Redistribution", rRedistributionController1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -50,8 +50,8 @@ public class RWasteManagementController extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
+    private com.savrui.components.RFoodSaverController rFoodSaverController1;
+    private com.savrui.components.RRedistributionController rRedistributionController1;
     private com.savrui.components.RWasteSourceController rWasteSourceController1;
-    private com.savrui.components.RWasteSourceController rWasteSourceController2;
-    private com.savrui.components.RWasteSourceController rWasteSourceController3;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
 package savr;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.savrui.components.AgricultureUIManager;
+import com.savrui.components.FoodStockAppManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 
@@ -138,47 +140,42 @@ public class ZeroHungerApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-            whats up conor, the following code is an example of how this button
-            can open a new jframe, append a new jpanel (your food stock controller)
-            
-            it will then open the new jframe, and close the current window
-        */
-        /*
-            // example
-            RWasteManagementController controllerPanel = new RWasteManagementController();
-
-            JFrame newFrame = new JFrame("Waste Management Controller");
-            newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            newFrame.setSize(800, 600);
-            newFrame.add(controllerPanel); 
-            newFrame.setVisible(true); 
-
-            this.dispose();
-        */
-        JOptionPane.showMessageDialog(this, "FoodStockApp not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
+        //button will open the foodstockapp jframe
+        FoodStockAppManager FoodStockMenu = new FoodStockAppManager();
+        
+        JFrame newFrame = new JFrame("Food Stock App");
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        newFrame.setSize(800,600);
+        newFrame.add(FoodStockMenu);
+        newFrame.setVisible(true);
+        //make the logopanel be the tab to show up when coming on the food stock app
+        FoodStockMenu.logoPanel.setVisible(true);
+        FoodStockMenu.foodStockPanel.setVisible(false);
+        FoodStockMenu.viewingStockPanel.setVisible(false);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         /*
-            whats up sean, the following code is an example of how this button
-            can open a new jframe, append a new jpanel (your agriculture ui controller)
-            
-            it will then open the new jframe, and close the current window
+           Agriculture Aid JFrame
         */
-        /*
-            // example
-            RWasteManagementController controllerPanel = new RWasteManagementController();
 
-            JFrame newFrame = new JFrame("Waste Management Controller");
-            newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            newFrame.setSize(800, 600);
-            newFrame.add(controllerPanel); 
-            newFrame.setVisible(true); 
 
-            this.dispose();
-        */
-        JOptionPane.showMessageDialog(this, "AgricultureUI not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
+        AgricultureUIManager agriUIManager = new AgricultureUIManager();
+
+        JFrame newFrame = new JFrame("Agricultural Aid Manager");
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        newFrame.setSize(800, 640);
+        newFrame.add(agriUIManager); 
+        newFrame.setVisible(true); 
+
+        agriUIManager.createCorpDonorPanel.setVisible(false);
+        agriUIManager.createIndiDonorPanel.setVisible(false);
+
+        agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
+
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
@@ -191,11 +188,12 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         try {
             javax.swing.UIManager.put("Panel.background", new Color(30, 30, 30));
-            javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
-            javax.swing.UIManager.put("Button.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
-            javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
+            javax.swing.UIManager.put("Table.background", new Color(40, 40, 40));
+            //javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
+            //javax.swing.UIManager.put("Button.foreground", Color.WHITE);
+            //javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
+            //javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
+            //javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
             javax.swing.UIManager.put("Label.foreground", Color.WHITE);
             javax.swing.UIManager.put("TextArea.background", new Color(40, 40, 40));
             javax.swing.UIManager.put("TextArea.foreground", Color.WHITE);
