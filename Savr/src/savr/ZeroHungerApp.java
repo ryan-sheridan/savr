@@ -158,24 +158,24 @@ public class ZeroHungerApp extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         /*
-            whats up sean, the following code is an example of how this button
-            can open a new jframe, append a new jpanel (your agriculture ui controller)
-            
-            it will then open the new jframe, and close the current window
+           Agriculture Aid JFrame
         */
-        
-            // example
-            AgricultureUIManager agriUIManager = new AgricultureUIManager();
 
-            JFrame newFrame = new JFrame("Agricultural Aid Manager");
-            newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            newFrame.setSize(800, 600);
-            newFrame.add(agriUIManager); 
-            newFrame.setVisible(true); 
 
-            this.dispose();
-        
-       // JOptionPane.showMessageDialog(this, "AgricultureUI not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
+        AgricultureUIManager agriUIManager = new AgricultureUIManager();
+
+        JFrame newFrame = new JFrame("Agricultural Aid Manager");
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        newFrame.setSize(800, 640);
+        newFrame.add(agriUIManager); 
+        newFrame.setVisible(true); 
+
+        agriUIManager.createCorpDonorPanel.setVisible(false);
+        agriUIManager.createIndiDonorPanel.setVisible(false);
+
+        agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
+
+        this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
