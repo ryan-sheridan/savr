@@ -4,6 +4,8 @@
  */
 package savr.conor;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author conor
@@ -13,4 +15,44 @@ package savr.conor;
  */
 public class FoodStockApp {
     
+    protected ArrayList<FoodItem> foodItem;
+
+    public FoodStockApp(ArrayList<FoodItem> foodItem) {
+        this.foodItem = foodItem;
+    }
+
+    public FoodStockApp() {
+    }
+    
+    public void addRecords(){
+        return;
+    }
+    
+    public void viewRecords(){
+        return;
+    }
+    
+    public void addFoodItem(){
+        return;
+    }
+    
+    public void editFoodItem(){
+        return;
+    }
+    
+    public void deleteFoodItem(){
+        return;
+    }
+
+    public ArrayList<FoodItem> getFoodItem() {
+        return foodItem;
+    }
+
+    public void setFoodItem(ArrayList<FoodItem> foodItem) {
+        this.foodItem = foodItem;
+    }
+    
+    
+    
 }
+
