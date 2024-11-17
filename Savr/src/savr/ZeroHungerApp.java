@@ -5,6 +5,7 @@
 package savr;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.savrui.components.AgricultureUIManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 
@@ -166,19 +167,19 @@ public class ZeroHungerApp extends javax.swing.JFrame {
             
             it will then open the new jframe, and close the current window
         */
-        /*
+        
             // example
-            RWasteManagementController controllerPanel = new RWasteManagementController();
+            AgricultureUIManager agriUIManager = new AgricultureUIManager();
 
-            JFrame newFrame = new JFrame("Waste Management Controller");
+            JFrame newFrame = new JFrame("Agricultural Aid Manager");
             newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             newFrame.setSize(800, 600);
-            newFrame.add(controllerPanel); 
+            newFrame.add(agriUIManager); 
             newFrame.setVisible(true); 
 
             this.dispose();
-        */
-        JOptionPane.showMessageDialog(this, "AgricultureUI not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
+        
+       // JOptionPane.showMessageDialog(this, "AgricultureUI not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
