@@ -6,6 +6,7 @@ package savr;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.savrui.components.AgricultureUIManager;
+import com.savrui.components.FoodStockAppManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 
@@ -139,25 +140,20 @@ public class ZeroHungerApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        /*
-            whats up conor, the following code is an example of how this button
-            can open a new jframe, append a new jpanel (your food stock controller)
-            
-            it will then open the new jframe, and close the current window
-        */
-        /*
-            // example
-            RWasteManagementController controllerPanel = new RWasteManagementController();
-
-            JFrame newFrame = new JFrame("Waste Management Controller");
-            newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            newFrame.setSize(800, 600);
-            newFrame.add(controllerPanel); 
-            newFrame.setVisible(true); 
-
-            this.dispose();
-        */
-        JOptionPane.showMessageDialog(this, "FoodStockApp not yet implemented, please check the button event listener! - ryan", "Info", JOptionPane.INFORMATION_MESSAGE);
+        //button will open the foodstockapp jframe
+        FoodStockAppManager FoodStockMenu = new FoodStockAppManager();
+        
+        JFrame newFrame = new JFrame("Food Stock App");
+        newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        newFrame.setSize(800,600);
+        newFrame.add(FoodStockMenu);
+        newFrame.setVisible(true);
+        //make the logopanel be the tab to show up when coming on the food stock app
+        FoodStockMenu.logoPanel.setVisible(true);
+        FoodStockMenu.foodStockPanel.setVisible(false);
+        FoodStockMenu.viewingStockPanel.setVisible(false);
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
