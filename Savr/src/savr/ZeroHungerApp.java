@@ -176,6 +176,16 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
 
         this.dispose();
+        
+        //AgricultureUIManager agriUIManager = new AgricultureUIManager();
+
+        //JFrame newFrame = new JFrame("Agricultural Aid Manager");
+        //newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        //newFrame.setSize(800, 600);
+        //newFrame.add(agriUIManager); 
+        //newFrame.setVisible(true); 
+
+        //this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     
