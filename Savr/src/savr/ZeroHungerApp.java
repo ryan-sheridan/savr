@@ -191,7 +191,7 @@ public class ZeroHungerApp extends javax.swing.JFrame {
             javax.swing.UIManager.put("Table.background", new Color(40, 40, 40));
             //javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
             //javax.swing.UIManager.put("Button.foreground", Color.WHITE);
-            //javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
+            javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
             //javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
             //javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
             javax.swing.UIManager.put("Label.foreground", Color.WHITE);
