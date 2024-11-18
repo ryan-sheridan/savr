@@ -1,7 +1,7 @@
 # Savr
 Food waste management system powered by Java
 
-## Color Palette
+## Colour Palette
 
 - ![#3c3c3c](https://placehold.co/15x15/3c3c3c/3c3c3c.png) `#3c3c3c`
 - ![#282828](https://placehold.co/15x15/282828/282828.png) `#282828`
@@ -11,8 +11,11 @@ Food waste management system powered by Java
 - ![#6a4f88](https://placehold.co/15x15/6a4f88/6a4f88.png) `#6a4f88`
 - ![#1079ea](https://placehold.co/15x15/1079ea/1079ea.png) `#1079ea`
 
-## UI Components
-
-### `RCardView`
-![RCardView example](component-examples/RCardView.png)
+## TODO
+- more consistent colour scheme and window sizing
+- recompile `R*Field` so `placeholder` is set based on the `fieldType`
+- `RButton` should transition smoothly between colours on hover and click
+- redistribution controller redesign, for user and admin, remove fake png
+- create `RAddSourceController` for add source button in `RWasteSourceController`
+- possible `JTable` extension to match rest of ui
 
