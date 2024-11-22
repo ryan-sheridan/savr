@@ -846,7 +846,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         viewTitlePanel.setBackground(new java.awt.Color(70, 70, 70));
 
-        viewTitleLBL.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        viewTitleLBL.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         viewTitleLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         viewTitleLBL.setText("VIEW DONATIONS");
 
@@ -854,17 +854,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewTitlePanel.setLayout(viewTitlePanelLayout);
         viewTitlePanelLayout.setHorizontalGroup(
             viewTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewTitlePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
         viewTitlePanelLayout.setVerticalGroup(
             viewTitlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewTitlePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(viewTitleLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         viewItemDetailsPanel.setBackground(new java.awt.Color(70, 70, 70));
@@ -1342,9 +1336,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                     .addGroup(viewDonorPanelLayout.createSequentialGroup()
                         .addComponent(viewDonorTypeSelectorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(viewDonorTypePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(viewDonorTypePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(viewItemDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         OverlayPanel.add(viewDonorPanel);
