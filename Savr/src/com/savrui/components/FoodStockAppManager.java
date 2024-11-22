@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import savr.ZeroHungerApp;
+import savr.MainApplication;
 
 /**
  *
@@ -473,7 +473,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     }//GEN-LAST:event_exitBTNActionPerformed
 
     private void returnBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBTNActionPerformed
-        ZeroHungerApp MainMenuFrame = new ZeroHungerApp();
+        MainApplication MainMenuFrame = new MainApplication();
         MainMenuFrame.setVisible(true);
 
        //close the parent frame containing this panel
