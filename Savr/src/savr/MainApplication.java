@@ -26,12 +26,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author ryan
  */
-public class ZeroHungerApp extends javax.swing.JFrame {
+public class MainApplication extends javax.swing.JFrame {
 
     /**
      * Creates new form ZeroHungerApp
      */
-    public ZeroHungerApp() {
+    public MainApplication() {
         initComponents();
     }
 
@@ -248,7 +248,7 @@ public class ZeroHungerApp extends javax.swing.JFrame {
                 UIManager.put("TabbedPane.font", ubuntuFont);
                 UIManager.put("Table.font", ubuntuFont);
                 UIManager.put("ToolTip.font", ubuntuFont);
-                new ZeroHungerApp().setVisible(true);
+                new MainApplication().setVisible(true);
             }
         });
     }

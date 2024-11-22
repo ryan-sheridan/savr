@@ -7,7 +7,7 @@ package com.savrui.components;
 import java.awt.Color;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
-import savr.ZeroHungerApp;
+import savr.MainApplication;
 
 /**
  *
@@ -1489,7 +1489,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_exitAppPanelMouseClicked
 
     private void backToMenuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseClicked
-        ZeroHungerApp zerohunger = new ZeroHungerApp();
+        MainApplication zerohunger = new MainApplication();
         zerohunger.setVisible(true);
         
         Window pFrame = SwingUtilities.getWindowAncestor(this);
