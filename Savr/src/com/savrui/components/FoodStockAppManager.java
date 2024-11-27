@@ -9,6 +9,7 @@ import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
+import savr.RDynamicFont;
 
 /**
  *
@@ -21,6 +22,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
      */
     public FoodStockAppManager() {
         initComponents();
+        RDynamicFont.updateFont(this);
     }
 
     /**
@@ -227,7 +229,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         foodStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         titleLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        titleLBL.setForeground(new java.awt.Color(187, 187, 187));
         titleLBL.setText("Savr Food Stock");
 
         addBTN.setText("Add");
@@ -363,7 +364,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         viewingStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         viewTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        viewTitle.setForeground(new java.awt.Color(187, 187, 187));
         viewTitle.setText("Savr View Perishable Food Types");
 
         jTextArea1.setColumns(20);

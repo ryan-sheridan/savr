@@ -9,7 +9,7 @@ import com.savrui.components.AgricultureUIManager;
 import com.savrui.components.FoodStockAppManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
-
+import com.savrui.components.RButton;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -33,6 +33,7 @@ public class MainApplication extends javax.swing.JFrame {
      */
     public MainApplication() {
         initComponents();
+        RDynamicFont.updateFont(this.getContentPane());
     }
 
     /**
@@ -48,9 +49,9 @@ public class MainApplication extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton1 = new RButton();
+        jButton2 = new RButton();
+        jButton3 = new RButton();
 
         jLabel2.setText("jLabel2");
 
@@ -222,33 +223,24 @@ public class MainApplication extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Font ubuntuFont = null;
-                try {
-                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-                    Font f = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/resources/Ubuntu-Regular.ttf"));
-                    if (!ge.registerFont(f)) {
-                        System.out.println("Unable to register font");
-                    }
-                    ubuntuFont = f.deriveFont(Font.PLAIN, 17);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (FontFormatException e) {
-                    e.printStackTrace();
-                }
 
                 // Set the font for all components
-                UIManager.put("Label.font", ubuntuFont);
-                UIManager.put("Button.font", ubuntuFont);
-                UIManager.put("TextField.font", ubuntuFont);
-                UIManager.put("PasswordField.font", ubuntuFont);
-                UIManager.put("TextArea.font", ubuntuFont);
-                UIManager.put("ComboBox.font", ubuntuFont);
-                UIManager.put("CheckBox.font", ubuntuFont);
-                UIManager.put("RadioButton.font", ubuntuFont);
-                UIManager.put("TabbedPane.font", ubuntuFont);
-                UIManager.put("Table.font", ubuntuFont);
-                UIManager.put("ToolTip.font", ubuntuFont);
-                new MainApplication().setVisible(true);
+                //UIManager.put("Label.font", ubuntuFont);
+                //UIManager.put("Button.font", ubuntuFont);
+                //UIManager.put("TextField.font", ubuntuFont);
+                //UIManager.put("PasswordField.font", ubuntuFont);
+                //UIManager.put("TextArea.font", ubuntuFont);
+                //UIManager.put("ComboBox.font", ubuntuFont);
+                //UIManager.put("CheckBox.font", ubuntuFont);
+                //UIManager.put("RadioButton.font", ubuntuFont);
+                //UIManager.put("TabbedPane.font", ubuntuFont);
+                //UIManager.put("Table.font", ubuntuFont);
+                //UIManager.put("ToolTip.font", ubuntuFont);
+                
+                MainApplication mainApplication = new MainApplication();
+                mainApplication.setLocationRelativeTo(null);
+                mainApplication.setVisible(true);
+                
             }
         });
     }
