@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package savr;
+import savr.ryan.tools.RDynamicFont;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.savrui.components.AgricultureUIManager;
@@ -128,13 +129,16 @@ public class MainApplication extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    JFrame newFrame;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RWasteManagementController controllerPanel = new RWasteManagementController();
         
-        JFrame newFrame = new JFrame("Waste Management Controller");
+        newFrame = new JFrame("Waste Management Controller");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        newFrame.setSize(800, 600);
+        newFrame.setSize(controllerPanel.getPreferredSize());
         newFrame.add(controllerPanel); 
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
         this.dispose();
@@ -144,10 +148,11 @@ public class MainApplication extends javax.swing.JFrame {
         //button will open the foodstockapp jframe
         FoodStockAppManager FoodStockMenu = new FoodStockAppManager();
         
-        JFrame newFrame = new JFrame("Food Stock App");
+        newFrame = new JFrame("Food Stock App");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(800,600);
         newFrame.add(FoodStockMenu);
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
         //make the logopanel be the tab to show up when coming on the food stock app
         FoodStockMenu.logoPanel.setVisible(true);
@@ -165,10 +170,11 @@ public class MainApplication extends javax.swing.JFrame {
 
         AgricultureUIManager agriUIManager = new AgricultureUIManager();
 
-        JFrame newFrame = new JFrame("Agricultural Aid Manager");
+        newFrame = new JFrame("Agricultural Aid Manager");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(800, 640);
         newFrame.add(agriUIManager); 
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
         agriUIManager.createCorpDonorPanel.setVisible(false);

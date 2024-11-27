@@ -4,15 +4,31 @@
  */
 package com.savrui.components;
 
+import com.kitfox.svg.SVGDiagram;
+import com.kitfox.svg.SVGElement;
+import com.kitfox.svg.SVGElementException;
+import com.kitfox.svg.SVGException;
+import com.kitfox.svg.SVGUniverse;
+import com.kitfox.svg.animation.AnimationElement;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -27,6 +43,98 @@ public class RButton extends JButton {
     private boolean roundBottomRight;
     
     private boolean roundedCorners;
+    
+    private BufferedImage iconImage;
+    private SVGDiagram svgIcon;
+    
+    private int padding = 0;
+
+    public int getPadding() {
+        return padding;
+    }
+
+    public void setPadding(int padding) {
+        this.padding = padding;
+    }
+    
+    private ButtonType buttonType;
+    
+    // this svg stuff is way to static, figure out how to resize svg dynamically
+    // depending on button w and h, or dont, or does it really matter?
+    
+    // could of just used an icon ...
+    
+    // load the svg icon and set it as the button icon
+    public void setIconWithSVG(String svgPath) {
+        SVGUniverse svgUniverse = new SVGUniverse();
+        // load svg into a SVGDiagram object
+        svgIcon = svgUniverse.getDiagram(svgUniverse.loadSVG(getClass().getResource(svgPath)));
+        svgIcon.setIgnoringClipHeuristic(true);
+        
+        SVGElement rootElement = svgIcon.getRoot();
+        
+        try {
+            rootElement.setAttribute("fill", AnimationElement.AT_XML, "#FFFFFF");
+            rootElement.addAttribute("fill-opacity", AnimationElement.AT_CSS, "0.5");
+        } catch (SVGElementException ex) {
+            Logger.getLogger(RButton.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int width = Math.max(getWidth() - padding * 2, 1);
+        int height = Math.max(getHeight() - padding * 2, 1);
+        
+        // System.out.println(String.format("%d %d", getWidth(), getHeight()));
+        
+        // render the SVGDiagram as a BufferedImage
+        iconImage = renderSVG(svgIcon, width, height);
+    }
+
+    private BufferedImage renderSVG(SVGDiagram svgIcon, int width, int height) {
+        // create a new BufferedImage
+        BufferedImage image = new BufferedImage(27, 27, BufferedImage.TYPE_INT_ARGB);
+        // get a new graphics context
+        Graphics2D g = image.createGraphics();
+        
+        // for those smooth edges
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
+        
+        // set width and height of the SVG
+        //Rectangle viewport = new Rectangle(0, 0, width, height);
+        //svgIcon.setDeviceViewport(viewport);
+        
+        try {
+            // render svg to a graphics context
+            svgIcon.render(g);
+        } catch (SVGException ex) {
+            Logger.getLogger(RButton.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // RESEARCH: why i always have to do dispose
+        g.dispose();
+        
+        // DEBUG
+        // displayBufferedImage(image);
+        
+        return image;
+    }
+    
+    
+    public enum ButtonType {
+        ICON,
+        TEXT
+    }
+
+    public ButtonType getButtonType() {
+        return buttonType;
+    }
+
+    public void setButtonType(ButtonType buttonType) {
+        this.buttonType = buttonType;
+    }
+    
     
     public RButton() {
         super();
@@ -123,33 +231,45 @@ public class RButton extends JButton {
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
+        
         // the perfect border radius
         int radius = Math.min(getWidth(), getHeight()) / 3;
-        
+
         System.out.println(isRoundBottomLeft());
         // create path for rounded rect
         Path2D.Float path = createRoundedRectangle(getWidth(), getHeight(),
                             isRoundTopLeft()     ? radius : 0,
                             isRoundTopRight()    ? radius : 0,
-                            isRoundBottomLeft() ? radius : 0,
-                            isRoundBottomRight()  ? radius : 0);
+                            isRoundBottomLeft()  ? radius : 0,
+                            isRoundBottomRight() ? radius : 0);
 
         // fill in path
         g2.setColor(getBackground());
         g2.fill(path);
         
-        // here we render the text manually so we can draw over our rounded rect
-        g2.setColor(calculateForeground(backgroundColor));  
-        String text = getText();  // grab the text of the button
-        FontMetrics fm = g2.getFontMetrics();
+        if(getButtonType() == ButtonType.ICON) {
+            
+            // TODO: stop hardcoding things
+            setIconWithSVG("/resources/home.svg");
+            
+            if(iconImage != null) {
+                g2.drawImage(iconImage, 2,2, this);
+            }
+        } else {
+            // here we render the text manually so we can draw over our rounded rect
+            g2.setColor(calculateForeground(backgroundColor));  
+            String text = getText();  // grab the text of the button
+            FontMetrics fm = g2.getFontMetrics();
 
-        // Calculate the position of the text to center it
-        int x = (getWidth() - fm.stringWidth(text)) / 2;
-        int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+            // Calculate the position of the text to center it
+            int x = (getWidth() - fm.stringWidth(text)) / 2;
+            int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
 
-        // Draw the text
-        g2.drawString(text, x, y);
+            // Draw the text
+            g2.drawString(text, x, y);
+        }
+        
+        g2.dispose();
         
         // do what we wore ment to do originally
         //super.paintComponent(g);
