@@ -9,7 +9,7 @@ import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
-import savr.RDynamicFont;
+import savr.ryan.tools.RDynamicFont;
 
 /**
  *
