@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package savr;
-import savr.ryan.tools.RDynamicFont;
+import savr.ryan.tools.RDynamicUI;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.savrui.components.AgricultureUIManager;
@@ -34,7 +34,7 @@ public class MainApplication extends javax.swing.JFrame {
      */
     public MainApplication() {
         initComponents();
-        RDynamicFont.updateFont(this.getContentPane());
+        RDynamicUI.updateFont(this.getContentPane());
     }
 
     /**
@@ -203,27 +203,8 @@ public class MainApplication extends javax.swing.JFrame {
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        try {
-            javax.swing.UIManager.put("Panel.background", new Color(30, 30, 30));
-            javax.swing.UIManager.put("Table.background", new Color(40, 40, 40));
-            //javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
-            //javax.swing.UIManager.put("Button.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
-            //javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
-            //javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
-            javax.swing.UIManager.put("Label.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextArea.background", new Color(40, 40, 40));
-            javax.swing.UIManager.put("TextArea.foreground", Color.WHITE);
-            javax.swing.UIManager.put("ComboBox.background", new Color(40, 40, 40));
-            javax.swing.UIManager.put("ComboBox.foreground", Color.WHITE);
-            javax.swing.UIManager.put("ComboBox.selectionBackground", new Color(60, 60, 60));
-            javax.swing.UIManager.put("ComboBox.selectionForeground", Color.WHITE);
-            
-            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
-
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+        RDynamicUI uiManager = RDynamicUI.getInstance();
+        uiManager.applyTheme(RDynamicUI.Theme.LIGHT);
         //</editor-fold>
         
         /* Create and display the form */
@@ -244,6 +225,7 @@ public class MainApplication extends javax.swing.JFrame {
                 //UIManager.put("ToolTip.font", ubuntuFont);
                 
                 MainApplication mainApplication = new MainApplication();
+                // line for window centering
                 mainApplication.setLocationRelativeTo(null);
                 mainApplication.setVisible(true);
                 

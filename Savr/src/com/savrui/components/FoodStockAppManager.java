@@ -9,7 +9,7 @@ import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
-import savr.ryan.tools.RDynamicFont;
+import savr.ryan.tools.RDynamicUI;
 
 /**
  *
@@ -22,7 +22,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
      */
     public FoodStockAppManager() {
         initComponents();
-        RDynamicFont.updateFont(this);
+        RDynamicUI.updateFont(this);
     }
 
     /**

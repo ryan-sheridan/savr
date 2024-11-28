@@ -4,7 +4,7 @@
  */
 package com.savrui.components;
 
-import savr.ryan.tools.RDynamicFont;
+import savr.ryan.tools.RDynamicUI;
 
 /**
  *
@@ -17,7 +17,7 @@ public class RWasteManagementController extends javax.swing.JPanel {
      */
     public RWasteManagementController() {
         initComponents();
-        RDynamicFont.updateFont(this);
+        RDynamicUI.updateFont(this);
     }
 
     /**
