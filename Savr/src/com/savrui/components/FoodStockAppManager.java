@@ -8,7 +8,8 @@ import java.awt.Color;
 import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-import savr.ZeroHungerApp;
+import savr.MainApplication;
+import savr.ryan.tools.RDynamicUI;
 
 /**
  *
@@ -21,6 +22,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
      */
     public FoodStockAppManager() {
         initComponents();
+        RDynamicUI.updateFont(this);
     }
 
     /**
@@ -227,7 +229,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         foodStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         titleLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        titleLBL.setForeground(new java.awt.Color(187, 187, 187));
         titleLBL.setText("Savr Food Stock");
 
         addBTN.setText("Add");
@@ -363,7 +364,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         viewingStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         viewTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        viewTitle.setForeground(new java.awt.Color(187, 187, 187));
         viewTitle.setText("Savr View Perishable Food Types");
 
         jTextArea1.setColumns(20);
@@ -473,7 +473,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     }//GEN-LAST:event_exitBTNActionPerformed
 
     private void returnBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBTNActionPerformed
-        ZeroHungerApp MainMenuFrame = new ZeroHungerApp();
+        MainApplication MainMenuFrame = new MainApplication();
         MainMenuFrame.setVisible(true);
 
        //close the parent frame containing this panel

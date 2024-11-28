@@ -3,13 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package savr;
+import savr.ryan.tools.RDynamicUI;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.savrui.components.AgricultureUIManager;
 import com.savrui.components.FoodStockAppManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
-
+import com.savrui.components.RButton;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -26,13 +27,14 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author ryan
  */
-public class ZeroHungerApp extends javax.swing.JFrame {
+public class MainApplication extends javax.swing.JFrame {
 
     /**
      * Creates new form ZeroHungerApp
      */
-    public ZeroHungerApp() {
+    public MainApplication() {
         initComponents();
+        RDynamicUI.updateFont(this.getContentPane());
     }
 
     /**
@@ -48,9 +50,9 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton1 = new RButton();
+        jButton2 = new RButton();
+        jButton3 = new RButton();
 
         jLabel2.setText("jLabel2");
 
@@ -127,13 +129,16 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    JFrame newFrame;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         RWasteManagementController controllerPanel = new RWasteManagementController();
         
-        JFrame newFrame = new JFrame("Waste Management Controller");
+        newFrame = new JFrame("Waste Management Controller");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        newFrame.setSize(800, 600);
+        newFrame.setSize(controllerPanel.getPreferredSize());
         newFrame.add(controllerPanel); 
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
         this.dispose();
@@ -143,10 +148,11 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         //button will open the foodstockapp jframe
         FoodStockAppManager FoodStockMenu = new FoodStockAppManager();
         
-        JFrame newFrame = new JFrame("Food Stock App");
+        newFrame = new JFrame("Food Stock App");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(800,600);
         newFrame.add(FoodStockMenu);
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true);
         //make the logopanel be the tab to show up when coming on the food stock app
         FoodStockMenu.logoPanel.setVisible(true);
@@ -164,10 +170,11 @@ public class ZeroHungerApp extends javax.swing.JFrame {
 
         AgricultureUIManager agriUIManager = new AgricultureUIManager();
 
-        JFrame newFrame = new JFrame("Agricultural Aid Manager");
+        newFrame = new JFrame("Agricultural Aid Manager");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(800, 640);
         newFrame.add(agriUIManager); 
+        newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
         agriUIManager.createCorpDonorPanel.setVisible(false);
@@ -196,59 +203,32 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        try {
-            javax.swing.UIManager.put("Panel.background", new Color(30, 30, 30));
-            javax.swing.UIManager.put("Table.background", new Color(40, 40, 40));
-            //javax.swing.UIManager.put("Button.background", new Color(60, 60, 60));
-            //javax.swing.UIManager.put("Button.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextField.background", new Color(40, 40, 40));
-            //javax.swing.UIManager.put("TextField.foreground", Color.WHITE);
-            //javax.swing.UIManager.put("TextField.caretForeground", Color.WHITE);
-            javax.swing.UIManager.put("Label.foreground", Color.WHITE);
-            javax.swing.UIManager.put("TextArea.background", new Color(40, 40, 40));
-            javax.swing.UIManager.put("TextArea.foreground", Color.WHITE);
-            javax.swing.UIManager.put("ComboBox.background", new Color(40, 40, 40));
-            javax.swing.UIManager.put("ComboBox.foreground", Color.WHITE);
-            javax.swing.UIManager.put("ComboBox.selectionBackground", new Color(60, 60, 60));
-            javax.swing.UIManager.put("ComboBox.selectionForeground", Color.WHITE);
-            
-            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
-
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
+        RDynamicUI uiManager = RDynamicUI.getInstance();
+        uiManager.applyTheme(RDynamicUI.Theme.LIGHT);
         //</editor-fold>
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Font ubuntuFont = null;
-                try {
-                    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-                    Font f = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("/resources/Ubuntu-Regular.ttf"));
-                    if (!ge.registerFont(f)) {
-                        System.out.println("Unable to register font");
-                    }
-                    ubuntuFont = f.deriveFont(Font.PLAIN, 17);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (FontFormatException e) {
-                    e.printStackTrace();
-                }
 
                 // Set the font for all components
-                UIManager.put("Label.font", ubuntuFont);
-                UIManager.put("Button.font", ubuntuFont);
-                UIManager.put("TextField.font", ubuntuFont);
-                UIManager.put("PasswordField.font", ubuntuFont);
-                UIManager.put("TextArea.font", ubuntuFont);
-                UIManager.put("ComboBox.font", ubuntuFont);
-                UIManager.put("CheckBox.font", ubuntuFont);
-                UIManager.put("RadioButton.font", ubuntuFont);
-                UIManager.put("TabbedPane.font", ubuntuFont);
-                UIManager.put("Table.font", ubuntuFont);
-                UIManager.put("ToolTip.font", ubuntuFont);
-                new ZeroHungerApp().setVisible(true);
+                //UIManager.put("Label.font", ubuntuFont);
+                //UIManager.put("Button.font", ubuntuFont);
+                //UIManager.put("TextField.font", ubuntuFont);
+                //UIManager.put("PasswordField.font", ubuntuFont);
+                //UIManager.put("TextArea.font", ubuntuFont);
+                //UIManager.put("ComboBox.font", ubuntuFont);
+                //UIManager.put("CheckBox.font", ubuntuFont);
+                //UIManager.put("RadioButton.font", ubuntuFont);
+                //UIManager.put("TabbedPane.font", ubuntuFont);
+                //UIManager.put("Table.font", ubuntuFont);
+                //UIManager.put("ToolTip.font", ubuntuFont);
+                
+                MainApplication mainApplication = new MainApplication();
+                // line for window centering
+                mainApplication.setLocationRelativeTo(null);
+                mainApplication.setVisible(true);
+                
             }
         });
     }

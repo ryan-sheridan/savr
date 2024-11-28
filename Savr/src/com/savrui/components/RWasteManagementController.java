@@ -4,6 +4,8 @@
  */
 package com.savrui.components;
 
+import savr.ryan.tools.RDynamicUI;
+
 /**
  *
  * @author ryan
@@ -15,6 +17,7 @@ public class RWasteManagementController extends javax.swing.JPanel {
      */
     public RWasteManagementController() {
         initComponents();
+        RDynamicUI.updateFont(this);
     }
 
     /**
@@ -43,7 +46,9 @@ public class RWasteManagementController extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
