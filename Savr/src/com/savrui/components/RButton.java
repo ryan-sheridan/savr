@@ -10,6 +10,7 @@ import com.kitfox.svg.SVGElementException;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGUniverse;
 import com.kitfox.svg.animation.AnimationElement;
+import static com.savrui.components.RButton.ButtonType.HOME;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -79,8 +80,10 @@ public class RButton extends JButton {
         SVGElement rootElement = svgIcon.getRoot();
         
         try {
-            rootElement.setAttribute("fill", AnimationElement.AT_XML, "#FFFFFF");
-            rootElement.addAttribute("fill-opacity", AnimationElement.AT_CSS, "0.5");
+            if(buttonType == HOME) {
+                rootElement.setAttribute("fill", AnimationElement.AT_XML, "#FFFFFF");
+                rootElement.addAttribute("fill-opacity", AnimationElement.AT_CSS, "0.5");
+            }
         } catch (SVGElementException ex) {
             Logger.getLogger(RButton.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -128,7 +131,8 @@ public class RButton extends JButton {
     
     
     public enum ButtonType {
-        ICON,
+        SETTINGS,
+        HOME,
         TEXT
     }
 
@@ -265,10 +269,17 @@ public class RButton extends JButton {
         g2.setColor(getBackground());
         g2.fill(path);
         
-        if(getButtonType() == ButtonType.ICON) {
+        if(getButtonType() == ButtonType.HOME) {
             
             // TODO: stop hardcoding things
             setIconWithSVG("/resources/home.svg");
+            
+            if(iconImage != null) {
+                g2.drawImage(iconImage, 2,2, this);
+            }
+        } else if (getButtonType() == ButtonType.SETTINGS) {
+            // TODO: stop hardcoding things
+            setIconWithSVG("/resources/settings.svg");
             
             if(iconImage != null) {
                 g2.drawImage(iconImage, 2,2, this);

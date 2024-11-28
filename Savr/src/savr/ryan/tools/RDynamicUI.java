@@ -64,15 +64,15 @@ public class RDynamicUI {
         darkPallete.put("ComboBox.selectionBackground", new Color(60, 60, 60));
         darkPallete.put("ComboBox.selectionForeground", Color.WHITE);
         
-        lightPallete.put("Panel.background", new Color(245, 245, 245)); 
-        lightPallete.put("Table.background", Color.WHITE);
+        lightPallete.put("Panel.background", new Color(230, 230, 230)); 
+        lightPallete.put("Table.background", new Color(230, 230, 230));
         lightPallete.put("Button.background", Color.LIGHT_GRAY);
-        lightPallete.put("TextField.background", Color.WHITE);
-        lightPallete.put("Label.foreground", Color.BLACK); 
-        lightPallete.put("TextArea.background", Color.WHITE);
-        lightPallete.put("TextArea.foreground", Color.BLACK);
-        lightPallete.put("ComboBox.background", Color.WHITE);
-        lightPallete.put("ComboBox.foreground", Color.BLACK);
+        lightPallete.put("TextField.background", new Color(200, 200, 200));
+        lightPallete.put("Label.foreground", new Color(15, 15, 15)); 
+        lightPallete.put("TextArea.background", new Color(200, 200, 200));
+        lightPallete.put("TextArea.foreground", new Color(15, 15, 15));
+        lightPallete.put("ComboBox.background", new Color(200, 200, 200));
+        lightPallete.put("ComboBox.foreground", new Color(15, 15, 15));
         lightPallete.put("ComboBox.selectionBackground", new Color(220, 220, 220));
         lightPallete.put("ComboBox.selectionForeground", Color.BLACK);
     }
