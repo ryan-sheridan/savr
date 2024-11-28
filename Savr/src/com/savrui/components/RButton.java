@@ -29,11 +29,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import savr.ryan.tools.RDynamicUI;
+import static savr.ryan.tools.RDynamicUI.Theme.DARK;
+import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
 
 /**
  *
  * @author ryan
  */
+
+// this was originally a good idea but became a pain of a class when SVG was implemented
 public class RButton extends JButton {
     Color backgroundColor;
     
@@ -144,12 +149,11 @@ public class RButton extends JButton {
     
     // SOURCE: gpt
     // question: "how would i increase the brightness of a Color instance by a certain percent"
-    public static Color increaseBrightness(Color color, double percent) {
+    public static Color updateBrightness(Color color, double percent) {
         // Ensure the percent is within reasonable bounds
-        percent = Math.max(0, Math.min(100, percent));
-
-        // Calculate the factor for brightness increase (e.g., 20% brighter = 1.2)
-        double factor = 1 + percent / 100;
+        percent = Math.max(-100, Math.min(100, percent));
+        
+        double factor = 1 + (percent / 100.0);
 
         // Extract the RGB components
         int r = color.getRed();
@@ -204,7 +208,14 @@ public class RButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 // set the background on hover to the original backgroundColor with the brightness increased by 30%
-                setBackground(increaseBrightness(backgroundColor, 30.0));
+                
+                float percent = 30.0f;
+                
+                if (RDynamicUI.getTheme() == LIGHT) {
+                    percent = -percent;
+                }
+                
+                setBackground(updateBrightness(backgroundColor, percent));
             }
 
             @Override
@@ -214,8 +225,15 @@ public class RButton extends JButton {
             
             @Override
             public void mousePressed(MouseEvent e) {
+                
+                float percent = 50.0f;
+                
+                if (RDynamicUI.getTheme() == LIGHT) {
+                    percent = -percent;
+                }
+                
                 // when button is clicked it should increase the brightness even more than if it was a hover
-                setBackground(increaseBrightness(backgroundColor, 50.0));
+                setBackground(updateBrightness(backgroundColor, percent));
             }
             
             @Override

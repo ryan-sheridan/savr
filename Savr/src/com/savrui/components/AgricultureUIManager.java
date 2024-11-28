@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Window;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
-import savr.ryan.tools.RDynamicFont;
+import savr.ryan.tools.RDynamicUI;
 
 /**
  *
@@ -21,7 +21,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
      */
     public AgricultureUIManager() {
         initComponents();
-        RDynamicFont.updateFont(this);
+        RDynamicUI.updateFont(this);
     }
 
     /**
