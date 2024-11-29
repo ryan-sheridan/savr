@@ -67,12 +67,12 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         viewmoveLBL = new javax.swing.JLabel();
         nextBTN = new javax.swing.JButton();
         viewingStockPanel = new javax.swing.JPanel();
-        viewTitle = new javax.swing.JLabel();
+        viewLBL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        stockTA = new javax.swing.JTextArea();
+        optionLBL = new javax.swing.JLabel();
+        optionCB = new javax.swing.JComboBox<>();
+        submitBTN = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(30, 30, 30));
         setToolTipText("");
@@ -260,14 +260,59 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         perishableLBL.setForeground(new java.awt.Color(240, 240, 240));
         perishableLBL.setText("Is It Perishable:");
 
+        nameTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTFActionPerformed(evt);
+            }
+        });
+
+        idTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTFActionPerformed(evt);
+            }
+        });
+
+        foodtypeTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                foodtypeTFActionPerformed(evt);
+            }
+        });
+
+        expiryDateTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                expiryDateTFActionPerformed(evt);
+            }
+        });
+
+        quantityTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quantityTFActionPerformed(evt);
+            }
+        });
+
         perishableCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Yes", "No" }));
+        perishableCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perishableCBActionPerformed(evt);
+            }
+        });
 
         prevBTN.setText("<");
+        prevBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevBTNActionPerformed(evt);
+            }
+        });
 
         viewmoveLBL.setForeground(new java.awt.Color(255, 255, 255));
         viewmoveLBL.setText("View");
 
         nextBTN.setText(">");
+        nextBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout foodStockPanelLayout = new javax.swing.GroupLayout(foodStockPanel);
         foodStockPanel.setLayout(foodStockPanelLayout);
@@ -362,21 +407,26 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
         viewingStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
-        viewTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        viewTitle.setForeground(new java.awt.Color(187, 187, 187));
-        viewTitle.setText("Savr View Perishable Food Types");
+        viewLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        viewLBL.setForeground(new java.awt.Color(187, 187, 187));
+        viewLBL.setText("Savr View Perishable Food Types");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        stockTA.setColumns(20);
+        stockTA.setRows(5);
+        jScrollPane1.setViewportView(stockTA);
 
-        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("Select an option: ");
+        optionLBL.setForeground(new java.awt.Color(240, 240, 240));
+        optionLBL.setText("Select an option: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Perishable Food", "Non-Perishable Food" }));
+        optionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Perishable Food", "Non-Perishable Food" }));
+        optionCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionCBActionPerformed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Submit");
+        submitBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        submitBTN.setText("Submit");
 
         javax.swing.GroupLayout viewingStockPanelLayout = new javax.swing.GroupLayout(viewingStockPanel);
         viewingStockPanel.setLayout(viewingStockPanelLayout);
@@ -389,32 +439,32 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                         .addComponent(jScrollPane1))
                     .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(viewTitle)
+                        .addComponent(viewLBL)
                         .addGap(0, 131, Short.MAX_VALUE))
                     .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
+                        .addComponent(optionLBL)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(optionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(viewingStockPanelLayout.createSequentialGroup()
                 .addGap(208, 208, 208)
-                .addComponent(jButton1)
+                .addComponent(submitBTN)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         viewingStockPanelLayout.setVerticalGroup(
             viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewingStockPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(viewTitle)
+                .addComponent(viewLBL)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(optionLBL)
+                    .addComponent(optionCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(submitBTN)
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
@@ -485,6 +535,42 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         
     }//GEN-LAST:event_returnBTNActionPerformed
 
+    private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
+        // view the name of the food item being viewed
+    }//GEN-LAST:event_nameTFActionPerformed
+
+    private void idTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTFActionPerformed
+        // show the id of the food item being viewed
+    }//GEN-LAST:event_idTFActionPerformed
+
+    private void foodtypeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodtypeTFActionPerformed
+        // show the food type of the food item being viewed
+    }//GEN-LAST:event_foodtypeTFActionPerformed
+
+    private void expiryDateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expiryDateTFActionPerformed
+        // show expiry date of the food item being viewed
+    }//GEN-LAST:event_expiryDateTFActionPerformed
+
+    private void quantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTFActionPerformed
+        // show the quantity of the food item current being viewed
+    }//GEN-LAST:event_quantityTFActionPerformed
+
+    private void perishableCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perishableCBActionPerformed
+        // show if food is perishable on combo box with "yes" or "no"
+    }//GEN-LAST:event_perishableCBActionPerformed
+
+    private void nextBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBTNActionPerformed
+        // when clicked changes information in the text fields to next item in array
+    }//GEN-LAST:event_nextBTNActionPerformed
+
+    private void prevBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBTNActionPerformed
+        // when clicked changes information in the text fields to previous item in array
+    }//GEN-LAST:event_prevBTNActionPerformed
+
+    private void optionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionCBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionCBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPanel;
@@ -504,17 +590,15 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private javax.swing.JLabel fsmenuLBL;
     private javax.swing.JLabel idLBL;
     private com.ryansheridan.rfields.RTextField idTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JPanel logoPanel;
     private javax.swing.JLabel logoTitleLBL;
     private javax.swing.JLabel logopictureLBL;
     private javax.swing.JLabel nameLBL;
     private com.ryansheridan.rfields.RTextField nameTF;
     private javax.swing.JButton nextBTN;
+    private javax.swing.JComboBox<String> optionCB;
+    private javax.swing.JLabel optionLBL;
     private javax.swing.JComboBox<String> perishableCB;
     private javax.swing.JLabel perishableLBL;
     private javax.swing.JButton prevBTN;
@@ -522,8 +606,10 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private com.ryansheridan.rfields.RTextField quantityTF;
     private javax.swing.JButton returnBTN;
     private javax.swing.JButton searchBTN;
+    private javax.swing.JTextArea stockTA;
+    private javax.swing.JButton submitBTN;
     private javax.swing.JLabel titleLBL;
-    private javax.swing.JLabel viewTitle;
+    private javax.swing.JLabel viewLBL;
     private javax.swing.JPanel viewTypesPanel;
     public static javax.swing.JPanel viewingStockPanel;
     private javax.swing.JLabel viewmoveLBL;

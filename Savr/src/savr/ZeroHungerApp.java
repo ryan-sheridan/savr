@@ -148,7 +148,7 @@ public class ZeroHungerApp extends javax.swing.JFrame {
         newFrame.setSize(800,600);
         newFrame.add(FoodStockMenu);
         newFrame.setVisible(true);
-        //make the logopanel be the tab to show up when coming on the food stock app
+        //have the logopanel be the tab to show up when coming on the food stock app
         FoodStockMenu.logoPanel.setVisible(true);
         FoodStockMenu.foodStockPanel.setVisible(false);
         FoodStockMenu.viewingStockPanel.setVisible(false);

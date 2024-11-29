@@ -27,14 +27,7 @@ public abstract class FoodItem {
         this.type = type;
         this.expiryDate = expiryDate;
     }
-    
-    //method to check if the food item is expired
-    public boolean isExpired() {
-        Date currentDate = new Date();//get current date and put in new obj
-        //make sure its not null and if expiry date is before the current date
-        return expiryDate != null && expiryDate.before(currentDate);
-    }
-    
+       
     //abstract method
     public abstract boolean needsRefrigeration();
 
