@@ -6,20 +6,25 @@ package savr.ryan.tools;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.savrui.components.RToggle;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import savr.MainApplication;
 
 /**
  *
@@ -56,6 +61,7 @@ public class RDynamicUI {
         darkPallete.put("Panel.background", new Color(40, 40, 40));
         darkPallete.put("Table.background", new Color(40, 40, 40));
         darkPallete.put("TextField.background", new Color(40, 40, 40));
+        darkPallete.put("Button.background", new Color(50, 50, 50));
         darkPallete.put("Label.foreground", Color.WHITE);
         darkPallete.put("TextArea.background", new Color(40, 40, 40));
         darkPallete.put("TextArea.foreground", Color.WHITE);
@@ -112,6 +118,12 @@ public class RDynamicUI {
                 break;
             case LIGHT:
                 setLightTheme();
+                break;
+        }
+        
+        for (Window window : Window.getWindows()) {
+            SwingUtilities.updateComponentTreeUI(window);
+            window.repaint();
         }
     }
     

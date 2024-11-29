@@ -133,6 +133,7 @@ public class RButton extends JButton {
     public enum ButtonType {
         SETTINGS,
         HOME,
+        REFRESH,
         TEXT
     }
 
@@ -280,6 +281,13 @@ public class RButton extends JButton {
         } else if (getButtonType() == ButtonType.SETTINGS) {
             // TODO: stop hardcoding things
             setIconWithSVG("/resources/settings.svg");
+            
+            if(iconImage != null) {
+                g2.drawImage(iconImage, 2,2, this);
+            }
+        } else if (getButtonType() == ButtonType.REFRESH) {
+            // TODO: stop hardcoding things
+            setIconWithSVG("/resources/refresh.svg");
             
             if(iconImage != null) {
                 g2.drawImage(iconImage, 2,2, this);

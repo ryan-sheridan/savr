@@ -5,9 +5,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Window;
 import java.awt.geom.Path2D;
+import javax.swing.JFrame;
 import javax.swing.JRadioButton;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import savr.ryan.tools.RDynamicUI;
+import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
 
 /**
  *
@@ -108,6 +113,12 @@ public class RToggle extends JRadioButton {
         // super.paintComponent(g);
     }
     
+    @Override
+    public void setSelected(boolean b) {
+        super.setSelected(b);
+        startAnimation();
+    }
+    
     private void startAnimation() {
         animationStartTime = System.currentTimeMillis();
         if (!animationTimer.isRunning()) {
@@ -131,7 +142,7 @@ public class RToggle extends JRadioButton {
         // update
         repaint();
         
-        if (progress >= 1.0f) {
+        if (progress >= 1.0f) {            
             animationTimer.stop();
         }
     }
