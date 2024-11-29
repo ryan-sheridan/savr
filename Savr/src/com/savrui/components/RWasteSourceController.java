@@ -57,8 +57,6 @@ public class RWasteSourceController extends javax.swing.JPanel {
             }
         });
 
-        jPanel2.setBackground(new java.awt.Color(40, 40, 40));
-
         jLabel3.setText("Name:");
 
         jLabel4.setText("Type:");
@@ -75,7 +73,7 @@ public class RWasteSourceController extends javax.swing.JPanel {
             }
         });
 
-        rButton6.setButtonType(com.savrui.components.RButton.ButtonType.ICON);
+        rButton6.setButtonType(com.savrui.components.RButton.ButtonType.HOME);
         rButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rButton6ActionPerformed(evt);
