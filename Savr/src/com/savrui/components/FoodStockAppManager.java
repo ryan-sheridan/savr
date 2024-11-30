@@ -6,9 +6,12 @@ package com.savrui.components;
 
 import java.awt.Color;
 import java.awt.Window;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import savr.ZeroHungerApp;
+import savr.conor.FoodItem;
+import savr.conor.FoodStockApp;
 
 /**
  *
@@ -19,8 +22,21 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     /**
      * Creates new form FoodStockAppManager
      */
+    
+    private ArrayList<FoodItem> foodItems;//list of all food items
+    
     public FoodStockAppManager() {
         initComponents();
+        
+        FoodStockApp fs = new FoodStockApp();
+        fs.addRecords();//add records to list
+        this.foodItems = fs.getFoodItem();
+        
+        //default view of fields is that these are hidden
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
     }
 
     /**
@@ -66,6 +82,10 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         prevBTN = new javax.swing.JButton();
         viewmoveLBL = new javax.swing.JLabel();
         nextBTN = new javax.swing.JButton();
+        monthlyShelfLBL = new javax.swing.JLabel();
+        storageTempTF = new com.ryansheridan.rfields.RTextField();
+        storageTempLBL = new javax.swing.JLabel();
+        monthlyShelfTF = new com.ryansheridan.rfields.RTextField();
         viewingStockPanel = new javax.swing.JPanel();
         viewLBL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -314,6 +334,24 @@ public class FoodStockAppManager extends javax.swing.JPanel {
             }
         });
 
+        monthlyShelfLBL.setForeground(new java.awt.Color(255, 255, 255));
+        monthlyShelfLBL.setText("Monthly Shelf Life:");
+
+        storageTempTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storageTempTFActionPerformed(evt);
+            }
+        });
+
+        storageTempLBL.setForeground(new java.awt.Color(255, 255, 255));
+        storageTempLBL.setText("Storage Temp:");
+
+        monthlyShelfTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                monthlyShelfTFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout foodStockPanelLayout = new javax.swing.GroupLayout(foodStockPanel);
         foodStockPanel.setLayout(foodStockPanelLayout);
         foodStockPanelLayout.setHorizontalGroup(
@@ -323,10 +361,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(foodStockPanelLayout.createSequentialGroup()
-                                .addComponent(perishableLBL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(foodStockPanelLayout.createSequentialGroup()
                                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(addBTN)
@@ -350,7 +384,19 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                                             .addComponent(titleLBL))
                                         .addGap(18, 18, 18)
                                         .addComponent(deleteBTN))
-                                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(monthlyShelfLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(monthlyShelfTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(perishableLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(storageTempLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(storageTempTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(prevBTN)
@@ -386,10 +432,18 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                     .addComponent(quantityLBL)
                     .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(perishableLBL)
                     .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthlyShelfLBL)
+                    .addComponent(monthlyShelfTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(storageTempLBL)
+                    .addComponent(storageTempTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prevBTN)
                     .addComponent(viewmoveLBL)
@@ -433,24 +487,22 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         viewingStockPanelLayout.setHorizontalGroup(
             viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewingStockPanelLayout.createSequentialGroup()
-                .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewingStockPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(viewLBL)
-                        .addGap(0, 131, Short.MAX_VALUE))
+                .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(optionLBL)
                         .addGap(18, 18, 18)
-                        .addComponent(optionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(viewingStockPanelLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(submitBTN)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(optionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(viewLBL))
+                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(submitBTN))
+                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         viewingStockPanelLayout.setVerticalGroup(
             viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -458,8 +510,8 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(viewLBL)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(optionLBL)
                     .addComponent(optionCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -557,6 +609,34 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
     private void perishableCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perishableCBActionPerformed
         // show if food is perishable on combo box with "yes" or "no"
+        
+         //get selected item from the CB
+    String selectedOption = (String) perishableCB.getSelectedItem();
+    
+    //check the option selected
+    if (selectedOption.equals("Yes")) {
+        //if yes show monthly shelf life info
+        monthlyShelfLBL.setVisible(true);
+        monthlyShelfTF.setVisible(true);
+
+        //hide the storage temp info if yes
+        storageTempTF.setVisible(false);
+        storageTempTF.setVisible(false);
+    } else if (selectedOption.equals("No")) {
+        //else if no do the opposite
+        storageTempLBL.setVisible(true);
+        storageTempTF.setVisible(true);
+
+       
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfLBL.setVisible(false);
+    } else {
+        //else if none selected hide both again
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
+    }
     }//GEN-LAST:event_perishableCBActionPerformed
 
     private void nextBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBTNActionPerformed
@@ -570,6 +650,14 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private void optionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionCBActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_optionCBActionPerformed
+
+    private void storageTempTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageTempTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_storageTempTFActionPerformed
+
+    private void monthlyShelfTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthlyShelfTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_monthlyShelfTFActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -594,6 +682,8 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     public static javax.swing.JPanel logoPanel;
     private javax.swing.JLabel logoTitleLBL;
     private javax.swing.JLabel logopictureLBL;
+    private javax.swing.JLabel monthlyShelfLBL;
+    private com.ryansheridan.rfields.RTextField monthlyShelfTF;
     private javax.swing.JLabel nameLBL;
     private com.ryansheridan.rfields.RTextField nameTF;
     private javax.swing.JButton nextBTN;
@@ -607,6 +697,8 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private javax.swing.JButton returnBTN;
     private javax.swing.JButton searchBTN;
     private javax.swing.JTextArea stockTA;
+    private javax.swing.JLabel storageTempLBL;
+    private com.ryansheridan.rfields.RTextField storageTempTF;
     private javax.swing.JButton submitBTN;
     private javax.swing.JLabel titleLBL;
     private javax.swing.JLabel viewLBL;

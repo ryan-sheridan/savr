@@ -290,11 +290,6 @@
                               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="perishableLBL" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="perishableCB" min="-2" pref="148" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="addBTN" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="nameLBL" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -323,6 +318,21 @@
                                           </Group>
                                           <Component id="nameTF" min="-2" pref="148" max="-2" attributes="0"/>
                                       </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="monthlyShelfLBL" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="monthlyShelfTF" min="-2" pref="148" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="perishableLBL" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="perishableCB" min="-2" pref="148" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="storageTempLBL" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="storageTempTF" min="-2" pref="148" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -370,11 +380,21 @@
                           <Component id="quantityTF" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="perishableLBL" min="-2" max="-2" attributes="0"/>
-                          <Component id="perishableCB" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="perishableLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="perishableCB" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="96" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="monthlyShelfLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="monthlyShelfTF" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="storageTempLBL" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="storageTempTF" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="15" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="prevBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="viewmoveLBL" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -550,6 +570,32 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextBTNActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="monthlyShelfLBL">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Monthly Shelf Life:"/>
+              </Properties>
+            </Component>
+            <Component class="com.ryansheridan.rfields.RTextField" name="storageTempTF">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storageTempTFActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="storageTempLBL">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Storage Temp:"/>
+              </Properties>
+            </Component>
+            <Component class="com.ryansheridan.rfields.RTextField" name="monthlyShelfTF">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="monthlyShelfTFActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="viewingStockPanel">
@@ -566,29 +612,27 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                              <Component id="viewLBL" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="131" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="optionLBL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="optionCB" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                              <Component id="viewLBL" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                              <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="435" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
-                      <Component id="submitBTN" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="137" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -598,8 +642,8 @@
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="viewLBL" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="181" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="172" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="optionLBL" min="-2" max="-2" attributes="0"/>
                           <Component id="optionCB" min="-2" max="-2" attributes="0"/>

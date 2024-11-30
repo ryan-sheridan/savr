@@ -13,21 +13,20 @@ import java.util.Date;
 public abstract class FoodItem {
     //declare variables
     protected int id, quantity;
-    protected String name, type;
-    protected Date expiryDate;
+    protected String name, type, expiryDate;   
 
     //add constructor
     public FoodItem() {
     }
 
-    public FoodItem(int id, int quantity, String name, String type, Date expiryDate) {
+    public FoodItem(int id, int quantity, String name, String type, String expiryDate) {
         this.id = id;
         this.quantity = quantity;
         this.name = name;
         this.type = type;
         this.expiryDate = expiryDate;
     }
-       
+        
     //abstract method
     public abstract boolean needsRefrigeration();
 
@@ -63,11 +62,11 @@ public abstract class FoodItem {
         this.type = type;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
     

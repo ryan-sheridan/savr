@@ -24,8 +24,20 @@ public class FoodStockApp {
     public FoodStockApp() {
     }
     
+    //addRecords method will add records so the GUI has information on startup
     public void addRecords(){
-        return;
+        if(foodItem == null) {//if foodItem is null initialize new ArrayList
+           foodItem = new ArrayList<>(); //initialize the foodItem arrayList
+        }
+        
+        //add some nonperishable items
+        foodItem.add(new NonPerishableFood(1,100,"Pasta", "Grain", "12-12-2025",12));
+        foodItem.add(new NonPerishableFood(2, 50, "Canned Peas", "Canned Goods", "27-12-2025", 24));
+        
+        //add some perishable items
+        foodItem.add(new PerishableFood(4,10,"Milk", "Dairy", "8-12-2024", 4));
+        foodItem.add(new PerishableFood(5, 20, "Chicken", "Meat", "19-12-2024", -5));
+        
     }
     
     public void viewRecords(){

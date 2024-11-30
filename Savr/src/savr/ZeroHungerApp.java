@@ -142,7 +142,7 @@ public class ZeroHungerApp extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //button will open the foodstockapp jframe
         FoodStockAppManager FoodStockMenu = new FoodStockAppManager();
-        
+              
         JFrame newFrame = new JFrame("Food Stock App");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         newFrame.setSize(800,600);
