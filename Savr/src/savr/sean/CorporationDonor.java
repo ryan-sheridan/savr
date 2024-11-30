@@ -8,7 +8,7 @@ package savr.sean;
  *
  * @author Sean
  */
-public abstract class CorporationDonor extends AgriculturalAid{
+public class CorporationDonor extends AgriculturalAid{
     //declare variables
     private String corpName;
     private int corpFoundingYear;
@@ -68,12 +68,5 @@ public abstract class CorporationDonor extends AgriculturalAid{
         return corpPhoneNumber;
     }
   
-    public String createDonorID(){
-        return donorID;
-    }
-    
-    public String createItemID(){
-        return itemID;
-    }
 }
     

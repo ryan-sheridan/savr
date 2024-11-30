@@ -309,7 +309,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="itemQuantityTF" alignment="1" max="32767" attributes="0"/>
                               <Component id="itemNameTF" alignment="0" max="32767" attributes="0"/>
-                              <Component id="itemTypeFT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="itemTypeTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="itemConditionCB" alignment="0" max="32767" attributes="0"/>
                               <Component id="itemElectricalChB" alignment="0" pref="228" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
@@ -322,7 +322,7 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="itemDateReceivedTF1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="itemDateReceivedTF" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -338,7 +338,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="ItemTypeLBL" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="itemTypeFT" min="-2" max="-2" attributes="0"/>
+                          <Component id="itemTypeTF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="itemQuantityLBL" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -352,7 +352,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="itemDateReceivedLBL" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="itemDateReceivedTF1" min="-2" max="-2" attributes="0"/>
+                          <Component id="itemDateReceivedTF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -375,6 +375,9 @@
                     </Property>
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="ItemTypeLBL">
                   <Properties>
@@ -384,7 +387,7 @@
                     <Property name="text" type="java.lang.String" value="Item Type:"/>
                   </Properties>
                 </Component>
-                <Component class="com.ryansheridan.rfields.RTextField" name="itemTypeFT">
+                <Component class="com.ryansheridan.rfields.RTextField" name="itemTypeTF">
                   <Properties>
                     <Property name="borderBottom" type="boolean" value="false"/>
                     <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -393,8 +396,11 @@
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemTypeFTActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemTypeTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="itemQuantityLBL">
                   <Properties>
@@ -415,6 +421,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemQuantityTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="itemConditionLBL">
                   <Properties>
@@ -440,6 +449,7 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="itemElectricalChB">
@@ -455,6 +465,9 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="itemDateReceivedLBL">
                   <Properties>
@@ -464,7 +477,7 @@
                     <Property name="text" type="java.lang.String" value="Date Received:"/>
                   </Properties>
                 </Component>
-                <Component class="com.ryansheridan.rfields.RTextField" name="itemDateReceivedTF1">
+                <Component class="com.ryansheridan.rfields.RTextField" name="itemDateReceivedTF">
                   <Properties>
                     <Property name="borderBottom" type="boolean" value="false"/>
                     <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -473,8 +486,11 @@
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemDateReceivedTF1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemDateReceivedTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -572,6 +588,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpNameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="com.ryansheridan.rfields.RTextField" name="corpFoundingYearTF">
                       <Properties>
@@ -584,6 +603,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpFoundingYearTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="corpFoundingYearLBL">
                       <Properties>
@@ -612,6 +634,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpHQAddressTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="corpEmailLBL">
                       <Properties>
@@ -632,6 +657,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpEmailTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="corpPhoneNumberLBL">
                       <Properties>
@@ -652,6 +680,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpPhoneNumberTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="addCorpBTN">
                       <Properties>
@@ -766,6 +797,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiFirstNameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="indiDoBLBL">
                       <Properties>
@@ -786,6 +820,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiDoBTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="indiAddressLBL">
                       <Properties>
@@ -806,6 +843,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiAddressTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="indiEmailLBL">
                       <Properties>
@@ -826,6 +866,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiEmailTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="indiPhoneNumberLBL">
                       <Properties>
@@ -846,6 +889,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiPhoneNumberTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="addIndiBTN">
                       <Properties>
@@ -857,6 +903,9 @@
                           <Dimension value="[113, 30]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addIndiBTNActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="indiSurnameLBL">
                       <Properties>
@@ -877,6 +926,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiSurnameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -958,6 +1010,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpSelectorBTNActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="indiSelectorBTN">
                   <Properties>
@@ -976,6 +1031,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="indiSelectorBTNActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1070,7 +1128,7 @@
                           </Group>
                           <Component id="viewItemDetailsPanel" pref="519" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
