@@ -8,7 +8,7 @@ package savr.sean;
  *
  * @author Sean
  */
-public abstract class AgriculturalAid {
+public class AgriculturalAid {
     //declare variables
     protected String donorID;
     protected String itemID;
@@ -97,7 +97,17 @@ public abstract class AgriculturalAid {
         return isElectrical;
     }
     
-    public abstract String createDonorID();
-     
-    public abstract String createItemID();
+    
+    public String toString() {
+     return "Donor ID: " + donorID + "\n" +
+            "Item ID: " + itemID + "\n" +
+            "Item: " + item + "\n" +
+            "Date Received Item: " + dateReceived + "\n" +
+            "Item Type: " + itemType + "\n" +
+            "Quantity of Item: " + itemQuantity + "\n" +
+            "Item Condition: " + condition + "\n" +
+            "Electrical Item: " + isElectrical;
+}
+
+    
 }

@@ -17,8 +17,9 @@ public class NonPerishableFood extends FoodItem{
     public NonPerishableFood() {
     }
 
-    public NonPerishableFood(int id, int quantity, String name, String type, Date expiryDate) {
+    public NonPerishableFood(int id, int quantity, String name, String type, String expiryDate, int monthlyShelfLife) {
         super(id, quantity, name, type, expiryDate);
+        this.monthlyShelfLife = monthlyShelfLife;
     }
     
     @Override

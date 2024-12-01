@@ -42,6 +42,10 @@ import savr.ryan.WasteSource.SourceType;
 // TODO: comment everything
 // use dry, i feel like theres alot of code repeat here
 // refactor db so it actually makes sense
+
+// TODOOOOOOOOOOOOOOOO: fix confliction errors, (conor updated constructors that are not compatible when im instanciating his food classes)
+// will fix in the new week
+
 public class RDatabaseORM {
 
     public static ArrayList<RedistributionRecord> getRedistributionRecords() {
@@ -165,7 +169,11 @@ public class RDatabaseORM {
                 SourceType sourceType = SourceType.valueOf(rs.getString("source_type"));
                 Location sourceLocation = getLocation(rs.getInt("source_location_id"));
                 double wasteAmount = rs.getDouble("waste_amount");
-                FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
+                
+                // TODOOOOOOOOOOOOOOOO
+                // FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
+                FoodItem foodItem = new PerishableFood();
+                
                 ArrayList<FoodItem> foodItems = new ArrayList<>();
                 foodItems.add(foodItem);
                 FoodStockApp sourceFsa = new FoodStockApp(foodItems);
@@ -194,7 +202,11 @@ public class RDatabaseORM {
                 SourceType sourceType = SourceType.valueOf(rs.getString("source_type"));
                 Location sourceLocation = getLocation(rs.getInt("source_location_id"));
                 double wasteAmount = rs.getDouble("waste_amount");
-                FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
+                
+                // TODOOOOOOOOOOOOOOOO
+                // FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
+                FoodItem foodItem = new PerishableFood();
+                
                 ArrayList<FoodItem> foodItems = new ArrayList<>();
                 foodItems.add(foodItem);
                 FoodStockApp sourceFsa = new FoodStockApp(foodItems);
@@ -240,101 +252,109 @@ public class RDatabaseORM {
 
         return null;
     }
+    
+    // BROKEN: need to update this to use conors new constructors, will do this in the new week :)
 
-    private static FoodItem getFoodItemById(int foodId) {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
-        FoodItem foodItem = null;
+    // private static FoodItem getFoodItemById(int foodId) {
+    //     RDataPersistence rdp = RDataPersistence.getInstance();
+    //     Connection conn = rdp.getConnection();
+    //     FoodItem foodItem = null;// 
 
-        String query = "SELECT * FROM FoodStock WHERE food_id = ?";
+    //     String query = "SELECT * FROM FoodStock WHERE food_id = ?";// 
 
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, foodId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String foodName = rs.getString("food_name");
-                String foodType = rs.getString("food_type");
-                int quantity = rs.getInt("quantity");
-                String dateStr = rs.getString("expiration_date");
-                // parse the date, this is ugly
-                Date expiration = null;
-                if (dateStr != null && !dateStr.isEmpty()) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    try {
-                        // parse date string into date object
-                        expiration = sdf.parse(dateStr);
-                    } catch (java.text.ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (foodType.equals("Perishable")) {
-                    int storageTemp = rs.getInt("storage_temp");
-                    PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
-                    foodItem = pf;
-                } else if (foodType.equals("NonPerishable")) {
-                    NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
-                    foodItem = npf;
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+    //     try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+    //         pstmt.setInt(1, foodId);
+    //         ResultSet rs = pstmt.executeQuery();
+    //         if (rs.next()) {
+    //             String foodName = rs.getString("food_name");
+    //             String foodType = rs.getString("food_type");
+    //             int quantity = rs.getInt("quantity");
+    //             String dateStr = rs.getString("expiration_date");
+    //             // parse the date, this is ugly
+    //             Date expiration = null;
+    //             if (dateStr != null && !dateStr.isEmpty()) {
+    //                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    //                 try {
+    //                     // parse date string into date object
+    //                     expiration = sdf.parse(dateStr);
+    //                 } catch (java.text.ParseException e) {
+    //                     e.printStackTrace();
+    //                 }
+    //             }
+    //             if (foodType.equals("Perishable")) {
+    //                 int storageTemp = rs.getInt("storage_temp");
+    //                 PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
+    //                 foodItem = pf;
+    //             } else if (foodType.equals("NonPerishable")) {
+    //                 NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
+    //                 foodItem = npf;
+    //             }
+    //         }
+    //     } catch (SQLException e) {
+    //         System.out.println(e);
+    //     }// 
 
-        return foodItem;
-    }
+    //     return foodItem;
+    // }
 
-    public static ArrayList<FoodItem> getFoodItems() {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
-        
-        ArrayList foodItems = new ArrayList<FoodItem>();
-        
-        String query = "select * from FoodStock";
-        
-        try(Statement stmt  = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                int foodId = rs.getInt("food_id");
-                String foodName = rs.getString("food_name");
-                String foodType = rs.getString("food_type");
-                int quantity = rs.getInt("quantity");
-                
-                // parse expiration date, this is ugly
-                String dateStr = rs.getString("expiration_date");
-                Date expiration = null;
-                if (dateStr != null && !dateStr.isEmpty()) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                    try {
-                        try {
-                            expiration = sdf.parse(dateStr);
-                        } catch (java.text.ParseException ex) {
-                            System.out.println("err parsing date");
-                        }
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
-                
-                // public PerishableFood(int storageTemp, int id, int quantity, String name, String type, Date expiryDate) {
-                
-                if(foodType.equals("Perishable")) {
-                    // TODO: add storage temp to db
-                    int storageTemp = ThreadLocalRandom.current().nextInt(0, 78 + 1);
-                    PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
-                    
-                    // cast to an abstract food item
-                    foodItems.add((FoodItem)pf);
-                } else if (foodType.equals("NonPerishable")) {
-                    // public NonPerishableFood(int id, int quantity, String name, String type, Date expiryDate) {
-                    NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
-                    
-                    foodItems.add((FoodItem)npf);
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        
-        return foodItems;
-    }
+    // BROKEN: need to update this to use conors new constructors, will do this in the new week :)
+
+    // public static ArrayList<FoodItem> getFoodItems() {
+    //     RDataPersistence rdp = RDataPersistence.getInstance();
+    //     Connection conn = rdp.getConnection();
+    //     
+    //     ArrayList foodItems = new ArrayList<FoodItem>();
+    //     
+    //     String query = "select * from FoodStock";
+    //     
+    //     try(Statement stmt  = conn.createStatement()) {
+    //         ResultSet rs = stmt.executeQuery(query);
+    //         while(rs.next()) {
+    //             int foodId = rs.getInt("food_id");
+    //             String foodName = rs.getString("food_name");
+    //             String foodType = rs.getString("food_type");
+    //             int quantity = rs.getInt("quantity");
+    //             
+    //             // parse expiration date, this is ugly
+    //             String dateStr = rs.getString("expiration_date");
+    //             Date expiration = null;
+    //             if (dateStr != null && !dateStr.isEmpty()) {
+    //                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    //                 try {
+    //                     try {
+    //                         expiration = sdf.parse(dateStr);
+    //                     } catch (java.text.ParseException ex) {
+    //                         System.out.println("err parsing date");
+    //                     }
+    //                 } catch (ParseException e) {
+    //                     e.printStackTrace();
+    //                 }
+    //             }
+    //             
+    //             // public PerishableFood(int storageTemp, int id, int quantity, String name, String type, Date expiryDate) {
+    //             
+    //             // public PerishableFood(int id, int quantity, String name, String type, String expiryDate, int storageTemp) {
+    //             
+    //             if(foodType.equals("Perishable")) {
+    //                 // TODO: add storage temp to db
+    //                 int storageTemp = ThreadLocalRandom.current().nextInt(0, 78 + 1);
+    //                 
+    //                 
+    //                 PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
+    //                 
+    //                 // cast to an abstract food item
+    //                 foodItems.add((FoodItem)pf);
+    //             } else if (foodType.equals("NonPerishable")) {
+    //                 // public NonPerishableFood(int id, int quantity, String name, String type, Date expiryDate) {
+    //                 NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
+    //                 
+    //                 foodItems.add((FoodItem)npf);
+    //             }
+    //         }
+    //     } catch (SQLException e) {
+    //         System.out.println(e);
+    //     }
+    //     
+    //     return foodItems;
+    // }
 }

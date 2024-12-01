@@ -8,7 +8,7 @@ package savr.sean;
  *
  * @author Sean
  */
-public abstract class IndividualDonor extends AgriculturalAid{
+public class IndividualDonor extends AgriculturalAid{
     //declare variables
     private String indiFirstName;
     private String indiSurname;
@@ -78,13 +78,16 @@ public abstract class IndividualDonor extends AgriculturalAid{
         return indiPhoneNumber;
     }
     
-    
-    @Override
-    public String createDonorID(){
-        return donorID;
+     @Override
+    public String toString() {
+        return "----- Individual Donor -----\n" +
+                "First Name: " + indiFirstName + "\n" +
+                "Surname: " + indiSurname + "\n" +
+                "Date of Birth: " + indiDoB + "\n" +
+                "Address: " + indiAddress + "\n" +
+                "Email: " + indiEmail + "\n" +
+                "Phone Number: " + indiPhoneNumber + "\n"
+                 + super.toString();
     }
     
-    public String createItemID(){
-        return itemID;
-    }
 }
