@@ -118,6 +118,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemDateReceivedTF = new com.ryansheridan.rfields.RTextField();
         viewItemIDLBL = new javax.swing.JLabel();
         viewItemIDTF = new com.ryansheridan.rfields.RTextField();
+        jButton1 = new javax.swing.JButton();
         viewDonorTypePanel = new javax.swing.JPanel();
         viewCorpDonorPanel = new javax.swing.JPanel();
         updateCorpBTN = new javax.swing.JButton();
@@ -797,6 +798,14 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewCorpSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         viewCorpSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         viewCorpSelectorBTN.setPreferredSize(new java.awt.Dimension(136, 18));
+        viewCorpSelectorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewCorpSelectorBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                viewCorpSelectorBTNMouseEntered(evt);
+            }
+        });
         viewCorpSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewCorpSelectorBTNActionPerformed(evt);
@@ -809,6 +818,14 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSelectorBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         viewIndiSelectorBTN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         viewIndiSelectorBTN.setPreferredSize(new java.awt.Dimension(125, 18));
+        viewIndiSelectorBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                viewIndiSelectorBTNMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                viewIndiSelectorBTNMouseEntered(evt);
+            }
+        });
         viewIndiSelectorBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewIndiSelectorBTNActionPerformed(evt);
@@ -961,20 +978,30 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("VIEW ALL DONATIONS");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout viewItemDetailsPanelLayout = new javax.swing.GroupLayout(viewItemDetailsPanel);
         viewItemDetailsPanel.setLayout(viewItemDetailsPanelLayout);
         viewItemDetailsPanelLayout.setHorizontalGroup(
             viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewItemDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemTypeTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemConditionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemDateReceivedTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
+                .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemTypeTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemConditionCB, javax.swing.GroupLayout.Alignment.LEADING, 0, 228, Short.MAX_VALUE)
+                    .addComponent(viewItemElectricalChB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemDateReceivedTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemIDTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, viewItemDetailsPanelLayout.createSequentialGroup()
                         .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(viewItemNameLBL)
                             .addComponent(viewItemTypeLBL)
@@ -982,14 +1009,15 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                             .addComponent(viewItemConditionLBL)
                             .addComponent(viewItemDateReceivedLBL)
                             .addComponent(viewItemIDLBL))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(viewItemIDTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         viewItemDetailsPanelLayout.setVerticalGroup(
             viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewItemIDLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewItemIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1430,6 +1458,26 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         
         createCorpDonorPanel.setVisible(false);
         createIndiDonorPanel.setVisible(false);
+        
+        itemNameTF.setText("");
+        itemDateReceivedTF.setText("");
+        itemTypeTF.setText("");
+        itemQuantityTF.setText("");
+        itemConditionCB.setSelectedItem("Factory New");
+        itemElectricalChB.setSelected(false);
+                
+        corpNameTF.setText("");
+        corpFoundingYearTF.setText("");
+        corpHQAddressTF.setText("");
+        corpEmailTF.setText("");
+        corpPhoneNumberTF.setText("");
+        
+        indiFirstNameTF.setText("");
+        indiSurnameTF.setText("");
+        indiDoBTF.setText("");
+        indiAddressTF.setText("");
+        indiEmailTF.setText("");
+        indiPhoneNumberTF.setText("");
     }//GEN-LAST:event_menuCreateDonoPanelMouseClicked
 
     private void menuViewDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseEntered
@@ -1455,6 +1503,34 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         
         viewCorpDonorPanel.setVisible(false);
         viewIndiDonorPanel.setVisible(false);
+        
+        viewItemDetailsPanel.setVisible(true);
+        viewDonorTypeSelectorPanel.setVisible(true);
+        viewDonorTypePanel.setVisible(true);
+        viewSearchPanel.setVisible(true);
+        
+        viewItemIDTF.setText("");
+        viewDonorIDTF.setText("");
+        viewIndiDonorIDTF.setText("");
+        viewItemNameTF.setText("");
+        viewItemDateReceivedTF.setText("");
+        viewItemTypeTF.setText("");
+        viewItemQuantityTF.setText("");
+        viewItemConditionCB.setSelectedItem("Factory New");
+        viewItemElectricalChB.setSelected(false);
+                
+        viewCorpNameTF.setText("");
+        viewCorpFoundingYearTF.setText("");
+        viewCorpHQAddressTF.setText("");
+        viewCorpEmailTF.setText("");
+        viewCorpPhoneNumberTF.setText("");
+        
+        viewIndiFirstNameTF.setText("");
+        viewIndiSurnameTF.setText("");
+        viewIndiDOBTF.setText("");
+        viewIndiAddressTF.setText("");
+        viewIndiEmailTF.setText("");
+        viewIndiPhoneNumberTF.setText("");
         
         
         //updateCorpBTN1.setVisible(false);
@@ -1601,6 +1677,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void viewCorpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNActionPerformed
         // TODO add your handling code here:
+        viewCorpSelectorBTN.setEnabled(false);
         viewCorpDonorPanel.setVisible(true);
         viewIndiDonorPanel.setVisible(false);
         
@@ -1610,6 +1687,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void viewIndiSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiSelectorBTNActionPerformed
         // TODO add your handling code here:
+        viewIndiSelectorBTN.setEnabled(false);
         viewCorpDonorPanel.setVisible(false);
         viewIndiDonorPanel.setVisible(true);
         
@@ -1721,6 +1799,31 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         AgricultureUI.deleteDonor();
     }//GEN-LAST:event_deleteIndiBTNActionPerformed
 
+    private void viewCorpSelectorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNMouseClicked
+        // TODO add your handling code here:
+        viewCorpSelectorBTN.setEnabled(false);
+    }//GEN-LAST:event_viewCorpSelectorBTNMouseClicked
+
+    private void viewIndiSelectorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewIndiSelectorBTNMouseClicked
+        // TODO add your handling code here:
+        viewIndiSelectorBTN.setEnabled(false);
+    }//GEN-LAST:event_viewIndiSelectorBTNMouseClicked
+
+    private void viewCorpSelectorBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNMouseEntered
+        // TODO add your handling code here:
+        viewCorpSelectorBTN.setEnabled(false);
+    }//GEN-LAST:event_viewCorpSelectorBTNMouseEntered
+
+    private void viewIndiSelectorBTNMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewIndiSelectorBTNMouseEntered
+        // TODO add your handling code here:
+        viewIndiSelectorBTN.setEnabled(false);
+    }//GEN-LAST:event_viewIndiSelectorBTNMouseEntered
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AgricultureUI.viewDonor();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ItemTypeLBL;
@@ -1745,15 +1848,15 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     public static javax.swing.JPanel createCorpDonorPanel;
     private javax.swing.JPanel createDonorPanel;
     private javax.swing.JLabel createDonorTitleLBL;
-    private javax.swing.JPanel createDonorTitlePanel;
-    private javax.swing.JPanel createEmptyPanel;
+    public static javax.swing.JPanel createDonorTitlePanel;
+    public static javax.swing.JPanel createEmptyPanel;
     public static javax.swing.JPanel createIndiDonorPanel;
-    private javax.swing.JPanel createItemDetailsPanel;
+    public static javax.swing.JPanel createItemDetailsPanel;
     private javax.swing.JButton deleteCorpBTN;
     private javax.swing.JButton deleteIndiBTN;
     private javax.swing.ButtonGroup donorTypeBTNGROUP;
     private javax.swing.JPanel donorTypePanel;
-    private javax.swing.JPanel donorTypeSelectorPanel;
+    public static javax.swing.JPanel donorTypeSelectorPanel;
     private javax.swing.JLabel exitAppLBL;
     private javax.swing.JPanel exitAppPanel;
     private javax.swing.JLabel indiAddressLBL;
@@ -1779,6 +1882,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel itemQuantityLBL;
     public static com.ryansheridan.rfields.RTextField itemQuantityTF;
     public static com.ryansheridan.rfields.RTextField itemTypeTF;
+    private javax.swing.JButton jButton1;
     public static javax.swing.JLabel menuCreateDonoLBL;
     private javax.swing.JPanel menuCreateDonoPanel;
     private javax.swing.JPanel menuPanel;
@@ -1800,10 +1904,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     public static com.ryansheridan.rfields.RTextField viewCorpPhoneNumberTF;
     public static javax.swing.JRadioButton viewCorpSelectorBTN;
     public static com.ryansheridan.rfields.RTextField viewDonorIDTF;
-    private javax.swing.JPanel viewDonorPanel;
+    public static javax.swing.JPanel viewDonorPanel;
     private javax.swing.ButtonGroup viewDonorTypeBTNGROUP;
-    private javax.swing.JPanel viewDonorTypePanel;
-    private javax.swing.JPanel viewDonorTypeSelectorPanel;
+    public static javax.swing.JPanel viewDonorTypePanel;
+    public static javax.swing.JPanel viewDonorTypeSelectorPanel;
     private javax.swing.JLabel viewIndiAddressLBL;
     public static com.ryansheridan.rfields.RTextField viewIndiAddressTF;
     private javax.swing.JLabel viewIndiDOBLBL;
@@ -1824,7 +1928,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel viewItemConditionLBL;
     private javax.swing.JLabel viewItemDateReceivedLBL;
     public static com.ryansheridan.rfields.RTextField viewItemDateReceivedTF;
-    private javax.swing.JPanel viewItemDetailsPanel;
+    public static javax.swing.JPanel viewItemDetailsPanel;
     public static javax.swing.JCheckBox viewItemElectricalChB;
     private javax.swing.JLabel viewItemIDLBL;
     public static com.ryansheridan.rfields.RTextField viewItemIDTF;
@@ -1834,7 +1938,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     public static com.ryansheridan.rfields.RTextField viewItemQuantityTF;
     private javax.swing.JLabel viewItemTypeLBL;
     public static com.ryansheridan.rfields.RTextField viewItemTypeTF;
-    private javax.swing.JPanel viewSearchPanel;
+    public static javax.swing.JPanel viewSearchPanel;
     private javax.swing.JLabel viewTitleLBL;
     private javax.swing.JPanel viewTitlePanel;
     // End of variables declaration//GEN-END:variables

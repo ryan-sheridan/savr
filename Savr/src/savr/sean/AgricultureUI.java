@@ -112,7 +112,7 @@ public class AgricultureUI {
         itemDateReceivedTF.setText("");
         itemTypeTF.setText("");
         itemQuantityTF.setText("");
-        itemConditionCB.setSelectedItem("");
+        itemConditionCB.setSelectedItem(null);
         itemElectricalChB.setSelected(false);
                 
         corpNameTF.setText("");
@@ -163,7 +163,7 @@ public class AgricultureUI {
         itemDateReceivedTF.setText("");
         itemTypeTF.setText("");
         itemQuantityTF.setText("");
-        itemConditionCB.setSelectedItem("");
+        itemConditionCB.setSelectedItem("Factory New");
         itemElectricalChB.setSelected(false);
                 
         corpNameTF.setText("");
@@ -180,7 +180,7 @@ public class AgricultureUI {
         indiPhoneNumberTF.setText("");
     }
     
-    public void viewDonor(){
+    public static void viewDonor(){
         //TODO view donor logic
          for(int i=0;i<agriAid.size();i++){
            AgriculturalAid temp = new AgriculturalAid();
@@ -267,8 +267,50 @@ public class AgricultureUI {
     
     
     public static void deleteDonor(){
-        //TODO delete donor logic
+        //Function for deleting donations
+        //checks if any donations are in the system
+        //if donation are in the system, loops through each donation and match donation ItemID with searchTerm
+        //if match is found, removes donation from the ArrayList
+        //sets all text fields to null once completed
         
+        String searchTerm = viewItemIDTF.getText().trim();
+        boolean found = false;
+        if(agriAid.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No-One is System!");
+        } else {
+            for(int i = 0; i < agriAid.size(); i++){
+               AgriculturalAid temp = agriAid.get(i);
+                if(temp.getItemID().equalsIgnoreCase(searchTerm)){
+                    found = true;
+                    JOptionPane.showMessageDialog(null, "Donation Deleted: " + temp.toString());
+                    agriAid.remove(i);
+                    
+                    //sets all fields to null after donor is added
+                    viewItemNameTF.setText("");
+                    viewItemDateReceivedTF.setText("");
+                    viewItemTypeTF.setText("");
+                    viewItemQuantityTF.setText("");
+                    viewItemConditionCB.setSelectedItem("Factory New");
+                    viewItemElectricalChB.setSelected(false);
+                
+                    viewCorpNameTF.setText("");
+                    viewCorpFoundingYearTF.setText("");
+                    viewCorpHQAddressTF.setText("");
+                    viewCorpEmailTF.setText("");
+                    viewCorpPhoneNumberTF.setText("");
+        
+                    viewIndiFirstNameTF.setText("");
+                    viewIndiSurnameTF.setText("");
+                    viewIndiDOBTF.setText("");
+                    viewIndiAddressTF.setText("");
+                    viewIndiEmailTF.setText("");
+                    viewIndiPhoneNumberTF.setText("");
+                }
+            }
+            if(!found){
+            JOptionPane.showMessageDialog(null, "No record found for Item ID: " + searchTerm);
+            }
+        }
     }
     
     public static void updateDonor(){ 
@@ -306,7 +348,7 @@ public class AgricultureUI {
             ((CorporationDonor) temp).setCorpEmail(viewCorpEmailTF.getText().trim());
             ((CorporationDonor) temp).setCorpPhoneNumber(Integer.parseInt(viewCorpPhoneNumberTF.getText().trim()));
                 
-             JOptionPane.showMessageDialog(null, "Corp Donor information updated successfully!" + temp.toString());
+             JOptionPane.showMessageDialog(null, "Corp Donor information updated successfully!\n" + temp.toString());
             return;
         } 
         
@@ -325,7 +367,7 @@ public class AgricultureUI {
             ((IndividualDonor) temp).setIndiAddress(viewIndiAddressTF.getText().trim());
             ((IndividualDonor) temp).setIndiEmail(viewIndiEmailTF.getText().trim());
             ((IndividualDonor) temp).setIndiPhoneNumber(Integer.parseInt(viewIndiPhoneNumberTF.getText().trim()));
-             JOptionPane.showMessageDialog(null, "Indi Donor information updated successfully!" + temp.toString());
+             JOptionPane.showMessageDialog(null, "Indi Donor information updated successfully!\n" + temp.toString());
             return;
             }
             }

@@ -348,7 +348,19 @@ public class MainApplication extends javax.swing.JFrame {
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
-        agriUIManager.createCorpDonorPanel.setVisible(false);
+        agriUIManager.createCorpDonorPanel.setVisible(true);
+        agriUIManager.createItemDetailsPanel.setVisible(true);
+        agriUIManager.createDonorTitlePanel.setVisible(true);
+        agriUIManager.createEmptyPanel.setVisible(true);
+        agriUIManager.donorTypeSelectorPanel.setVisible(true);
+        agriUIManager.corpSelectorBTN.setEnabled(true);
+        
+        agriUIManager.viewItemDetailsPanel.setVisible(false);
+        agriUIManager.viewDonorTypeSelectorPanel.setVisible(false);
+        agriUIManager.viewDonorTypePanel.setVisible(false);
+        agriUIManager.viewSearchPanel.setVisible(false);
+        
+        
         agriUIManager.createIndiDonorPanel.setVisible(false);
 
         agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
