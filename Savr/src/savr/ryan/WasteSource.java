@@ -13,10 +13,10 @@ import savr.conor.FoodStockApp;
 public class WasteSource {
     
     public enum SourceType {
-        SHOP,
+        RETAILER,
         RESTAURANT,
         INDIVIDUAL,
-        FOOD_BANK
+        FARMER, 
     }
     
     private String sourceName;

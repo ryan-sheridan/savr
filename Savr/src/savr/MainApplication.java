@@ -31,7 +31,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import savr.ryan.tools.RDynamicUI.Theme;
 import static savr.ryan.tools.RDynamicUI.Theme.DARK;
 import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
-import savr.ryan.tools.RSettingPersistence;
+import savr.ryan.tools.RDataPersistence;
+import savr.ryan.tools.RDatabaseORM;
 
 /**
  *
@@ -44,7 +45,12 @@ public class MainApplication extends javax.swing.JFrame {
      */
     public MainApplication() {
         initComponents();
-        Theme t = RSettingPersistence.getTheme();
+        RDataPersistence r = RDataPersistence.getInstance();
+        
+        // DEBUG
+        RDatabaseORM.getRedistributionRecords();
+        
+        Theme t = RDataPersistence.getTheme();
         
         if(t == LIGHT) {
             rToggle1.setSelected(true);
@@ -408,10 +414,10 @@ public class MainApplication extends javax.swing.JFrame {
         RDynamicUI uiManager = RDynamicUI.getInstance();
         
         if (rToggle1.isSelected()) {
-            RSettingPersistence.saveTheme(LIGHT);
+            RDataPersistence.saveTheme(LIGHT);
             uiManager.applyTheme(LIGHT);
         } else {
-            RSettingPersistence.saveTheme(DARK);
+            RDataPersistence.saveTheme(DARK);
             uiManager.applyTheme(DARK);
         }
     }//GEN-LAST:event_rToggle1ActionPerformed
@@ -434,7 +440,7 @@ public class MainApplication extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         RDynamicUI uiManager = RDynamicUI.getInstance();
-        uiManager.applyTheme(RSettingPersistence.getTheme());
+        uiManager.applyTheme(RDataPersistence.getTheme());
         //</editor-fold>
         
         /* Create and display the form */
