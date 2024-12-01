@@ -6,10 +6,18 @@ package com.savrui.components;
 
 import java.awt.Color;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
-import savr.ryan.tools.RDynamicUI;
+import savr.conor.FoodItem;
+import savr.conor.FoodStockApp;
+import savr.conor.NonPerishableFood;
+import savr.conor.PerishableFood;
 
 /**
  *
@@ -20,11 +28,74 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     /**
      * Creates new form FoodStockAppManager
      */
+    private FoodStockApp fs;//declare fs as a field to initialize it once
+    private ArrayList<FoodItem> foodItems;//list of all food items
+    
     public FoodStockAppManager() {
-        initComponents();
-        RDynamicUI.updateFont(this);
+        initComponents();        
+        fs = new FoodStockApp();//initialize fs
+        fs.addRecords();//add records to list on startup
+        this.foodItems = fs.getFoodItem();//assign food items to the list
+        
+
+        //default view of fields is that these are hidden
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
+    }
+    //current index for the fooditems set to -1 to have blank at start
+    private int currentIndex = -1;
+    
+    //updateFoodInfo puts the information in the food item views text fields
+    private void updateFoodInfo(FoodItem item){
+        nameTF.setText(item.getName());
+        idTF.setText(String.valueOf(item.getId()));
+        foodTypeTF.setText(item.getName());
+        expiryDateTF.setText(item.getExpiryDate());
+        quantityTF.setText(String.valueOf(item.getQuantity()));        
+        if (item.needsRefrigeration()) {//check if item needs refrigeration
+        perishableCB.setSelectedItem("Yes");  
+        
+        //set storage temp for perishablefoods
+        if (item instanceof PerishableFood) {
+            PerishableFood perishableItem = (PerishableFood) item;
+            storageTempTF.setText(String.valueOf(perishableItem.getStorageTemp()));
+        }
+       } else {
+        perishableCB.setSelectedItem("No");
+        //set monthlyshelflife for nonperishable foods
+        if (item instanceof NonPerishableFood) {
+            NonPerishableFood nonPerishableItem = (NonPerishableFood) item;
+            monthlyShelfTF.setText(String.valueOf(nonPerishableItem.getMonthlyShelfLife()));
+        }
+        }
+    }
+    
+    private boolean filledFields() {
+    //check the required fields have inputs
+    if (idTF.getText().isEmpty() || quantityTF.getText().isEmpty() || nameTF.getText().isEmpty() ||
+        perishableCB.getSelectedItem() == "None Selected" || expiryDateTF.getText().isEmpty()) {
+        
+        JOptionPane.showMessageDialog(null, "Invalid Details, Fill out all required fields");
+        return false; //return false if fields missing
     }
 
+    //check the perishable only field storage temp when selected
+    String type = (String) perishableCB.getSelectedItem();//declare type variable and casts returning obj to string type
+    if (type.equals("Yes") && storageTempTF.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter the Storage Temperature.");
+        return false; // return false if field empty
+    }
+
+    //check monthly shelf life 
+    if (type.equals("No") && monthlyShelfTF.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter Monthly Shelf Life.");
+        return false; //return false is fields empty
+    }
+
+    return true; //all fields filled return true
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,20 +132,24 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         perishableLBL = new javax.swing.JLabel();
         nameTF = new com.ryansheridan.rfields.RTextField();
         idTF = new com.ryansheridan.rfields.RTextField();
-        foodtypeTF = new com.ryansheridan.rfields.RTextField();
+        foodTypeTF = new com.ryansheridan.rfields.RTextField();
         expiryDateTF = new com.ryansheridan.rfields.RTextField();
         quantityTF = new com.ryansheridan.rfields.RTextField();
         perishableCB = new javax.swing.JComboBox<>();
         prevBTN = new javax.swing.JButton();
         viewmoveLBL = new javax.swing.JLabel();
         nextBTN = new javax.swing.JButton();
+        monthlyShelfLBL = new javax.swing.JLabel();
+        storageTempTF = new com.ryansheridan.rfields.RTextField();
+        storageTempLBL = new javax.swing.JLabel();
+        monthlyShelfTF = new com.ryansheridan.rfields.RTextField();
         viewingStockPanel = new javax.swing.JPanel();
-        viewTitle = new javax.swing.JLabel();
+        viewLBL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        stockTA = new javax.swing.JTextArea();
+        optionLBL = new javax.swing.JLabel();
+        optionCB = new javax.swing.JComboBox<>();
+        submitBTN = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(30, 30, 30));
         setToolTipText("");
@@ -229,19 +304,43 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         foodStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         titleLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        titleLBL.setForeground(new java.awt.Color(187, 187, 187));
         titleLBL.setText("Savr Food Stock");
 
         addBTN.setText("Add");
         buttonGroup1.add(addBTN);
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTNActionPerformed(evt);
+            }
+        });
 
         editBTN.setText("Edit");
+        editBTN.setToolTipText("Need valid ID to edit entry");
         buttonGroup1.add(editBTN);
+        editBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBTNActionPerformed(evt);
+            }
+        });
 
         searchBTN.setText("Search");
+        searchBTN.setToolTipText("Search using the food items ID");
         buttonGroup1.add(searchBTN);
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBTNActionPerformed(evt);
+            }
+        });
 
         deleteBTN.setText("Delete");
+        deleteBTN.setToolTipText("Delete Item by using its ID");
         buttonGroup1.add(deleteBTN);
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
 
         nameLBL.setForeground(new java.awt.Color(240, 240, 240));
         nameLBL.setText("Name:");
@@ -261,14 +360,66 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         perishableLBL.setForeground(new java.awt.Color(240, 240, 240));
         perishableLBL.setText("Is It Perishable:");
 
+        idTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idTFKeyPressed(evt);
+            }
+        });
+
+        expiryDateTF.setPlaceholder("dd-mm-yyyy");
+        expiryDateTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                expiryDateTFKeyPressed(evt);
+            }
+        });
+
+        quantityTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                quantityTFKeyPressed(evt);
+            }
+        });
+
         perishableCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Yes", "No" }));
+        perishableCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                perishableCBActionPerformed(evt);
+            }
+        });
 
         prevBTN.setText("<");
+        prevBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevBTNActionPerformed(evt);
+            }
+        });
 
         viewmoveLBL.setForeground(new java.awt.Color(255, 255, 255));
         viewmoveLBL.setText("View");
 
         nextBTN.setText(">");
+        nextBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBTNActionPerformed(evt);
+            }
+        });
+
+        monthlyShelfLBL.setForeground(new java.awt.Color(255, 255, 255));
+        monthlyShelfLBL.setText("Monthly Shelf Life:");
+
+        storageTempTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                storageTempTFKeyPressed(evt);
+            }
+        });
+
+        storageTempLBL.setForeground(new java.awt.Color(255, 255, 255));
+        storageTempLBL.setText("Storage Temp:");
+
+        monthlyShelfTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                monthlyShelfTFKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout foodStockPanelLayout = new javax.swing.GroupLayout(foodStockPanel);
         foodStockPanel.setLayout(foodStockPanelLayout);
@@ -279,10 +430,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(foodStockPanelLayout.createSequentialGroup()
-                                .addComponent(perishableLBL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(foodStockPanelLayout.createSequentialGroup()
                                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(addBTN)
@@ -295,7 +442,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(expiryDateTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(foodtypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(foodTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                                         .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -306,7 +453,19 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                                             .addComponent(titleLBL))
                                         .addGap(18, 18, 18)
                                         .addComponent(deleteBTN))
-                                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(monthlyShelfLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(monthlyShelfTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(perishableLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(foodStockPanelLayout.createSequentialGroup()
+                                .addComponent(storageTempLBL)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(storageTempTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                         .addGap(171, 171, 171)
                         .addComponent(prevBTN)
@@ -332,7 +491,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(foodTypeLBL)
-                    .addComponent(foodtypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(foodTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(expirydateLBL)
@@ -342,10 +501,18 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                     .addComponent(quantityLBL)
                     .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(perishableLBL)
                     .addComponent(perishableCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(monthlyShelfLBL)
+                    .addComponent(monthlyShelfTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(storageTempLBL)
+                    .addComponent(storageTempTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prevBTN)
                     .addComponent(viewmoveLBL)
@@ -363,58 +530,62 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
         viewingStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
-        viewTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        viewTitle.setText("Savr View Perishable Food Types");
+        viewLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        viewLBL.setForeground(new java.awt.Color(187, 187, 187));
+        viewLBL.setText("Savr View Perishable Food Types");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        stockTA.setColumns(20);
+        stockTA.setRows(5);
+        jScrollPane1.setViewportView(stockTA);
 
-        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("Select an option: ");
+        optionLBL.setForeground(new java.awt.Color(240, 240, 240));
+        optionLBL.setText("Select an option: ");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Perishable Food", "Non-Perishable Food" }));
+        optionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Perishable Food", "Non-Perishable Food" }));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Submit");
+        submitBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        submitBTN.setText("Submit");
+        submitBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout viewingStockPanelLayout = new javax.swing.GroupLayout(viewingStockPanel);
         viewingStockPanel.setLayout(viewingStockPanelLayout);
         viewingStockPanelLayout.setHorizontalGroup(
             viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewingStockPanelLayout.createSequentialGroup()
-                .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewingStockPanelLayout.createSequentialGroup()
+                .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1))
+                        .addComponent(optionLBL)
+                        .addGap(18, 18, 18)
+                        .addComponent(optionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addGap(72, 72, 72)
-                        .addComponent(viewTitle)
-                        .addGap(0, 131, Short.MAX_VALUE))
+                        .addComponent(viewLBL))
+                    .addGroup(viewingStockPanelLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(submitBTN))
                     .addGroup(viewingStockPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(viewingStockPanelLayout.createSequentialGroup()
-                .addGap(208, 208, 208)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         viewingStockPanelLayout.setVerticalGroup(
             viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewingStockPanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(viewTitle)
+                .addComponent(viewLBL)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(viewingStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(optionLBL)
+                    .addComponent(optionCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(submitBTN)
                 .addContainerGap(155, Short.MAX_VALUE))
         );
 
@@ -485,45 +656,243 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         
     }//GEN-LAST:event_returnBTNActionPerformed
 
+    private void perishableCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perishableCBActionPerformed
+    // hide and unhide the text fields related to whether food is perishable or not
+        
+    //get selected item from the CB
+    String selectedOption = (String) perishableCB.getSelectedItem();
+    
+    //check the option selected
+    if (selectedOption.equals("Yes")) {
+        //if yes show monthly shelf life info
+        storageTempLBL.setVisible(true);
+        storageTempTF.setVisible(true);
+
+        //hide the storage temp info if yes
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+    } else if (selectedOption.equals("No")) {
+        //else if no do the opposite
+        monthlyShelfLBL.setVisible(true);
+        monthlyShelfTF.setVisible(true);
+
+       
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
+    } else {
+        //else if none selected hide both again
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
+    }
+    }//GEN-LAST:event_perishableCBActionPerformed
+
+    private void nextBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBTNActionPerformed
+        // when clicked changes information in the text fields to next item in array
+        
+        //check if currentIndex is less than last index in array
+        if(currentIndex < foodItems.size() - 1) {
+            currentIndex++;
+            updateFoodInfo(foodItems.get(currentIndex));//use updateFoodInfo to fill text fields with current index info
+        }
+    }//GEN-LAST:event_nextBTNActionPerformed
+
+    private void prevBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBTNActionPerformed
+        // when clicked changes information in the text fields to previous item in array
+        //if current index is more than 0
+        if(currentIndex > 0){
+            currentIndex--;//-1 to the currentindex to go back
+            updateFoodInfo(foodItems.get(currentIndex));//update the fields to currentIndex
+        }
+    }//GEN-LAST:event_prevBTNActionPerformed
+
+    private void submitBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBTNActionPerformed
+        // TODO add your handling code here:
+        //get selected item from combo box and show on text area
+        String selectedOption = (String) optionCB.getSelectedItem();//gets the selected item from cb
+        String result = fs.viewRecords(selectedOption);// fs instance views records that are selected
+        stockTA.setText(result);//area displays the result
+    }//GEN-LAST:event_submitBTNActionPerformed
+
+    private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+        //add button to add records to the array list
+        //if all valid fields are filled
+        if (filledFields()) {
+                   
+            //get values from user input
+            int id = Integer.parseInt(idTF.getText());
+            int quantity = Integer.parseInt(quantityTF.getText());
+            String name = nameTF.getText();
+            String type = (String) perishableCB.getSelectedItem();
+            String expiryDate = expiryDateTF.getText();
+            String storageTemp = storageTempTF.getText();
+            String monthlyShelfLife = monthlyShelfTF.getText();
+
+            //add food item based on the type
+            fs.addFoodItem(id, quantity, name, type, expiryDate, storageTemp, monthlyShelfLife);
+        }
+    }//GEN-LAST:event_addBTNActionPerformed
+
+    private void idTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTFKeyPressed
+        
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for ID.");
+            idTF.setText("");
+        }
+    
+      
+    }//GEN-LAST:event_idTFKeyPressed
+
+    private void expiryDateTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expiryDateTFKeyPressed
+        // TODO add your handling code here:      
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || keyChar == '-')) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 and - (dash) allowed for ExpiryDate.");
+            expiryDateTF.setText("");
+        }
+    }//GEN-LAST:event_expiryDateTFKeyPressed
+
+    private void quantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            quantityTF.setText("");
+        }
+    }//GEN-LAST:event_quantityTFKeyPressed
+
+    private void monthlyShelfTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_monthlyShelfTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE )) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            monthlyShelfTF.setText("");
+        }
+        
+    }//GEN-LAST:event_monthlyShelfTFKeyPressed
+
+    private void storageTempTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_storageTempTFKeyPressed
+        // TODO add your handling code here:
+        
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            storageTempTF.setText("");
+        }
+    }//GEN-LAST:event_storageTempTFKeyPressed
+
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
+        // this button searches for the user based off their ID
+        try {
+        //get id that user searches
+        int id = Integer.parseInt(FoodStockAppManager.idTF.getText()); 
+        
+        //call search food method
+        fs.searchFoodItem(id);  
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid integer for the ID.");
+    }
+    }//GEN-LAST:event_searchBTNActionPerformed
+
+    private void editBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBTNActionPerformed
+        // TODO add your handling code here:
+        //this button allows the user to edit the details of a food item
+        
+        if(filledFields()){
+            try{
+                //get info from text fields
+            int id = Integer.parseInt(idTF.getText());
+            int quantity = Integer.parseInt(quantityTF.getText());
+            String name = nameTF.getText();
+            String type = (String) perishableCB.getSelectedItem();
+            String expiryDate = expiryDateTF.getText();
+            String storageTemp = storageTempTF.getText();
+            String monthlyShelfLife = monthlyShelfTF.getText();
+            
+            fs.editFoodItem(id, quantity, name, type, expiryDate, storageTemp, monthlyShelfLife);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Please enter valid input");
+            }
+        }
+    }//GEN-LAST:event_editBTNActionPerformed
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+        //button to delete a record from the arraylist
+        try{
+            int id = Integer.parseInt(idTF.getText());//get id that user inputted
+            fs.deleteFoodItem(id);//call deletefooditem with parsed id
+            
+        }catch(NumberFormatException e){//if user doesnt input ints send message to user
+            JOptionPane.showMessageDialog(null, "Please enter valid input");
+        }
+    }//GEN-LAST:event_deleteBTNActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JPanel RightPanel;
-    private javax.swing.JButton addBTN;
+    public static javax.swing.JButton addBTN;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel checkStockPanel;
-    private javax.swing.JButton deleteBTN;
-    private javax.swing.JButton editBTN;
+    public static javax.swing.JButton deleteBTN;
+    public static javax.swing.JButton editBTN;
     private javax.swing.JButton exitBTN;
-    private com.ryansheridan.rfields.RTextField expiryDateTF;
+    public static com.ryansheridan.rfields.RTextField expiryDateTF;
     private javax.swing.JLabel expirydateLBL;
     public static javax.swing.JPanel foodStockPanel;
     private javax.swing.JLabel foodTypeLBL;
-    private com.ryansheridan.rfields.RTextField foodtypeTF;
+    public static com.ryansheridan.rfields.RTextField foodTypeTF;
     private javax.swing.JLabel fsmenuLBL;
     private javax.swing.JLabel idLBL;
-    private com.ryansheridan.rfields.RTextField idTF;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
+    public static com.ryansheridan.rfields.RTextField idTF;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     public static javax.swing.JPanel logoPanel;
     private javax.swing.JLabel logoTitleLBL;
     private javax.swing.JLabel logopictureLBL;
+    private javax.swing.JLabel monthlyShelfLBL;
+    public static com.ryansheridan.rfields.RTextField monthlyShelfTF;
     private javax.swing.JLabel nameLBL;
-    private com.ryansheridan.rfields.RTextField nameTF;
+    public static com.ryansheridan.rfields.RTextField nameTF;
     private javax.swing.JButton nextBTN;
-    private javax.swing.JComboBox<String> perishableCB;
+    public static javax.swing.JComboBox<String> optionCB;
+    private javax.swing.JLabel optionLBL;
+    public static javax.swing.JComboBox<String> perishableCB;
     private javax.swing.JLabel perishableLBL;
     private javax.swing.JButton prevBTN;
     private javax.swing.JLabel quantityLBL;
-    private com.ryansheridan.rfields.RTextField quantityTF;
+    public static com.ryansheridan.rfields.RTextField quantityTF;
     private javax.swing.JButton returnBTN;
-    private javax.swing.JButton searchBTN;
+    public static javax.swing.JButton searchBTN;
+    public static javax.swing.JTextArea stockTA;
+    private javax.swing.JLabel storageTempLBL;
+    public static com.ryansheridan.rfields.RTextField storageTempTF;
+    public static javax.swing.JButton submitBTN;
     private javax.swing.JLabel titleLBL;
-    private javax.swing.JLabel viewTitle;
+    private javax.swing.JLabel viewLBL;
     private javax.swing.JPanel viewTypesPanel;
     public static javax.swing.JPanel viewingStockPanel;
     private javax.swing.JLabel viewmoveLBL;

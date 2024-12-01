@@ -11,15 +11,22 @@ package savr.ryan;
 public class RedistributionRecord {
     public enum DeliveryStatus {
         INFO_RECIEVED,
-        DELIVERED,
         IN_TRANSIT,
         OUT_FOR_DELIVERY,
+        IN_PROGRESS,
+        COMPLETED,
         CANCELLED
     }
     
     private WasteSource source;
     private FoodSaver recipient;
     private DeliveryStatus status;
+    
+    public RedistributionRecord(WasteSource source, FoodSaver recipient, DeliveryStatus status) {
+        this.source = source;
+        this.recipient = recipient;
+        this.status = status;
+    }
 
     public void setSource(WasteSource source) {
         this.source = source;

@@ -31,7 +31,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import savr.ryan.tools.RDynamicUI.Theme;
 import static savr.ryan.tools.RDynamicUI.Theme.DARK;
 import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
-import savr.ryan.tools.RSettingPersistence;
+import savr.ryan.tools.RDataPersistence;
+import savr.ryan.tools.RDatabaseORM;
+import savr.sean.AgricultureUI;
 
 /**
  *
@@ -44,7 +46,13 @@ public class MainApplication extends javax.swing.JFrame {
      */
     public MainApplication() {
         initComponents();
-        Theme t = RSettingPersistence.getTheme();
+        RDataPersistence r = RDataPersistence.getInstance();
+        
+        // call this when confliction errors are fixed
+        // DEBUG
+        //RDatabaseORM.getRedistributionRecords();
+        
+        Theme t = RDataPersistence.getTheme();
         
         if(t == LIGHT) {
             rToggle1.setSelected(true);
@@ -347,10 +355,24 @@ public class MainApplication extends javax.swing.JFrame {
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
 
-        agriUIManager.createCorpDonorPanel.setVisible(false);
+        agriUIManager.createCorpDonorPanel.setVisible(true);
+        agriUIManager.createItemDetailsPanel.setVisible(true);
+        agriUIManager.createDonorTitlePanel.setVisible(true);
+        agriUIManager.createEmptyPanel.setVisible(true);
+        agriUIManager.donorTypeSelectorPanel.setVisible(true);
+        agriUIManager.corpSelectorBTN.setEnabled(true);
+        
+        agriUIManager.viewItemDetailsPanel.setVisible(false);
+        agriUIManager.viewDonorTypeSelectorPanel.setVisible(false);
+        agriUIManager.viewDonorTypePanel.setVisible(false);
+        agriUIManager.viewSearchPanel.setVisible(false);
+        
+        
         agriUIManager.createIndiDonorPanel.setVisible(false);
 
         agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
+        
+        AgricultureUI.addTempRecords();
 
         this.dispose();
         
@@ -408,10 +430,10 @@ public class MainApplication extends javax.swing.JFrame {
         RDynamicUI uiManager = RDynamicUI.getInstance();
         
         if (rToggle1.isSelected()) {
-            RSettingPersistence.saveTheme(LIGHT);
+            RDataPersistence.saveTheme(LIGHT);
             uiManager.applyTheme(LIGHT);
         } else {
-            RSettingPersistence.saveTheme(DARK);
+            RDataPersistence.saveTheme(DARK);
             uiManager.applyTheme(DARK);
         }
     }//GEN-LAST:event_rToggle1ActionPerformed
@@ -434,7 +456,7 @@ public class MainApplication extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         RDynamicUI uiManager = RDynamicUI.getInstance();
-        uiManager.applyTheme(RSettingPersistence.getTheme());
+        uiManager.applyTheme(RDataPersistence.getTheme());
         //</editor-fold>
         
         /* Create and display the form */

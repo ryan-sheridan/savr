@@ -17,7 +17,7 @@ public class PerishableFood extends FoodItem{
     public PerishableFood() {
     }
 
-    public PerishableFood(int storageTemp, int id, int quantity, String name, String type, Date expiryDate) {
+    public PerishableFood(int id, int quantity, String name, String type, String expiryDate, int storageTemp) {
         super(id, quantity, name, type, expiryDate);
         this.storageTemp = storageTemp;
     }

@@ -13,28 +13,20 @@ import java.util.Date;
 public abstract class FoodItem {
     //declare variables
     protected int id, quantity;
-    protected String name, type;
-    protected Date expiryDate;
+    protected String name, type, expiryDate;   
 
     //add constructor
     public FoodItem() {
     }
 
-    public FoodItem(int id, int quantity, String name, String type, Date expiryDate) {
+    public FoodItem(int id, int quantity, String name, String type, String expiryDate) {
         this.id = id;
         this.quantity = quantity;
         this.name = name;
         this.type = type;
         this.expiryDate = expiryDate;
     }
-    
-    //method to check if the food item is expired
-    public boolean isExpired() {
-        Date currentDate = new Date();//get current date and put in new obj
-        //make sure its not null and if expiry date is before the current date
-        return expiryDate != null && expiryDate.before(currentDate);
-    }
-    
+        
     //abstract method
     public abstract boolean needsRefrigeration();
 
@@ -70,11 +62,11 @@ public abstract class FoodItem {
         this.type = type;
     }
 
-    public Date getExpiryDate() {
+    public String getExpiryDate() {
         return expiryDate;
     }
 
-    public void setExpiryDate(Date expiryDate) {
+    public void setExpiryDate(String expiryDate) {
         this.expiryDate = expiryDate;
     }
     
