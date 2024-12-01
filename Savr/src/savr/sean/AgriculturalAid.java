@@ -99,15 +99,14 @@ public class AgriculturalAid {
     
     
     public String toString() {
-        return "AgriculturalAid:" +
-            "donorID='" + donorID + '\'' +
-            ", itemID='" + itemID + '\'' +
-            ", item='" + item + '\'' +
-            ", dateReceived='" + dateReceived + '\'' +
-            ", itemType='" + itemType + '\'' +
-            ", itemQuantity=" + itemQuantity +
-            ", condition='" + condition + '\'' +
-            ", isElectrical=" + isElectrical;
+     return "Donor ID: " + donorID + "\n" +
+            "Item ID: " + itemID + "\n" +
+            "Item: " + item + "\n" +
+            "Date Received Item: " + dateReceived + "\n" +
+            "Item Type: " + itemType + "\n" +
+            "Quantity of Item: " + itemQuantity + "\n" +
+            "Item Condition: " + condition + "\n" +
+            "Electrical Item: " + isElectrical;
 }
 
     

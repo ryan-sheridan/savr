@@ -310,10 +310,11 @@
                               <Component id="itemQuantityTF" alignment="1" max="32767" attributes="0"/>
                               <Component id="itemNameTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="itemTypeTF" alignment="0" max="32767" attributes="0"/>
-                              <Component id="itemConditionCB" alignment="0" max="32767" attributes="0"/>
-                              <Component id="itemElectricalChB" alignment="0" pref="228" max="32767" attributes="0"/>
+                              <Component id="itemElectricalChB" alignment="0" max="32767" attributes="0"/>
+                              <Component id="itemDateReceivedTF" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="itemConditionCB" alignment="0" min="-2" pref="228" max="-2" attributes="0"/>
                                       <Component id="itemNameLBL" min="-2" max="-2" attributes="0"/>
                                       <Component id="ItemTypeLBL" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Component id="itemQuantityLBL" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -322,7 +323,6 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="itemDateReceivedTF" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -333,27 +333,27 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="itemNameLBL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="itemNameTF" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="ItemTypeLBL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="itemTypeTF" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="itemQuantityLBL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="itemQuantityTF" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="itemConditionLBL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="itemConditionCB" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="itemElectricalChB" min="-2" pref="40" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Component id="itemDateReceivedLBL" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="itemDateReceivedTF" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -370,9 +370,6 @@
                 <Component class="com.ryansheridan.rfields.RTextField" name="itemNameTF">
                   <Properties>
                     <Property name="borderBottom" type="boolean" value="false"/>
-                    <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
-                      <Value id="USERNAME"/>
-                    </Property>
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
                   <AuxValues>
@@ -436,11 +433,15 @@
                 <Component class="javax.swing.JComboBox" name="itemConditionCB">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="8">
+                        <StringItem index="0" value="Factory New"/>
+                        <StringItem index="1" value="Like New"/>
+                        <StringItem index="2" value="Refurbished"/>
+                        <StringItem index="3" value="Gently Used"/>
+                        <StringItem index="4" value="Moderately Used"/>
+                        <StringItem index="5" value="Heavily Used"/>
+                        <StringItem index="6" value="Damaged"/>
+                        <StringItem index="7" value="Non-Functional"/>
                       </StringArray>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -697,6 +698,9 @@
                           <Dimension value="[113, 30]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCorpBTNActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -1180,6 +1184,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpSelectorBTNActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="viewIndiSelectorBTN">
                   <Properties>
@@ -1201,6 +1208,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiSelectorBTNActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1215,11 +1225,11 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="searchTF" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="searchBTN" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1239,14 +1249,30 @@
               <SubComponents>
                 <Component class="com.ryansheridan.rfields.RTextField" name="searchTF">
                   <Properties>
+                    <Property name="text" type="java.lang.String" value="Item-00"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="&quot;Item ID Only!\n&quot; +&#xd;&#xa;&quot;Example: Item-001&quot;" type="code"/>
+                    </Property>
                     <Property name="borderBottom" type="boolean" value="false"/>
-                    <Property name="placeholder" type="java.lang.String" value=""/>
+                    <Property name="placeholder" type="java.lang.String" value="Item-000"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchTFActionPerformed"/>
+                  </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JButton" name="searchBTN">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="SEARCH"/>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="&quot;Item ID Only!\n&quot; +&#xd;&#xa;&quot;Example: Item-001&quot;" type="code"/>
+                    </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchBTNActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -1299,7 +1325,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="viewItemQuantityTF" alignment="1" max="32767" attributes="0"/>
                               <Component id="viewItemNameTF" alignment="0" max="32767" attributes="0"/>
-                              <Component id="viewItemTypeFT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="viewItemTypeTF" alignment="0" max="32767" attributes="0"/>
                               <Component id="viewItemConditionCB" alignment="0" max="32767" attributes="0"/>
                               <Component id="viewItemElectricalChB" alignment="0" max="32767" attributes="0"/>
                               <Component id="viewItemDateReceivedTF" alignment="0" max="32767" attributes="0"/>
@@ -1334,7 +1360,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="viewItemTypeLBL" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="viewItemTypeFT" min="-2" max="-2" attributes="0"/>
+                          <Component id="viewItemTypeTF" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="viewItemQuantityLBL" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1371,6 +1397,9 @@
                     </Property>
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="viewItemTypeLBL">
                   <Properties>
@@ -1380,7 +1409,7 @@
                     <Property name="text" type="java.lang.String" value="Item Type:"/>
                   </Properties>
                 </Component>
-                <Component class="com.ryansheridan.rfields.RTextField" name="viewItemTypeFT">
+                <Component class="com.ryansheridan.rfields.RTextField" name="viewItemTypeTF">
                   <Properties>
                     <Property name="borderBottom" type="boolean" value="false"/>
                     <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -1389,8 +1418,11 @@
                     <Property name="placeholder" type="java.lang.String" value=""/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemTypeFTActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemTypeTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="viewItemQuantityLBL">
                   <Properties>
@@ -1411,6 +1443,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemQuantityTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="viewItemConditionLBL">
                   <Properties>
@@ -1423,11 +1458,15 @@
                 <Component class="javax.swing.JComboBox" name="viewItemConditionCB">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
+                      <StringArray count="8">
+                        <StringItem index="0" value="Factory New"/>
+                        <StringItem index="1" value="Like New"/>
+                        <StringItem index="2" value="Refurbished"/>
+                        <StringItem index="3" value="Gently Used"/>
+                        <StringItem index="4" value="Moderately Used"/>
+                        <StringItem index="5" value="Heavily Used"/>
+                        <StringItem index="6" value="Damaged"/>
+                        <StringItem index="7" value="Non-Functional"/>
                       </StringArray>
                     </Property>
                     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -1436,6 +1475,7 @@
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JCheckBox" name="viewItemElectricalChB">
@@ -1451,6 +1491,9 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="viewItemDateReceivedLBL">
                   <Properties>
@@ -1471,6 +1514,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemDateReceivedTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="viewItemIDLBL">
                   <Properties>
@@ -1482,6 +1528,7 @@
                 </Component>
                 <Component class="com.ryansheridan.rfields.RTextField" name="viewItemIDTF">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="borderBottom" type="boolean" value="false"/>
                     <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
                       <Value id="USERNAME"/>
@@ -1491,6 +1538,9 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewItemIDTFActionPerformed"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -1507,6 +1557,9 @@
                       <Color blue="46" green="46" red="46" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1514,8 +1567,8 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="corpEmailTF1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="corpPhoneNumberTF1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="viewCorpEmailTF" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="viewCorpPhoneNumberTF" alignment="0" max="32767" attributes="0"/>
                                   <Component id="viewCorpHQAddressTF" alignment="0" max="32767" attributes="0"/>
                                   <Component id="viewCorpFoundingYearTF" alignment="1" max="32767" attributes="0"/>
                                   <Component id="viewDonorIDTF" alignment="1" max="32767" attributes="0"/>
@@ -1563,11 +1616,11 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="corpEmailLBL1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="corpEmailTF1" min="-2" max="-2" attributes="0"/>
+                              <Component id="viewCorpEmailTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="corpPhoneNumberLBL1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="corpPhoneNumberTF1" min="-2" max="-2" attributes="0"/>
+                              <Component id="viewCorpPhoneNumberTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="deleteCorpBTN" max="32767" attributes="0"/>
@@ -1596,7 +1649,7 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateCorpBTNActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="com.ryansheridan.rfields.RTextField" name="corpPhoneNumberTF1">
+                    <Component class="com.ryansheridan.rfields.RTextField" name="viewCorpPhoneNumberTF">
                       <Properties>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -1605,8 +1658,11 @@
                         <Property name="placeholder" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpPhoneNumberTF1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpPhoneNumberTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="corpPhoneNumberLBL1">
                       <Properties>
@@ -1616,7 +1672,7 @@
                         <Property name="text" type="java.lang.String" value="Corporation Phone Number:"/>
                       </Properties>
                     </Component>
-                    <Component class="com.ryansheridan.rfields.RTextField" name="corpEmailTF1">
+                    <Component class="com.ryansheridan.rfields.RTextField" name="viewCorpEmailTF">
                       <Properties>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -1625,8 +1681,11 @@
                         <Property name="placeholder" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="corpEmailTF1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpEmailTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="corpEmailLBL1">
                       <Properties>
@@ -1647,6 +1706,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpHQAddressTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="com.ryansheridan.rfields.RTextField" name="viewCorpFoundingYearTF">
                       <Properties>
@@ -1659,9 +1721,13 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpFoundingYearTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="com.ryansheridan.rfields.RTextField" name="viewDonorIDTF">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="USERNAME"/>
@@ -1671,11 +1737,17 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewDonorIDTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JButton" name="deleteCorpBTN">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="DELETE"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCorpBTNActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewCorpHQAddressLBL">
                       <Properties>
@@ -1696,6 +1768,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewCorpNameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewCorpFoundingYearLBL">
                       <Properties>
@@ -1729,6 +1804,9 @@
                       <Color blue="46" green="46" red="46" type="rgb"/>
                     </Property>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                  </AuxValues>
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1736,7 +1814,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="viewIndiEmailTF" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="viewIndiDonorIDTF" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="updateIndiBTN" min="-2" pref="150" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -1744,7 +1822,7 @@
                                   </Group>
                                   <Component id="viewIndiPhoneNumberTF" alignment="0" max="32767" attributes="0"/>
                                   <Component id="viewIndiDOBTF" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="viewIndiAddressTF1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="viewIndiAddressTF" alignment="1" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="viewIndiPhoneNumberLBL" min="-2" max="-2" attributes="0"/>
@@ -1762,7 +1840,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Component id="viewIndiEmailTF1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="viewIndiEmailTF" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="viewIndiDOBLBL" min="-2" max="-2" attributes="0"/>
@@ -1781,7 +1859,7 @@
                               <EmptySpace pref="8" max="32767" attributes="0"/>
                               <Component id="viewIndiDonorIDLBL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="viewIndiEmailTF" min="-2" max="-2" attributes="0"/>
+                              <Component id="viewIndiDonorIDTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="viewIndiSurnameLBL" min="-2" max="-2" attributes="0"/>
@@ -1799,11 +1877,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="viewIndiAddressLBL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="viewIndiAddressTF1" min="-2" max="-2" attributes="0"/>
+                              <Component id="viewIndiAddressTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="viewIndiEmailLBL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="viewIndiEmailTF1" min="-2" max="-2" attributes="0"/>
+                              <Component id="viewIndiEmailTF" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="viewIndiPhoneNumberLBL" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1829,14 +1907,21 @@
                           <Dimension value="[113, 30]"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="updateIndiBTNActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="deleteIndiBTN">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="DELETE"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteIndiBTNActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiEmailTF">
+                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiDonorIDTF">
                       <Properties>
+                        <Property name="editable" type="boolean" value="false"/>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
                           <Value id="USERNAME"/>
@@ -1844,8 +1929,11 @@
                         <Property name="placeholder" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiEmailTFActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiDonorIDTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiPhoneNumberTF">
                       <Properties>
@@ -1858,6 +1946,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiPhoneNumberTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewIndiPhoneNumberLBL">
                       <Properties>
@@ -1886,6 +1977,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiDOBTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewIndiEmailLBL">
                       <Properties>
@@ -1895,7 +1989,7 @@
                         <Property name="text" type="java.lang.String" value="Email Address:"/>
                       </Properties>
                     </Component>
-                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiAddressTF1">
+                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiAddressTF">
                       <Properties>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -1904,8 +1998,11 @@
                         <Property name="placeholder" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiAddressTF1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiAddressTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewIndiDOBLBL">
                       <Properties>
@@ -1926,6 +2023,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiFirstNameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiSurnameTF">
                       <Properties>
@@ -1938,6 +2038,9 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiSurnameTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewIndiAddressLBL">
                       <Properties>
@@ -1955,7 +2058,7 @@
                         <Property name="text" type="java.lang.String" value="Surname:"/>
                       </Properties>
                     </Component>
-                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiEmailTF1">
+                    <Component class="com.ryansheridan.rfields.RTextField" name="viewIndiEmailTF">
                       <Properties>
                         <Property name="borderBottom" type="boolean" value="false"/>
                         <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
@@ -1964,8 +2067,11 @@
                         <Property name="placeholder" type="java.lang.String" value=""/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiEmailTF1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewIndiEmailTFActionPerformed"/>
                       </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="viewIndiDonorIDLBL">
                       <Properties>

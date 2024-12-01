@@ -32,6 +32,7 @@ import savr.ryan.tools.RDynamicUI.Theme;
 import static savr.ryan.tools.RDynamicUI.Theme.DARK;
 import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
 import savr.ryan.tools.RSettingPersistence;
+import savr.sean.AgricultureUI;
 
 /**
  *
@@ -351,6 +352,8 @@ public class MainApplication extends javax.swing.JFrame {
         agriUIManager.createIndiDonorPanel.setVisible(false);
 
         agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
+        
+        AgricultureUI.addTempRecords();
 
         this.dispose();
         

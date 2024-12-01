@@ -80,14 +80,14 @@ public class IndividualDonor extends AgriculturalAid{
     
      @Override
     public String toString() {
-        return "IndividualDonor:\n" +
-                "indiFirstName='" + indiFirstName + '\'' +
-                ", indiSurname='" + indiSurname + '\'' +
-                ", indiDoB='" + indiDoB + '\'' +
-                ", indiAddress='" + indiAddress + '\'' +
-                ", indiEmail='" + indiEmail + '\'' +
-                ", indiPhoneNumber=" + indiPhoneNumber +
-                "} " + super.toString();
+        return "----- Individual Donor -----\n" +
+                "First Name: " + indiFirstName + "\n" +
+                "Surname: " + indiSurname + "\n" +
+                "Date of Birth: " + indiDoB + "\n" +
+                "Address: " + indiAddress + "\n" +
+                "Email: " + indiEmail + "\n" +
+                "Phone Number: " + indiPhoneNumber + "\n"
+                 + super.toString();
     }
     
 }

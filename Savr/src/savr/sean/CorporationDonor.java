@@ -68,5 +68,15 @@ public class CorporationDonor extends AgriculturalAid{
         return corpPhoneNumber;
     }
   
+    @Override
+    public String toString(){
+        return "----- Corporation Donor -----\n" +
+               "Corporation Name: " + corpName + "\n" +
+               "Corporation Founding Year: " + corpFoundingYear + "\n" +
+               "Corporation HQ Address: " + corpHeadquareterAddress + "\n" +
+               "Corporation Email: " + corpEmail + "\n" +
+               "Corporation Phone Number: " + corpPhoneNumber + "\n"
+                + super.toString();
+    }
 }
     

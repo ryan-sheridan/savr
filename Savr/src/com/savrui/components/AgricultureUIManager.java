@@ -16,7 +16,7 @@ import savr.sean.AgricultureUI;
 
 /**
  *
- * @author User
+ * @author Sean
  */
 public class AgricultureUIManager extends javax.swing.JPanel {
     ArrayList<AgriculturalAid> agriAid = new ArrayList<>();
@@ -108,7 +108,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemNameLBL = new javax.swing.JLabel();
         viewItemNameTF = new com.ryansheridan.rfields.RTextField();
         viewItemTypeLBL = new javax.swing.JLabel();
-        viewItemTypeFT = new com.ryansheridan.rfields.RTextField();
+        viewItemTypeTF = new com.ryansheridan.rfields.RTextField();
         viewItemQuantityLBL = new javax.swing.JLabel();
         viewItemQuantityTF = new com.ryansheridan.rfields.RTextField();
         viewItemConditionLBL = new javax.swing.JLabel();
@@ -121,9 +121,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewDonorTypePanel = new javax.swing.JPanel();
         viewCorpDonorPanel = new javax.swing.JPanel();
         updateCorpBTN = new javax.swing.JButton();
-        corpPhoneNumberTF1 = new com.ryansheridan.rfields.RTextField();
+        viewCorpPhoneNumberTF = new com.ryansheridan.rfields.RTextField();
         corpPhoneNumberLBL1 = new javax.swing.JLabel();
-        corpEmailTF1 = new com.ryansheridan.rfields.RTextField();
+        viewCorpEmailTF = new com.ryansheridan.rfields.RTextField();
         corpEmailLBL1 = new javax.swing.JLabel();
         viewCorpHQAddressTF = new com.ryansheridan.rfields.RTextField();
         viewCorpFoundingYearTF = new com.ryansheridan.rfields.RTextField();
@@ -137,19 +137,19 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiDonorPanel = new javax.swing.JPanel();
         updateIndiBTN = new javax.swing.JButton();
         deleteIndiBTN = new javax.swing.JButton();
-        viewIndiEmailTF = new com.ryansheridan.rfields.RTextField();
+        viewIndiDonorIDTF = new com.ryansheridan.rfields.RTextField();
         viewIndiPhoneNumberTF = new com.ryansheridan.rfields.RTextField();
         viewIndiPhoneNumberLBL = new javax.swing.JLabel();
         viewIndiFirstNameLBL = new javax.swing.JLabel();
         viewIndiDOBTF = new com.ryansheridan.rfields.RTextField();
         viewIndiEmailLBL = new javax.swing.JLabel();
-        viewIndiAddressTF1 = new com.ryansheridan.rfields.RTextField();
+        viewIndiAddressTF = new com.ryansheridan.rfields.RTextField();
         viewIndiDOBLBL = new javax.swing.JLabel();
         viewIndiFirstNameTF = new com.ryansheridan.rfields.RTextField();
         viewIndiSurnameTF = new com.ryansheridan.rfields.RTextField();
         viewIndiAddressLBL = new javax.swing.JLabel();
         viewIndiSurnameLBL = new javax.swing.JLabel();
-        viewIndiEmailTF1 = new com.ryansheridan.rfields.RTextField();
+        viewIndiEmailTF = new com.ryansheridan.rfields.RTextField();
         viewIndiDonorIDLBL = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(80, 80, 80));
@@ -309,7 +309,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         itemNameLBL.setText("Item Name:");
 
         itemNameTF.setBorderBottom(false);
-        itemNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
         itemNameTF.setPlaceholder("");
 
         ItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -339,7 +338,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         itemConditionLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         itemConditionLBL.setText("Item Condition:");
 
-        itemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        itemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factory New", "Like New", "Refurbished", "Gently Used", "Moderately Used", "Heavily Used", "Damaged", "Non-Functional" }));
         itemConditionCB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         itemElectricalChB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -369,17 +368,17 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                     .addComponent(itemQuantityTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(itemNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(itemTypeTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemConditionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(itemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                    .addComponent(itemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(itemDateReceivedTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(createItemDetailsPanelLayout.createSequentialGroup()
                         .addGroup(createItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(itemConditionCB, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(itemNameLBL)
                             .addComponent(ItemTypeLBL)
                             .addComponent(itemQuantityLBL)
                             .addComponent(itemConditionLBL)
                             .addComponent(itemDateReceivedLBL))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(itemDateReceivedTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         createItemDetailsPanelLayout.setVerticalGroup(
@@ -479,6 +478,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         addCorpBTN.setText("ADD DONOR");
         addCorpBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addCorpBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+        addCorpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCorpBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout createCorpDonorPanelLayout = new javax.swing.GroupLayout(createCorpDonorPanel);
         createCorpDonorPanel.setLayout(createCorpDonorPanelLayout);
@@ -829,10 +833,25 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         viewSearchPanel.setBackground(new java.awt.Color(70, 70, 70));
 
+        searchTF.setText("Item-00");
+        searchTF.setToolTipText("Item ID Only!\n" +
+            "Example: Item-001");
         searchTF.setBorderBottom(false);
-        searchTF.setPlaceholder("");
+        searchTF.setPlaceholder("Item-000");
+        searchTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTFActionPerformed(evt);
+            }
+        });
 
         searchBTN.setText("SEARCH");
+        searchBTN.setToolTipText("Item ID Only!\n" +
+            "Example: Item-001");
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout viewSearchPanelLayout = new javax.swing.GroupLayout(viewSearchPanel);
         viewSearchPanel.setLayout(viewSearchPanelLayout);
@@ -885,12 +904,12 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewItemTypeLBL.setText("Item Type:");
 
-        viewItemTypeFT.setBorderBottom(false);
-        viewItemTypeFT.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        viewItemTypeFT.setPlaceholder("");
-        viewItemTypeFT.addActionListener(new java.awt.event.ActionListener() {
+        viewItemTypeTF.setBorderBottom(false);
+        viewItemTypeTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewItemTypeTF.setPlaceholder("");
+        viewItemTypeTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewItemTypeFTActionPerformed(evt);
+                viewItemTypeTFActionPerformed(evt);
             }
         });
 
@@ -909,7 +928,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemConditionLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewItemConditionLBL.setText("Item Condition:");
 
-        viewItemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        viewItemConditionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factory New", "Like New", "Refurbished", "Gently Used", "Moderately Used", "Heavily Used", "Damaged", "Non-Functional" }));
         viewItemConditionCB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         viewItemElectricalChB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -932,6 +951,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemIDLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewItemIDLBL.setText("Item ID:");
 
+        viewItemIDTF.setEditable(false);
         viewItemIDTF.setBorderBottom(false);
         viewItemIDTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
         viewItemIDTF.setPlaceholder("");
@@ -950,7 +970,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewItemTypeFT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewItemTypeTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemConditionCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemElectricalChB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemDateReceivedTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -980,7 +1000,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewItemTypeLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewItemTypeFT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewItemTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewItemQuantityLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1013,24 +1033,24 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
-        corpPhoneNumberTF1.setBorderBottom(false);
-        corpPhoneNumberTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        corpPhoneNumberTF1.setPlaceholder("");
-        corpPhoneNumberTF1.addActionListener(new java.awt.event.ActionListener() {
+        viewCorpPhoneNumberTF.setBorderBottom(false);
+        viewCorpPhoneNumberTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewCorpPhoneNumberTF.setPlaceholder("");
+        viewCorpPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                corpPhoneNumberTF1ActionPerformed(evt);
+                viewCorpPhoneNumberTFActionPerformed(evt);
             }
         });
 
         corpPhoneNumberLBL1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         corpPhoneNumberLBL1.setText("Corporation Phone Number:");
 
-        corpEmailTF1.setBorderBottom(false);
-        corpEmailTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        corpEmailTF1.setPlaceholder("");
-        corpEmailTF1.addActionListener(new java.awt.event.ActionListener() {
+        viewCorpEmailTF.setBorderBottom(false);
+        viewCorpEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewCorpEmailTF.setPlaceholder("");
+        viewCorpEmailTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                corpEmailTF1ActionPerformed(evt);
+                viewCorpEmailTFActionPerformed(evt);
             }
         });
 
@@ -1055,6 +1075,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
+        viewDonorIDTF.setEditable(false);
         viewDonorIDTF.setBorderBottom(false);
         viewDonorIDTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
         viewDonorIDTF.setPlaceholder("");
@@ -1065,6 +1086,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         });
 
         deleteCorpBTN.setText("DELETE");
+        deleteCorpBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCorpBTNActionPerformed(evt);
+            }
+        });
 
         viewCorpHQAddressLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewCorpHQAddressLBL.setText("Corporation Headquarter Address:");
@@ -1094,8 +1120,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             .addGroup(viewCorpDonorPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(corpEmailTF1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(corpPhoneNumberTF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCorpEmailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewCorpPhoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewCorpHQAddressTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewCorpFoundingYearTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewDonorIDTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1137,11 +1163,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(corpEmailLBL1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(corpEmailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewCorpEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(corpPhoneNumberLBL1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(corpPhoneNumberTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewCorpPhoneNumberTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(viewCorpDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(deleteCorpBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1156,15 +1182,26 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         updateIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         updateIndiBTN.setText("UPDATE");
         updateIndiBTN.setPreferredSize(new java.awt.Dimension(113, 30));
+        updateIndiBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateIndiBTNActionPerformed(evt);
+            }
+        });
 
         deleteIndiBTN.setText("DELETE");
-
-        viewIndiEmailTF.setBorderBottom(false);
-        viewIndiEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        viewIndiEmailTF.setPlaceholder("");
-        viewIndiEmailTF.addActionListener(new java.awt.event.ActionListener() {
+        deleteIndiBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewIndiEmailTFActionPerformed(evt);
+                deleteIndiBTNActionPerformed(evt);
+            }
+        });
+
+        viewIndiDonorIDTF.setEditable(false);
+        viewIndiDonorIDTF.setBorderBottom(false);
+        viewIndiDonorIDTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiDonorIDTF.setPlaceholder("");
+        viewIndiDonorIDTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewIndiDonorIDTFActionPerformed(evt);
             }
         });
 
@@ -1195,12 +1232,12 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiEmailLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewIndiEmailLBL.setText("Email Address:");
 
-        viewIndiAddressTF1.setBorderBottom(false);
-        viewIndiAddressTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        viewIndiAddressTF1.setPlaceholder("");
-        viewIndiAddressTF1.addActionListener(new java.awt.event.ActionListener() {
+        viewIndiAddressTF.setBorderBottom(false);
+        viewIndiAddressTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiAddressTF.setPlaceholder("");
+        viewIndiAddressTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewIndiAddressTF1ActionPerformed(evt);
+                viewIndiAddressTFActionPerformed(evt);
             }
         });
 
@@ -1231,12 +1268,12 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSurnameLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewIndiSurnameLBL.setText("Surname:");
 
-        viewIndiEmailTF1.setBorderBottom(false);
-        viewIndiEmailTF1.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
-        viewIndiEmailTF1.setPlaceholder("");
-        viewIndiEmailTF1.addActionListener(new java.awt.event.ActionListener() {
+        viewIndiEmailTF.setBorderBottom(false);
+        viewIndiEmailTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
+        viewIndiEmailTF.setPlaceholder("");
+        viewIndiEmailTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewIndiEmailTF1ActionPerformed(evt);
+                viewIndiEmailTFActionPerformed(evt);
             }
         });
 
@@ -1250,14 +1287,14 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewIndiDonorIDTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
                         .addComponent(updateIndiBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(deleteIndiBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
                     .addComponent(viewIndiPhoneNumberTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewIndiDOBTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewIndiAddressTF1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewIndiAddressTF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
                         .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(viewIndiPhoneNumberLBL)
@@ -1271,7 +1308,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                             .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
                                 .addComponent(viewIndiSurnameLBL)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(viewIndiEmailTF1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(viewIndiDonorPanelLayout.createSequentialGroup()
                         .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(viewIndiDOBLBL)
@@ -1285,7 +1322,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(viewIndiDonorIDLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIndiDonorIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(viewIndiDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(viewIndiSurnameLBL)
@@ -1301,11 +1338,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewIndiAddressLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewIndiAddressTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIndiAddressTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewIndiEmailLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(viewIndiEmailTF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(viewIndiEmailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(viewIndiPhoneNumberLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1419,6 +1456,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewCorpDonorPanel.setVisible(false);
         viewIndiDonorPanel.setVisible(false);
         
+        
         //updateCorpBTN1.setVisible(false);
         //viewDonorIDTF1.setVisible(false);
     }//GEN-LAST:event_menuViewDonoPanelMouseClicked
@@ -1523,9 +1561,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         backToMenuPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_backToMenuPanelMouseExited
 
-    private void viewItemTypeFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemTypeFTActionPerformed
+    private void viewItemTypeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemTypeTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewItemTypeFTActionPerformed
+    }//GEN-LAST:event_viewItemTypeTFActionPerformed
 
     private void viewItemQuantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemQuantityTFActionPerformed
         // TODO add your handling code here:
@@ -1535,13 +1573,13 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewItemDateReceivedTFActionPerformed
 
-    private void corpPhoneNumberTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpPhoneNumberTF1ActionPerformed
+    private void viewCorpPhoneNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpPhoneNumberTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_corpPhoneNumberTF1ActionPerformed
+    }//GEN-LAST:event_viewCorpPhoneNumberTFActionPerformed
 
-    private void corpEmailTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpEmailTF1ActionPerformed
+    private void viewCorpEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpEmailTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_corpEmailTF1ActionPerformed
+    }//GEN-LAST:event_viewCorpEmailTFActionPerformed
 
     private void viewCorpHQAddressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpHQAddressTFActionPerformed
         // TODO add your handling code here:
@@ -1549,6 +1587,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void updateCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCorpBTNActionPerformed
         // TODO add your handling code here:
+        AgricultureUI.updateDonor();
     }//GEN-LAST:event_updateCorpBTNActionPerformed
 
     private void viewCorpFoundingYearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpFoundingYearTFActionPerformed
@@ -1557,6 +1596,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void viewDonorIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDonorIDTFActionPerformed
         // TODO add your handling code here:
+        viewDonorIDTF.setEditable(false);
     }//GEN-LAST:event_viewDonorIDTFActionPerformed
 
     private void viewCorpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNActionPerformed
@@ -1578,12 +1618,13 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewIndiSelectorBTNActionPerformed
 
     private void viewItemIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemIDTFActionPerformed
-        // TODO add your handling code here:
+        viewItemIDTF.setEditable(false);
     }//GEN-LAST:event_viewItemIDTFActionPerformed
 
-    private void viewIndiEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiEmailTFActionPerformed
+    private void viewIndiDonorIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiDonorIDTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewIndiEmailTFActionPerformed
+        viewIndiDonorIDTF.setEditable(false);
+    }//GEN-LAST:event_viewIndiDonorIDTFActionPerformed
 
     private void viewIndiPhoneNumberTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiPhoneNumberTFActionPerformed
         // TODO add your handling code here:
@@ -1593,9 +1634,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewIndiDOBTFActionPerformed
 
-    private void viewIndiAddressTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiAddressTF1ActionPerformed
+    private void viewIndiAddressTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiAddressTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewIndiAddressTF1ActionPerformed
+    }//GEN-LAST:event_viewIndiAddressTFActionPerformed
 
     private void viewIndiFirstNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiFirstNameTFActionPerformed
         // TODO add your handling code here:
@@ -1605,9 +1646,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_viewIndiSurnameTFActionPerformed
 
-    private void viewIndiEmailTF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiEmailTF1ActionPerformed
+    private void viewIndiEmailTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiEmailTFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewIndiEmailTF1ActionPerformed
+    }//GEN-LAST:event_viewIndiEmailTFActionPerformed
 
     private void viewCorpNameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpNameTFActionPerformed
         // TODO add your handling code here:
@@ -1627,13 +1668,58 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiPhoneNumberTF.getText().trim().isEmpty() ||
         itemConditionCB.getSelectedItem() == null) {
 
-        // Show prompt to the user
+       
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
-        return; // Stop further execution
+        return; 
     }
         
         AgricultureUI.addIndi();
     }//GEN-LAST:event_addIndiBTNActionPerformed
+
+    private void addCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCorpBTNActionPerformed
+        // TODO add your handling code here:
+        if (corpNameTF.getText().trim().isEmpty() ||
+        corpFoundingYearTF.getText().trim().isEmpty() ||
+        corpHQAddressTF.getText().trim().isEmpty() ||
+        corpEmailTF.getText().trim().isEmpty() ||
+        corpPhoneNumberTF.getText().trim().isEmpty() ||
+        itemNameTF.getText().trim().isEmpty() ||
+        itemDateReceivedTF.getText().trim().isEmpty() ||
+        itemTypeTF.getText().trim().isEmpty() ||
+        itemQuantityTF.getText().trim().isEmpty() ||
+        itemConditionCB.getSelectedItem() == null) {
+            
+        JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
+        return; 
+    }
+        AgricultureUI.addCorp();
+        
+        
+    }//GEN-LAST:event_addCorpBTNActionPerformed
+
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
+        // TODO add your handling code here:
+        AgricultureUI.searchDonor();
+    }//GEN-LAST:event_searchBTNActionPerformed
+
+    private void searchTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchTFActionPerformed
+
+    private void updateIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateIndiBTNActionPerformed
+        // TODO add your handling code here:
+        AgricultureUI.updateDonor();
+    }//GEN-LAST:event_updateIndiBTNActionPerformed
+
+    private void deleteCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCorpBTNActionPerformed
+        // TODO add your handling code here:
+        AgricultureUI.deleteDonor();
+    }//GEN-LAST:event_deleteCorpBTNActionPerformed
+
+    private void deleteIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteIndiBTNActionPerformed
+        // TODO add your handling code here:
+        AgricultureUI.deleteDonor();
+    }//GEN-LAST:event_deleteIndiBTNActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1646,7 +1732,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel corpEmailLBL;
     private javax.swing.JLabel corpEmailLBL1;
     public static com.ryansheridan.rfields.RTextField corpEmailTF;
-    private com.ryansheridan.rfields.RTextField corpEmailTF1;
     private javax.swing.JLabel corpFoundingYearLBL;
     public static com.ryansheridan.rfields.RTextField corpFoundingYearTF;
     private javax.swing.JLabel corpHQAddressLBL;
@@ -1656,7 +1741,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel corpPhoneNumberLBL;
     private javax.swing.JLabel corpPhoneNumberLBL1;
     public static com.ryansheridan.rfields.RTextField corpPhoneNumberTF;
-    private com.ryansheridan.rfields.RTextField corpPhoneNumberTF1;
     public static javax.swing.JRadioButton corpSelectorBTN;
     public static javax.swing.JPanel createCorpDonorPanel;
     private javax.swing.JPanel createDonorPanel;
@@ -1701,53 +1785,55 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel menuViewDonoLBL;
     private javax.swing.JPanel menuViewDonoPanel;
     private javax.swing.JButton searchBTN;
-    private com.ryansheridan.rfields.RTextField searchTF;
+    public static com.ryansheridan.rfields.RTextField searchTF;
     private javax.swing.JButton updateCorpBTN;
     private javax.swing.JButton updateIndiBTN;
     private javax.swing.JLabel viewCorpDonorIDLBL;
-    private javax.swing.JPanel viewCorpDonorPanel;
+    public static javax.swing.JPanel viewCorpDonorPanel;
+    public static com.ryansheridan.rfields.RTextField viewCorpEmailTF;
     private javax.swing.JLabel viewCorpFoundingYearLBL;
-    private com.ryansheridan.rfields.RTextField viewCorpFoundingYearTF;
+    public static com.ryansheridan.rfields.RTextField viewCorpFoundingYearTF;
     private javax.swing.JLabel viewCorpHQAddressLBL;
-    private com.ryansheridan.rfields.RTextField viewCorpHQAddressTF;
+    public static com.ryansheridan.rfields.RTextField viewCorpHQAddressTF;
     private javax.swing.JLabel viewCorpNameLBL;
-    private com.ryansheridan.rfields.RTextField viewCorpNameTF;
-    private javax.swing.JRadioButton viewCorpSelectorBTN;
-    private com.ryansheridan.rfields.RTextField viewDonorIDTF;
+    public static com.ryansheridan.rfields.RTextField viewCorpNameTF;
+    public static com.ryansheridan.rfields.RTextField viewCorpPhoneNumberTF;
+    public static javax.swing.JRadioButton viewCorpSelectorBTN;
+    public static com.ryansheridan.rfields.RTextField viewDonorIDTF;
     private javax.swing.JPanel viewDonorPanel;
     private javax.swing.ButtonGroup viewDonorTypeBTNGROUP;
     private javax.swing.JPanel viewDonorTypePanel;
     private javax.swing.JPanel viewDonorTypeSelectorPanel;
     private javax.swing.JLabel viewIndiAddressLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiAddressTF1;
+    public static com.ryansheridan.rfields.RTextField viewIndiAddressTF;
     private javax.swing.JLabel viewIndiDOBLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiDOBTF;
+    public static com.ryansheridan.rfields.RTextField viewIndiDOBTF;
     private javax.swing.JLabel viewIndiDonorIDLBL;
-    private javax.swing.JPanel viewIndiDonorPanel;
+    public static com.ryansheridan.rfields.RTextField viewIndiDonorIDTF;
+    public static javax.swing.JPanel viewIndiDonorPanel;
     private javax.swing.JLabel viewIndiEmailLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiEmailTF;
-    private com.ryansheridan.rfields.RTextField viewIndiEmailTF1;
+    public static com.ryansheridan.rfields.RTextField viewIndiEmailTF;
     private javax.swing.JLabel viewIndiFirstNameLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiFirstNameTF;
+    public static com.ryansheridan.rfields.RTextField viewIndiFirstNameTF;
     private javax.swing.JLabel viewIndiPhoneNumberLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiPhoneNumberTF;
-    private javax.swing.JRadioButton viewIndiSelectorBTN;
+    public static com.ryansheridan.rfields.RTextField viewIndiPhoneNumberTF;
+    public static javax.swing.JRadioButton viewIndiSelectorBTN;
     private javax.swing.JLabel viewIndiSurnameLBL;
-    private com.ryansheridan.rfields.RTextField viewIndiSurnameTF;
-    private javax.swing.JComboBox<String> viewItemConditionCB;
+    public static com.ryansheridan.rfields.RTextField viewIndiSurnameTF;
+    public static javax.swing.JComboBox<String> viewItemConditionCB;
     private javax.swing.JLabel viewItemConditionLBL;
     private javax.swing.JLabel viewItemDateReceivedLBL;
-    private com.ryansheridan.rfields.RTextField viewItemDateReceivedTF;
+    public static com.ryansheridan.rfields.RTextField viewItemDateReceivedTF;
     private javax.swing.JPanel viewItemDetailsPanel;
-    private javax.swing.JCheckBox viewItemElectricalChB;
+    public static javax.swing.JCheckBox viewItemElectricalChB;
     private javax.swing.JLabel viewItemIDLBL;
-    private com.ryansheridan.rfields.RTextField viewItemIDTF;
+    public static com.ryansheridan.rfields.RTextField viewItemIDTF;
     private javax.swing.JLabel viewItemNameLBL;
-    private com.ryansheridan.rfields.RTextField viewItemNameTF;
+    public static com.ryansheridan.rfields.RTextField viewItemNameTF;
     private javax.swing.JLabel viewItemQuantityLBL;
-    private com.ryansheridan.rfields.RTextField viewItemQuantityTF;
-    private com.ryansheridan.rfields.RTextField viewItemTypeFT;
+    public static com.ryansheridan.rfields.RTextField viewItemQuantityTF;
     private javax.swing.JLabel viewItemTypeLBL;
+    public static com.ryansheridan.rfields.RTextField viewItemTypeTF;
     private javax.swing.JPanel viewSearchPanel;
     private javax.swing.JLabel viewTitleLBL;
     private javax.swing.JPanel viewTitlePanel;
