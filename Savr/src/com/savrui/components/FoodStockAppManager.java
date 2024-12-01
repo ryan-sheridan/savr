@@ -6,12 +6,18 @@ package com.savrui.components;
 
 import java.awt.Color;
 import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import savr.ZeroHungerApp;
 import savr.conor.FoodItem;
 import savr.conor.FoodStockApp;
+import savr.conor.NonPerishableFood;
+import savr.conor.PerishableFood;
 
 /**
  *
@@ -22,23 +28,74 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     /**
      * Creates new form FoodStockAppManager
      */
-    
+    private FoodStockApp fs;//declare fs as a field to initialize it once
     private ArrayList<FoodItem> foodItems;//list of all food items
     
     public FoodStockAppManager() {
-        initComponents();
+        initComponents();        
+        fs = new FoodStockApp();//initialize fs
+        fs.addRecords();//add records to list on startup
+        this.foodItems = fs.getFoodItem();//assign food items to the list
         
-        FoodStockApp fs = new FoodStockApp();
-        fs.addRecords();//add records to list
-        this.foodItems = fs.getFoodItem();
-        
+
         //default view of fields is that these are hidden
         monthlyShelfLBL.setVisible(false);
         monthlyShelfTF.setVisible(false);
         storageTempLBL.setVisible(false);
         storageTempTF.setVisible(false);
     }
+    //current index for the fooditems set to -1 to have blank at start
+    private int currentIndex = -1;
+    
+    //updateFoodInfo puts the information in the food item views text fields
+    private void updateFoodInfo(FoodItem item){
+        nameTF.setText(item.getName());
+        idTF.setText(String.valueOf(item.getId()));
+        foodTypeTF.setText(item.getName());
+        expiryDateTF.setText(item.getExpiryDate());
+        quantityTF.setText(String.valueOf(item.getQuantity()));        
+        if (item.needsRefrigeration()) {//check if item needs refrigeration
+        perishableCB.setSelectedItem("Yes");  
+        
+        //set storage temp for perishablefoods
+        if (item instanceof PerishableFood) {
+            PerishableFood perishableItem = (PerishableFood) item;
+            storageTempTF.setText(String.valueOf(perishableItem.getStorageTemp()));
+        }
+       } else {
+        perishableCB.setSelectedItem("No");
+        //set monthlyshelflife for nonperishable foods
+        if (item instanceof NonPerishableFood) {
+            NonPerishableFood nonPerishableItem = (NonPerishableFood) item;
+            monthlyShelfTF.setText(String.valueOf(nonPerishableItem.getMonthlyShelfLife()));
+        }
+        }
+    }
+    
+    private boolean filledFields() {
+    //check the required fields have inputs
+    if (idTF.getText().isEmpty() || quantityTF.getText().isEmpty() || nameTF.getText().isEmpty() ||
+        perishableCB.getSelectedItem() == "None Selected" || expiryDateTF.getText().isEmpty()) {
+        
+        JOptionPane.showMessageDialog(null, "Invalid Details, Fill out all required fields");
+        return false; //return false if fields missing
+    }
 
+    //check the perishable only field storage temp when selected
+    String type = (String) perishableCB.getSelectedItem();//declare type variable and casts returning obj to string type
+    if (type.equals("Yes") && storageTempTF.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter the Storage Temperature.");
+        return false; // return false if field empty
+    }
+
+    //check monthly shelf life 
+    if (type.equals("No") && monthlyShelfTF.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Please enter Monthly Shelf Life.");
+        return false; //return false is fields empty
+    }
+
+    return true; //all fields filled return true
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,7 +132,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         perishableLBL = new javax.swing.JLabel();
         nameTF = new com.ryansheridan.rfields.RTextField();
         idTF = new com.ryansheridan.rfields.RTextField();
-        foodtypeTF = new com.ryansheridan.rfields.RTextField();
+        foodTypeTF = new com.ryansheridan.rfields.RTextField();
         expiryDateTF = new com.ryansheridan.rfields.RTextField();
         quantityTF = new com.ryansheridan.rfields.RTextField();
         perishableCB = new javax.swing.JComboBox<>();
@@ -252,15 +309,38 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
         addBTN.setText("Add");
         buttonGroup1.add(addBTN);
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTNActionPerformed(evt);
+            }
+        });
 
         editBTN.setText("Edit");
+        editBTN.setToolTipText("Need valid ID to edit entry");
         buttonGroup1.add(editBTN);
+        editBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBTNActionPerformed(evt);
+            }
+        });
 
         searchBTN.setText("Search");
+        searchBTN.setToolTipText("Search using the food items ID");
         buttonGroup1.add(searchBTN);
+        searchBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBTNActionPerformed(evt);
+            }
+        });
 
         deleteBTN.setText("Delete");
+        deleteBTN.setToolTipText("Delete Item by using its ID");
         buttonGroup1.add(deleteBTN);
+        deleteBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBTNActionPerformed(evt);
+            }
+        });
 
         nameLBL.setForeground(new java.awt.Color(240, 240, 240));
         nameLBL.setText("Name:");
@@ -280,33 +360,22 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         perishableLBL.setForeground(new java.awt.Color(240, 240, 240));
         perishableLBL.setText("Is It Perishable:");
 
-        nameTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTFActionPerformed(evt);
+        idTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idTFKeyPressed(evt);
             }
         });
 
-        idTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idTFActionPerformed(evt);
+        expiryDateTF.setPlaceholder("dd-mm-yyyy");
+        expiryDateTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                expiryDateTFKeyPressed(evt);
             }
         });
 
-        foodtypeTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                foodtypeTFActionPerformed(evt);
-            }
-        });
-
-        expiryDateTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                expiryDateTFActionPerformed(evt);
-            }
-        });
-
-        quantityTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quantityTFActionPerformed(evt);
+        quantityTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                quantityTFKeyPressed(evt);
             }
         });
 
@@ -337,18 +406,18 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         monthlyShelfLBL.setForeground(new java.awt.Color(255, 255, 255));
         monthlyShelfLBL.setText("Monthly Shelf Life:");
 
-        storageTempTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storageTempTFActionPerformed(evt);
+        storageTempTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                storageTempTFKeyPressed(evt);
             }
         });
 
         storageTempLBL.setForeground(new java.awt.Color(255, 255, 255));
         storageTempLBL.setText("Storage Temp:");
 
-        monthlyShelfTF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                monthlyShelfTFActionPerformed(evt);
+        monthlyShelfTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                monthlyShelfTFKeyPressed(evt);
             }
         });
 
@@ -373,7 +442,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(quantityTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(expiryDateTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(foodtypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(foodTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(idTF, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(foodStockPanelLayout.createSequentialGroup()
                                         .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -422,7 +491,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(foodTypeLBL)
-                    .addComponent(foodtypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(foodTypeTF, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(foodStockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(expirydateLBL)
@@ -473,14 +542,14 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         optionLBL.setText("Select an option: ");
 
         optionCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None Selected", "Perishable Food", "Non-Perishable Food" }));
-        optionCB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionCBActionPerformed(evt);
-            }
-        });
 
         submitBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         submitBTN.setText("Submit");
+        submitBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBTNActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout viewingStockPanelLayout = new javax.swing.GroupLayout(viewingStockPanel);
         viewingStockPanel.setLayout(viewingStockPanelLayout);
@@ -587,49 +656,29 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         
     }//GEN-LAST:event_returnBTNActionPerformed
 
-    private void nameTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTFActionPerformed
-        // view the name of the food item being viewed
-    }//GEN-LAST:event_nameTFActionPerformed
-
-    private void idTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTFActionPerformed
-        // show the id of the food item being viewed
-    }//GEN-LAST:event_idTFActionPerformed
-
-    private void foodtypeTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_foodtypeTFActionPerformed
-        // show the food type of the food item being viewed
-    }//GEN-LAST:event_foodtypeTFActionPerformed
-
-    private void expiryDateTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_expiryDateTFActionPerformed
-        // show expiry date of the food item being viewed
-    }//GEN-LAST:event_expiryDateTFActionPerformed
-
-    private void quantityTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quantityTFActionPerformed
-        // show the quantity of the food item current being viewed
-    }//GEN-LAST:event_quantityTFActionPerformed
-
     private void perishableCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perishableCBActionPerformed
-        // show if food is perishable on combo box with "yes" or "no"
+    // hide and unhide the text fields related to whether food is perishable or not
         
-         //get selected item from the CB
+    //get selected item from the CB
     String selectedOption = (String) perishableCB.getSelectedItem();
     
     //check the option selected
     if (selectedOption.equals("Yes")) {
         //if yes show monthly shelf life info
-        monthlyShelfLBL.setVisible(true);
-        monthlyShelfTF.setVisible(true);
-
-        //hide the storage temp info if yes
-        storageTempTF.setVisible(false);
-        storageTempTF.setVisible(false);
-    } else if (selectedOption.equals("No")) {
-        //else if no do the opposite
         storageTempLBL.setVisible(true);
         storageTempTF.setVisible(true);
 
+        //hide the storage temp info if yes
+        monthlyShelfLBL.setVisible(false);
+        monthlyShelfTF.setVisible(false);
+    } else if (selectedOption.equals("No")) {
+        //else if no do the opposite
+        monthlyShelfLBL.setVisible(true);
+        monthlyShelfTF.setVisible(true);
+
        
-        monthlyShelfLBL.setVisible(false);
-        monthlyShelfLBL.setVisible(false);
+        storageTempLBL.setVisible(false);
+        storageTempTF.setVisible(false);
     } else {
         //else if none selected hide both again
         monthlyShelfLBL.setVisible(false);
@@ -641,65 +690,207 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
     private void nextBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBTNActionPerformed
         // when clicked changes information in the text fields to next item in array
+        
+        //check if currentIndex is less than last index in array
+        if(currentIndex < foodItems.size() - 1) {
+            currentIndex++;
+            updateFoodInfo(foodItems.get(currentIndex));//use updateFoodInfo to fill text fields with current index info
+        }
     }//GEN-LAST:event_nextBTNActionPerformed
 
     private void prevBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevBTNActionPerformed
         // when clicked changes information in the text fields to previous item in array
+        //if current index is more than 0
+        if(currentIndex > 0){
+            currentIndex--;//-1 to the currentindex to go back
+            updateFoodInfo(foodItems.get(currentIndex));//update the fields to currentIndex
+        }
     }//GEN-LAST:event_prevBTNActionPerformed
 
-    private void optionCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionCBActionPerformed
+    private void submitBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBTNActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_optionCBActionPerformed
+        //get selected item from combo box and show on text area
+        String selectedOption = (String) optionCB.getSelectedItem();//gets the selected item from cb
+        String result = fs.viewRecords(selectedOption);// fs instance views records that are selected
+        stockTA.setText(result);//area displays the result
+    }//GEN-LAST:event_submitBTNActionPerformed
 
-    private void storageTempTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_storageTempTFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_storageTempTFActionPerformed
+    private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+        //add button to add records to the array list
+        //if all valid fields are filled
+        if (filledFields()) {
+                   
+            //get values from user input
+            int id = Integer.parseInt(idTF.getText());
+            int quantity = Integer.parseInt(quantityTF.getText());
+            String name = nameTF.getText();
+            String type = (String) perishableCB.getSelectedItem();
+            String expiryDate = expiryDateTF.getText();
+            String storageTemp = storageTempTF.getText();
+            String monthlyShelfLife = monthlyShelfTF.getText();
 
-    private void monthlyShelfTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthlyShelfTFActionPerformed
+            //add food item based on the type
+            fs.addFoodItem(id, quantity, name, type, expiryDate, storageTemp, monthlyShelfLife);
+        }
+    }//GEN-LAST:event_addBTNActionPerformed
+
+    private void idTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTFKeyPressed
+        
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for ID.");
+            idTF.setText("");
+        }
+    
+      
+    }//GEN-LAST:event_idTFKeyPressed
+
+    private void expiryDateTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_expiryDateTFKeyPressed
+        // TODO add your handling code here:      
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || keyChar == '-')) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 and - (dash) allowed for ExpiryDate.");
+            expiryDateTF.setText("");
+        }
+    }//GEN-LAST:event_expiryDateTFKeyPressed
+
+    private void quantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_quantityTFKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_monthlyShelfTFActionPerformed
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            quantityTF.setText("");
+        }
+    }//GEN-LAST:event_quantityTFKeyPressed
+
+    private void monthlyShelfTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_monthlyShelfTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE )) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            monthlyShelfTF.setText("");
+        }
+        
+    }//GEN-LAST:event_monthlyShelfTFKeyPressed
+
+    private void storageTempTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_storageTempTFKeyPressed
+        // TODO add your handling code here:
+        
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+
+        // Check if the key is a digit or backspace, and allow only these keys
+        if (!(Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();  // Prevent the key from being entered
+            JOptionPane.showMessageDialog(null, "Only Digits 0-9 allowed for Quantity.");
+            storageTempTF.setText("");
+        }
+    }//GEN-LAST:event_storageTempTFKeyPressed
+
+    private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
+        // this button searches for the user based off their ID
+        try {
+        //get id that user searches
+        int id = Integer.parseInt(FoodStockAppManager.idTF.getText()); 
+        
+        //call search food method
+        fs.searchFoodItem(id);  
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please enter a valid integer for the ID.");
+    }
+    }//GEN-LAST:event_searchBTNActionPerformed
+
+    private void editBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBTNActionPerformed
+        // TODO add your handling code here:
+        //this button allows the user to edit the details of a food item
+        
+        if(filledFields()){
+            try{
+                //get info from text fields
+            int id = Integer.parseInt(idTF.getText());
+            int quantity = Integer.parseInt(quantityTF.getText());
+            String name = nameTF.getText();
+            String type = (String) perishableCB.getSelectedItem();
+            String expiryDate = expiryDateTF.getText();
+            String storageTemp = storageTempTF.getText();
+            String monthlyShelfLife = monthlyShelfTF.getText();
+            
+            fs.editFoodItem(id, quantity, name, type, expiryDate, storageTemp, monthlyShelfLife);
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null,"Please enter valid input");
+            }
+        }
+    }//GEN-LAST:event_editBTNActionPerformed
+
+    private void deleteBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBTNActionPerformed
+        // TODO add your handling code here:
+        //button to delete a record from the arraylist
+        try{
+            int id = Integer.parseInt(idTF.getText());//get id that user inputted
+            fs.deleteFoodItem(id);//call deletefooditem with parsed id
+            
+        }catch(NumberFormatException e){//if user doesnt input ints send message to user
+            JOptionPane.showMessageDialog(null, "Please enter valid input");
+        }
+    }//GEN-LAST:event_deleteBTNActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MenuPanel;
     private javax.swing.JPanel RightPanel;
-    private javax.swing.JButton addBTN;
+    public static javax.swing.JButton addBTN;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel checkStockPanel;
-    private javax.swing.JButton deleteBTN;
-    private javax.swing.JButton editBTN;
+    public static javax.swing.JButton deleteBTN;
+    public static javax.swing.JButton editBTN;
     private javax.swing.JButton exitBTN;
-    private com.ryansheridan.rfields.RTextField expiryDateTF;
+    public static com.ryansheridan.rfields.RTextField expiryDateTF;
     private javax.swing.JLabel expirydateLBL;
     public static javax.swing.JPanel foodStockPanel;
     private javax.swing.JLabel foodTypeLBL;
-    private com.ryansheridan.rfields.RTextField foodtypeTF;
+    public static com.ryansheridan.rfields.RTextField foodTypeTF;
     private javax.swing.JLabel fsmenuLBL;
     private javax.swing.JLabel idLBL;
-    private com.ryansheridan.rfields.RTextField idTF;
+    public static com.ryansheridan.rfields.RTextField idTF;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JPanel logoPanel;
     private javax.swing.JLabel logoTitleLBL;
     private javax.swing.JLabel logopictureLBL;
     private javax.swing.JLabel monthlyShelfLBL;
-    private com.ryansheridan.rfields.RTextField monthlyShelfTF;
+    public static com.ryansheridan.rfields.RTextField monthlyShelfTF;
     private javax.swing.JLabel nameLBL;
-    private com.ryansheridan.rfields.RTextField nameTF;
+    public static com.ryansheridan.rfields.RTextField nameTF;
     private javax.swing.JButton nextBTN;
-    private javax.swing.JComboBox<String> optionCB;
+    public static javax.swing.JComboBox<String> optionCB;
     private javax.swing.JLabel optionLBL;
-    private javax.swing.JComboBox<String> perishableCB;
+    public static javax.swing.JComboBox<String> perishableCB;
     private javax.swing.JLabel perishableLBL;
     private javax.swing.JButton prevBTN;
     private javax.swing.JLabel quantityLBL;
-    private com.ryansheridan.rfields.RTextField quantityTF;
+    public static com.ryansheridan.rfields.RTextField quantityTF;
     private javax.swing.JButton returnBTN;
-    private javax.swing.JButton searchBTN;
-    private javax.swing.JTextArea stockTA;
+    public static javax.swing.JButton searchBTN;
+    public static javax.swing.JTextArea stockTA;
     private javax.swing.JLabel storageTempLBL;
-    private com.ryansheridan.rfields.RTextField storageTempTF;
-    private javax.swing.JButton submitBTN;
+    public static com.ryansheridan.rfields.RTextField storageTempTF;
+    public static javax.swing.JButton submitBTN;
     private javax.swing.JLabel titleLBL;
     private javax.swing.JLabel viewLBL;
     private javax.swing.JPanel viewTypesPanel;
