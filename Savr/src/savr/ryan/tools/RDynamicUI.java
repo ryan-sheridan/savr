@@ -82,6 +82,25 @@ public class RDynamicUI {
         lightPallete.put("ComboBox.selectionBackground", new Color(220, 220, 220));
         lightPallete.put("ComboBox.selectionForeground", Color.BLACK);
     }
+    
+    public static Color getDarkPalleteColour(String key) {
+        return darkPallete.get(key);
+    }
+    
+    public static Color getLightPalleteColour(String key) {
+        return lightPallete.get(key);
+    }
+    
+    public static Color getCurrentPalleteColour(String key) {
+        switch (currentTheme) {
+            case DARK:
+                return getDarkPalleteColour(key);
+            case LIGHT:
+                return getLightPalleteColour(key);
+        }
+        
+        return getDarkPalleteColour(key);
+    }
 
     public static Theme getTheme() {
         return currentTheme;
@@ -121,10 +140,6 @@ public class RDynamicUI {
                 break;
         }
         
-        for (Window window : Window.getWindows()) {
-            SwingUtilities.updateComponentTreeUI(window);
-            window.repaint();
-        }
     }
     
     private static void setDarkTheme() {

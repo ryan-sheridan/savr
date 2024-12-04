@@ -645,6 +645,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
 
     private void returnBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBTNActionPerformed
         MainApplication MainMenuFrame = new MainApplication();
+        MainMenuFrame.setLocationRelativeTo(null);
         MainMenuFrame.setVisible(true);
 
        //close the parent frame containing this panel
