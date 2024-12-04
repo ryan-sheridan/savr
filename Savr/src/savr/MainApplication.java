@@ -367,12 +367,17 @@ public class MainApplication extends javax.swing.JFrame {
         agriUIManager.viewDonorTypePanel.setVisible(false);
         agriUIManager.viewSearchPanel.setVisible(false);
         
+        agriUIManager.displayTA.setVisible(false);
+        agriUIManager.displayDonorBTN.setVisible(false);
         
         agriUIManager.createIndiDonorPanel.setVisible(false);
 
         agriUIManager.menuCreateDonoLBL.setForeground(new Color(255,255,200));
         
         AgricultureUI.addTempRecords();
+        //AgricultureUI.loadAgri();
+        //AgricultureUI.saveAgri();
+        AgricultureUI.mkFile();
 
         this.dispose();
         

@@ -48,6 +48,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         exitAppLBL = new javax.swing.JLabel();
         backToMenuPanel = new javax.swing.JPanel();
         backToMenuLBL = new javax.swing.JLabel();
+        menuDisplayDonoPanel = new javax.swing.JPanel();
+        menuDisplayDonoLBL = new javax.swing.JLabel();
         OverlayPanel = new javax.swing.JPanel();
         createDonorPanel = new javax.swing.JPanel();
         createItemDetailsPanel = new javax.swing.JPanel();
@@ -118,7 +120,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemDateReceivedTF = new com.ryansheridan.rfields.RTextField();
         viewItemIDLBL = new javax.swing.JLabel();
         viewItemIDTF = new com.ryansheridan.rfields.RTextField();
-        jButton1 = new javax.swing.JButton();
         viewDonorTypePanel = new javax.swing.JPanel();
         viewCorpDonorPanel = new javax.swing.JPanel();
         updateCorpBTN = new javax.swing.JButton();
@@ -152,6 +153,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSurnameLBL = new javax.swing.JLabel();
         viewIndiEmailTF = new com.ryansheridan.rfields.RTextField();
         viewIndiDonorIDLBL = new javax.swing.JLabel();
+        displayDonorPanel = new javax.swing.JPanel();
+        displaySP = new javax.swing.JScrollPane();
+        displayTA = new javax.swing.JTextArea();
+        displayDonorBTN = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(80, 80, 80));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -181,7 +186,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         menuCreateDonoPanel.setLayout(menuCreateDonoPanelLayout);
         menuCreateDonoPanelLayout.setHorizontalGroup(
             menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
         );
         menuCreateDonoPanelLayout.setVerticalGroup(
             menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +208,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         });
 
         menuViewDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuViewDonoLBL.setText("VIEW DONATIONS");
+        menuViewDonoLBL.setText("EDIT DONATIONS");
 
         javax.swing.GroupLayout menuViewDonoPanelLayout = new javax.swing.GroupLayout(menuViewDonoPanel);
         menuViewDonoPanel.setLayout(menuViewDonoPanelLayout);
@@ -241,7 +246,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         );
         exitAppPanelLayout.setVerticalGroup(
             exitAppPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exitAppLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(exitAppLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         backToMenuPanel.setBackground(new java.awt.Color(55, 55, 55));
@@ -269,7 +274,35 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         );
         backToMenuPanelLayout.setVerticalGroup(
             backToMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backToMenuLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(backToMenuLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        menuDisplayDonoPanel.setBackground(new java.awt.Color(55, 55, 55));
+        menuDisplayDonoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuDisplayDonoPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseExited(evt);
+            }
+        });
+
+        menuDisplayDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuDisplayDonoLBL.setText("DISPLAY DONATIONS");
+
+        javax.swing.GroupLayout menuDisplayDonoPanelLayout = new javax.swing.GroupLayout(menuDisplayDonoPanel);
+        menuDisplayDonoPanel.setLayout(menuDisplayDonoPanelLayout);
+        menuDisplayDonoPanelLayout.setHorizontalGroup(
+            menuDisplayDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuDisplayDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        menuDisplayDonoPanelLayout.setVerticalGroup(
+            menuDisplayDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuDisplayDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
@@ -281,9 +314,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuDisplayDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
                         .addComponent(backToMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -294,6 +328,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuDisplayDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -978,14 +1014,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("VIEW ALL DONATIONS");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout viewItemDetailsPanelLayout = new javax.swing.GroupLayout(viewItemDetailsPanel);
         viewItemDetailsPanel.setLayout(viewItemDetailsPanelLayout);
         viewItemDetailsPanelLayout.setHorizontalGroup(
@@ -993,7 +1021,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewItemDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemTypeTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1015,9 +1042,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemDetailsPanelLayout.setVerticalGroup(
             viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewItemIDLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewItemIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1419,6 +1444,47 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         OverlayPanel.add(viewDonorPanel);
 
+        displaySP.setBackground(new java.awt.Color(102, 102, 102));
+        displaySP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        displayTA.setEditable(false);
+        displayTA.setBackground(new java.awt.Color(102, 102, 102));
+        displayTA.setColumns(20);
+        displayTA.setRows(5);
+        displaySP.setViewportView(displayTA);
+
+        displayDonorBTN.setText("DISPLAY DONATIONS");
+        displayDonorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayDonorBTNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayDonorPanelLayout = new javax.swing.GroupLayout(displayDonorPanel);
+        displayDonorPanel.setLayout(displayDonorPanelLayout);
+        displayDonorPanelLayout.setHorizontalGroup(
+            displayDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displaySP)
+                .addContainerGap())
+            .addGroup(displayDonorPanelLayout.createSequentialGroup()
+                .addGap(194, 194, 194)
+                .addComponent(displayDonorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
+        );
+        displayDonorPanelLayout.setVerticalGroup(
+            displayDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displaySP, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(displayDonorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(139, Short.MAX_VALUE))
+        );
+
+        OverlayPanel.add(displayDonorPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1449,9 +1515,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         menuCreateDonoPanel.setBackground(new Color(70,70,70));
         menuViewDonoPanel.setBackground(new Color(55,55,55));
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
         
         menuCreateDonoLBL.setForeground(new Color(255,255,200));
         menuViewDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(240,240,240));
         
         createDonorPanel.setVisible(true);
         viewDonorPanel.setVisible(false);
@@ -1478,6 +1546,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiAddressTF.setText("");
         indiEmailTF.setText("");
         indiPhoneNumberTF.setText("");
+        
+        displayDonorBTN.setVisible(false);
     }//GEN-LAST:event_menuCreateDonoPanelMouseClicked
 
     private void menuViewDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseEntered
@@ -1494,9 +1564,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         menuCreateDonoPanel.setBackground(new Color(55,55,55));
         menuViewDonoPanel.setBackground(new Color(70,70,70));
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
         
         menuViewDonoLBL.setForeground(new Color(255,255,200));
         menuCreateDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(240,240,240));
         
         createDonorPanel.setVisible(false);
         viewDonorPanel.setVisible(true);
@@ -1532,7 +1604,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiEmailTF.setText("");
         viewIndiPhoneNumberTF.setText("");
         
-        
+        displayDonorBTN.setVisible(false);
         //updateCorpBTN1.setVisible(false);
         //viewDonorIDTF1.setVisible(false);
     }//GEN-LAST:event_menuViewDonoPanelMouseClicked
@@ -1819,10 +1891,62 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSelectorBTN.setEnabled(false);
     }//GEN-LAST:event_viewIndiSelectorBTNMouseEntered
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void displayDonorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayDonorBTNActionPerformed
         // TODO add your handling code here:
         AgricultureUI.viewDonor();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_displayDonorBTNActionPerformed
+
+    private void menuDisplayDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseClicked
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(55, 55, 55));
+        menuViewDonoPanel.setBackground(new Color(55,55,55));
+        menuDisplayDonoPanel.setBackground(new Color(70, 70, 70));
+        
+        menuCreateDonoLBL.setForeground(new Color(240, 240, 240));
+        menuViewDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(255, 255, 200));
+        
+        createDonorPanel.setVisible(false);
+        viewDonorPanel.setVisible(false);
+        displayDonorPanel.setVisible(true);
+        
+        createCorpDonorPanel.setVisible(false);
+        createIndiDonorPanel.setVisible(false);
+        
+        itemNameTF.setText("");
+        itemDateReceivedTF.setText("");
+        itemTypeTF.setText("");
+        itemQuantityTF.setText("");
+        itemConditionCB.setSelectedItem("Factory New");
+        itemElectricalChB.setSelected(false);
+                
+        corpNameTF.setText("");
+        corpFoundingYearTF.setText("");
+        corpHQAddressTF.setText("");
+        corpEmailTF.setText("");
+        corpPhoneNumberTF.setText("");
+        
+        indiFirstNameTF.setText("");
+        indiSurnameTF.setText("");
+        indiDoBTF.setText("");
+        indiAddressTF.setText("");
+        indiEmailTF.setText("");
+        indiPhoneNumberTF.setText("");
+        
+        displayDonorBTN.setVisible(true);
+        displayTA.setText(null);
+        AgricultureUI.viewDonor();
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseClicked
+
+    private void menuDisplayDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseEntered
+        // TODO add your handling code here:
+        menuDisplayDonoPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseEntered
+
+    private void menuDisplayDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseExited
+        // TODO add your handling code here:
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1854,6 +1978,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     public static javax.swing.JPanel createItemDetailsPanel;
     private javax.swing.JButton deleteCorpBTN;
     private javax.swing.JButton deleteIndiBTN;
+    public static javax.swing.JButton displayDonorBTN;
+    public static javax.swing.JPanel displayDonorPanel;
+    private javax.swing.JScrollPane displaySP;
+    public static javax.swing.JTextArea displayTA;
     private javax.swing.ButtonGroup donorTypeBTNGROUP;
     private javax.swing.JPanel donorTypePanel;
     public static javax.swing.JPanel donorTypeSelectorPanel;
@@ -1882,9 +2010,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel itemQuantityLBL;
     public static com.ryansheridan.rfields.RTextField itemQuantityTF;
     public static com.ryansheridan.rfields.RTextField itemTypeTF;
-    private javax.swing.JButton jButton1;
     public static javax.swing.JLabel menuCreateDonoLBL;
     private javax.swing.JPanel menuCreateDonoPanel;
+    private javax.swing.JLabel menuDisplayDonoLBL;
+    private javax.swing.JPanel menuDisplayDonoPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel menuViewDonoLBL;
     private javax.swing.JPanel menuViewDonoPanel;
