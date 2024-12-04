@@ -1609,6 +1609,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void backToMenuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseClicked
         MainApplication zerohunger = new MainApplication();
+        zerohunger.setLocationRelativeTo(null);
         zerohunger.setVisible(true);
         
         Window pFrame = SwingUtilities.getWindowAncestor(this);

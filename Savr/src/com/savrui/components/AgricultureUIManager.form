@@ -1143,7 +1143,7 @@
                           <Group type="102" attributes="0">
                               <Component id="viewDonorTypeSelectorPanel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="viewDonorTypePanel" max="32767" attributes="0"/>
+                              <Component id="viewDonorTypePanel" pref="452" max="32767" attributes="0"/>
                           </Group>
                           <Component id="viewItemDetailsPanel" pref="519" max="32767" attributes="0"/>
                       </Group>

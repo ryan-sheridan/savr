@@ -12,16 +12,21 @@ import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 import com.savrui.components.RButton;
 import com.savrui.components.RFadePanel;
+import com.savrui.components.RGlassDialog;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,7 +45,7 @@ import savr.sean.AgricultureUI;
  * @author ryan
  */
 public class MainApplication extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form ZeroHungerApp
      */
@@ -88,7 +93,6 @@ public class MainApplication extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         rToggle1 = new com.savrui.components.RToggle();
         jLabel4 = new javax.swing.JLabel();
-        rButton1 = new com.savrui.components.RButton();
 
         jLabel2.setText("jLabel2");
 
@@ -201,7 +205,7 @@ public class MainApplication extends javax.swing.JFrame {
             .addGroup(fadePanelButtonLayout.createSequentialGroup()
                 .addGap(213, 213, 213)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(rButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -245,28 +249,17 @@ public class MainApplication extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        rButton1.setText("rButton1");
-        rButton1.setButtonType(com.savrui.components.RButton.ButtonType.REFRESH);
-        rButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout fadePanelSettingsLayout = new javax.swing.GroupLayout(fadePanelSettings);
         fadePanelSettings.setLayout(fadePanelSettingsLayout);
         fadePanelSettingsLayout.setHorizontalGroup(
             fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fadePanelSettingsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
-                        .addComponent(rButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
-                        .addGap(0, 81, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))))
         );
@@ -274,12 +267,9 @@ public class MainApplication extends javax.swing.JFrame {
             fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
                 .addContainerGap(215, Short.MAX_VALUE)
-                .addGroup(fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(fadePanelSettingsLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191)
-                        .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191)
+                .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -407,6 +397,11 @@ public class MainApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_rButton6ActionPerformed
 
     private void rButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton7ActionPerformed
+        // if we have updated our theme
+        if(updated) {
+            displayRefreshDialog(evt);
+        }
+        
         fadePanelSettings.setFadeCompleteListener(new RFadePanel.FadeCompleteListener() {
             @Override
             public void onFadeComplete(boolean fadedOut) {
@@ -425,10 +420,14 @@ public class MainApplication extends javax.swing.JFrame {
         fadePanelSettings.fadeOut();
     }//GEN-LAST:event_rButton7ActionPerformed
 
+    private boolean updated = false;
+    
     private void rToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rToggle1ActionPerformed
         // TODO add your handling code here:
         RDynamicUI uiManager = RDynamicUI.getInstance();
         
+        updated = !updated;
+        System.out.println(updated);
         if (rToggle1.isSelected()) {
             RDataPersistence.saveTheme(LIGHT);
             uiManager.applyTheme(LIGHT);
@@ -438,15 +437,34 @@ public class MainApplication extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rToggle1ActionPerformed
 
-    private void rButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton1ActionPerformed
-        dispose();
-        SwingUtilities.invokeLater(() -> {
-            MainApplication newFrame = new MainApplication();
-            newFrame.setLocationRelativeTo(null);
-            newFrame.setVisible(true);
-        });
-    }//GEN-LAST:event_rButton1ActionPerformed
+    public void displayRefreshDialog(java.awt.event.ActionEvent evt) {
+        // create a RGlassDialog, set primary button and secondary button text
+        RGlassDialog glassPanel = new RGlassDialog("Refresh", "Dismiss") {
+            // we can override submitPress to make it do something when submit is pressed
+            @Override
+            public void submitPress() {
+                super.submitPress();
+                // stolen from sean, thanks sean
+                MainApplication zerohunger = new MainApplication();
+                zerohunger.setLocationRelativeTo(null);
+                zerohunger.setVisible(true);
 
+                Window pFrame = SwingUtilities.getWindowAncestor(this);
+                if(pFrame !=null){
+                    pFrame.dispose();
+                }
+            }
+        };
+
+        // the little box inside the RGlassDialog will have some text we can set
+        glassPanel.setTitle("The application needs to be refreshed to save changes!");
+        
+        // allow our RGlassDialog to fade in
+        // pass it the object that triggered the event, we can get the parent
+        // of this object which will be the JFrame, then we can set the GlassPane
+        // of JFrame to RGlassDialog
+        glassPanel.fadeInOver((Component) evt.getSource());
+    }
     
     /**
      * @param args the command line arguments
@@ -468,6 +486,7 @@ public class MainApplication extends javax.swing.JFrame {
                 
                 mainApplication.setVisible(true);
                 
+                
             }
         });
     }
@@ -487,7 +506,6 @@ public class MainApplication extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private com.savrui.components.RButton rButton1;
     private com.savrui.components.RButton rButton6;
     private com.savrui.components.RButton rButton7;
     private com.savrui.components.RToggle rToggle1;

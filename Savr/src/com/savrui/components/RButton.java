@@ -191,7 +191,6 @@ public class RButton extends JButton {
         
         // RESEARCH: https://www.w3schools.com/java/java_conditions_shorthand.asp
         double luminancePercent = Math.max(0, Math.min(100, luminance));
-        System.out.println(luminancePercent);
         return luminancePercent > 80.0 ? Color.BLACK : Color.WHITE;
     }
     
@@ -257,8 +256,6 @@ public class RButton extends JButton {
         
         // the perfect border radius
         int radius = Math.min(getWidth(), getHeight()) / 3;
-
-        System.out.println(isRoundBottomLeft());
         // create path for rounded rect
         Path2D.Float path = createRoundedRectangle(getWidth(), getHeight(),
                             isRoundTopLeft()     ? radius : 0,
