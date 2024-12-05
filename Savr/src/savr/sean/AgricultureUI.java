@@ -72,11 +72,11 @@ public class AgricultureUI {
     //demo records 
     public static void addTempRecords(){
         //temporery records to populate the ArrayLists
-        AgriculturalAid tempI1 = new IndividualDonor("John", "Doe", "1990-05-12", "123 Maple Street, NY", "john.doe@example.com", 555123456, "Indi-001", "Item-001", "Shovel", "2024-11-30", "Hand Tool", 50, "Gently Used", false);
-        AgriculturalAid tempI2 = new IndividualDonor("Jane", "Smith", "1985-07-19", "456 Oak Avenue, CA", "jane.smith@example.com", 555987654, "Indi-002", "Item-002", "Hoe", "2024-11-15", "Hand Tool", 25, "Factory New", false);
+        AgriculturalAid tempI1 = new IndividualDonor("John", "Doe", "12/05/1990", "123 Maple Street, NY", "john.doe@example.com", 555123456, "Indi-001", "Item-001", "Shovel", "20/11/2024", "Hand Tool", 50, "Gently Used", false);
+        AgriculturalAid tempI2 = new IndividualDonor("Jane", "Smith", "19/07/1985", "456 Oak Avenue, CA", "jane.smith@example.com", 555987654, "Indi-002", "Item-002", "Hoe", "15/11/2024", "Hand Tool", 25, "Factory New", false);
 
-        AgriculturalAid tempC1 = new CorporationDonor("Helping Hands Corp.", 1994, "789 Elm Street, Chicago, IL", "contact@helpinghands.org", 555333444, "Corp-001", "Item-003", "Solar Panels", "2024-11-28", "Hardware", 10, "Like New", true);
-        AgriculturalAid tempC2 = new CorporationDonor("Green Future LLC", 2010, "321 Pine Boulevard, TX", "info@greenfuture.com", 555765432, "Corp-002", "Item-004", "Tracker", "2024-11-20", "Heavy Machinery", 100, "Moderately Used", true);
+        AgriculturalAid tempC1 = new CorporationDonor("Helping Hands Corp.", 1994, "789 Elm Street, Chicago, IL", "contact@helpinghands.org", 555333444, "Corp-001", "Item-003", "Solar Panels", "28/11/2024", "Hardware", 10, "Like New", true);
+        AgriculturalAid tempC2 = new CorporationDonor("Green Future LLC", 2010, "321 Pine Boulevard, TX", "info@greenfuture.com", 555765432, "Corp-002", "Item-004", "Tracker", "20/11/2024", "Heavy Machinery", 100, "Moderately Used", true);
     
         agriAid.add(tempI1);
         agriAid.add(tempI2);
@@ -356,7 +356,7 @@ public class AgricultureUI {
                 
             saveAgri();
             
-             JOptionPane.showMessageDialog(null, "\nCorp Donor information updated successfully!\n" + temp.toString());
+             JOptionPane.showMessageDialog(null, "\nCorp Donor information updated successfully!\n" + temp.toString() + "\n");
             return;
         } 
         
@@ -375,7 +375,7 @@ public class AgricultureUI {
             ((IndividualDonor) temp).setIndiAddress(viewIndiAddressTF.getText().trim());
             ((IndividualDonor) temp).setIndiEmail(viewIndiEmailTF.getText().trim());
             ((IndividualDonor) temp).setIndiPhoneNumber(Integer.parseInt(viewIndiPhoneNumberTF.getText().trim()));
-             JOptionPane.showMessageDialog(null, "\nIndi Donor information updated successfully!\n" + temp.toString());
+             JOptionPane.showMessageDialog(null, "\nIndi Donor information updated successfully!\n" + temp.toString() + "\n");
             return;
             }
             }
@@ -476,7 +476,7 @@ public class AgricultureUI {
             oStream.writeObject(agriAid);
             oStream.close();
             
-            System.out.println("file saved successfully");
+           // System.out.println("file saved successfully");
         } catch (IOException e){
             System.out.println("I/O e" + e);
         }
@@ -504,11 +504,12 @@ public class AgricultureUI {
             return;
         } else {
             loadAgri();
-        displayTA.setText(null);
+        displayTA.setText(" ");
         displayTA.append("\nTotal Donors: " + agriAid.size() + "\n");
          for(AgriculturalAid temp : agriAid){
 //           JOptionPane.showMessageDialog(null, temp.toString());
         displayTA.append("\n" + temp.toString() + "\n");
+        displayTA.setCaretPosition(0);
         }
         }
     }
