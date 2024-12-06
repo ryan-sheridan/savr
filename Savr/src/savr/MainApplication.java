@@ -6,22 +6,34 @@ package savr;
 import savr.ryan.tools.RDynamicUI;
 import com.ryansheridan.rfields.RTextField;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.kitfox.svg.app.beans.SVGPanel;
 import com.savrui.components.AgricultureUIManager;
 import com.savrui.components.FoodStockAppManager;
 import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 import com.savrui.components.RButton;
 import com.savrui.components.RFadePanel;
+import com.savrui.components.RGlassDialog;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Window;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -40,17 +52,14 @@ import savr.sean.AgricultureUI;
  * @author ryan
  */
 public class MainApplication extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form ZeroHungerApp
      */
     public MainApplication() {
         initComponents();
-        RDataPersistence r = RDataPersistence.getInstance();
         
-        // call this when confliction errors are fixed
-        // DEBUG
-        //RDatabaseORM.getRedistributionRecords();
+        RDataPersistence r = RDataPersistence.getInstance();
         
         Theme t = RDataPersistence.getTheme();
         
@@ -60,6 +69,8 @@ public class MainApplication extends javax.swing.JFrame {
         }
         
         RDynamicUI.updateFont(this.getContentPane());
+        
+        setBackground(jPanel2.getBackground());
     }
 
     /**
@@ -73,9 +84,6 @@ public class MainApplication extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         fadePanelButton = new com.savrui.components.RFadePanel();
         jPanel3 = new javax.swing.JPanel();
@@ -88,7 +96,11 @@ public class MainApplication extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         rToggle1 = new com.savrui.components.RToggle();
         jLabel4 = new javax.swing.JLabel();
-        rButton1 = new com.savrui.components.RButton();
+        rFadePanel2 = new com.savrui.components.RFadePanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        rLogoPanel1 = new savr.ConorLogoPanel();
 
         jLabel2.setText("jLabel2");
 
@@ -96,37 +108,6 @@ public class MainApplication extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 0, 0));
         setResizable(false);
         setSize(new java.awt.Dimension(1024, 768));
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Food waste management system");
-
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 48)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Savr");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(191, 191, 191))
-        );
 
         jPanel2.setLayout(new java.awt.CardLayout());
 
@@ -165,14 +146,14 @@ public class MainApplication extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(114, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         rButton6.setButtonType(com.savrui.components.RButton.ButtonType.SETTINGS);
@@ -186,22 +167,22 @@ public class MainApplication extends javax.swing.JFrame {
         fadePanelButton.setLayout(fadePanelButtonLayout);
         fadePanelButtonLayout.setHorizontalGroup(
             fadePanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(fadePanelButtonLayout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelButtonLayout.createSequentialGroup()
+                .addGap(102, 102, 102)
                 .addGroup(fadePanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelButtonLayout.createSequentialGroup()
                         .addComponent(rButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelButtonLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
+                        .addGap(102, 102, 102))))
         );
         fadePanelButtonLayout.setVerticalGroup(
             fadePanelButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fadePanelButtonLayout.createSequentialGroup()
-                .addGap(213, 213, 213)
+                .addGap(105, 105, 105)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
                 .addComponent(rButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -245,63 +226,100 @@ public class MainApplication extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        rButton1.setText("rButton1");
-        rButton1.setButtonType(com.savrui.components.RButton.ButtonType.REFRESH);
-        rButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout fadePanelSettingsLayout = new javax.swing.GroupLayout(fadePanelSettings);
         fadePanelSettings.setLayout(fadePanelSettingsLayout);
         fadePanelSettingsLayout.setHorizontalGroup(
             fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fadePanelSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
-                        .addComponent(rButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
-                        .addGap(0, 81, Short.MAX_VALUE)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(74, 74, 74))))
+                .addContainerGap(341, Short.MAX_VALUE)
+                .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(fadePanelSettingsLayout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fadePanelSettingsLayout.setVerticalGroup(
             fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fadePanelSettingsLayout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addGroup(fadePanelSettingsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(rButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(fadePanelSettingsLayout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(191, 191, 191)
-                        .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(214, Short.MAX_VALUE)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(192, 192, 192)
+                .addComponent(rButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jPanel2.add(fadePanelSettings, "card3");
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Food waste management system");
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 48)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Savr");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(rLogoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
+                .addComponent(rLogoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout rFadePanel2Layout = new javax.swing.GroupLayout(rFadePanel2);
+        rFadePanel2.setLayout(rFadePanel2Layout);
+        rFadePanel2Layout.setHorizontalGroup(
+            rFadePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rFadePanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        rFadePanel2Layout.setVerticalGroup(
+            rFadePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(rFadePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(rFadePanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -412,6 +430,13 @@ public class MainApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_rButton6ActionPerformed
 
     private void rButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton7ActionPerformed
+        // if we have updated our theme
+        if(updated) {
+            displayRefreshDialog(evt);
+            
+            return;
+        }
+        
         fadePanelSettings.setFadeCompleteListener(new RFadePanel.FadeCompleteListener() {
             @Override
             public void onFadeComplete(boolean fadedOut) {
@@ -430,10 +455,14 @@ public class MainApplication extends javax.swing.JFrame {
         fadePanelSettings.fadeOut();
     }//GEN-LAST:event_rButton7ActionPerformed
 
+    private boolean updated = false;
+    
     private void rToggle1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rToggle1ActionPerformed
         // TODO add your handling code here:
         RDynamicUI uiManager = RDynamicUI.getInstance();
         
+        updated = !updated;
+        System.out.println(updated);
         if (rToggle1.isSelected()) {
             RDataPersistence.saveTheme(LIGHT);
             uiManager.applyTheme(LIGHT);
@@ -443,15 +472,51 @@ public class MainApplication extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_rToggle1ActionPerformed
 
-    private void rButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton1ActionPerformed
-        dispose();
-        SwingUtilities.invokeLater(() -> {
-            MainApplication newFrame = new MainApplication();
-            newFrame.setLocationRelativeTo(null);
-            newFrame.setVisible(true);
-        });
-    }//GEN-LAST:event_rButton1ActionPerformed
+    public void displayRefreshDialog(java.awt.event.ActionEvent evt) {
+        // create a RGlassDialog, set primary button and secondary button text
+        RGlassDialog glassPanel = new RGlassDialog("Refresh", "Dismiss") {
+            // we can override submitPress to make it do something when submit is pressed
+            @Override
+            public void submitPress() {
+                super.submitPress();
+                // stolen from sean, thanks sean
+                MainApplication zerohunger = new MainApplication();
+                zerohunger.setLocationRelativeTo(null);
+                zerohunger.setVisible(true);
 
+                Window pFrame = SwingUtilities.getWindowAncestor(this);
+                if(pFrame !=null){
+                    pFrame.dispose();
+                }
+            }
+            
+            @Override
+            public void dismissPress() {
+                super.dismissPress();
+                // toggle button back to original state
+                rToggle1.setSelected(!rToggle1.isSelected());
+                rToggle1.repaint();
+
+                updated = !updated;
+            }
+        };
+
+        // the little box inside the RGlassDialog will have some text we can set
+        glassPanel.setTitle("The application needs to be refreshed to save changes!");
+        
+        // allow our RGlassDialog to fade in
+        // pass it the object that triggered the event, we can get the parent
+        // of this object which will be the JFrame, then we can set the GlassPane
+        // of JFrame to RGlassDialog
+        glassPanel.fadeInOver((Component) evt.getSource());
+    }
+    
+    @Override 
+    public void setVisible(boolean b) {
+        rFadePanel2.setOpacity(0f);
+        rFadePanel2.fadeIn();
+        super.setVisible(b);
+    }
     
     /**
      * @param args the command line arguments
@@ -469,10 +534,11 @@ public class MainApplication extends javax.swing.JFrame {
             public void run() {
                 // line for window centering
                 MainApplication mainApplication = new MainApplication();
+                
+                mainApplication.setTitle("Savr");
+                
                 mainApplication.setLocationRelativeTo(null);
-                
                 mainApplication.setVisible(true);
-                
             }
         });
     }
@@ -492,9 +558,10 @@ public class MainApplication extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private com.savrui.components.RButton rButton1;
     private com.savrui.components.RButton rButton6;
     private com.savrui.components.RButton rButton7;
+    private com.savrui.components.RFadePanel rFadePanel2;
+    private savr.ConorLogoPanel rLogoPanel1;
     private com.savrui.components.RToggle rToggle1;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,8 +11,10 @@ package savr.ryan;
 public class ContactInfo {
     private String email;
     private String phone;
+    private Integer id;
 
-    public ContactInfo(String email, String phone) {
+    public ContactInfo(Integer id, String email, String phone) {
+        this.id = id;
         this.email = email;
         this.phone = phone;
     }
@@ -31,6 +33,14 @@ public class ContactInfo {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

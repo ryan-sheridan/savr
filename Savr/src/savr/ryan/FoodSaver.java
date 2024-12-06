@@ -17,14 +17,27 @@ public class FoodSaver {
     
     protected String firstName;
     protected String lastName;
+    
+    protected String organisationName;
+    
     protected SaverType saverType;
     protected ContactInfo contactInfo;
     protected Location location;
     protected double totalRecieved;
+    protected Integer id;
 
-    protected FoodSaver(String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location) {
+    protected FoodSaver(Integer id, String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.saverType = saverType;
+        this.contactInfo = contactInfo;
+        this.location = location;
+    }
+    
+    protected FoodSaver(Integer id, String organisationName, SaverType saverType, ContactInfo contactInfo, Location location) {
+        this.id = id;
+        this.organisationName = organisationName;
         this.saverType = saverType;
         this.contactInfo = contactInfo;
         this.location = location;
@@ -76,6 +89,14 @@ public class FoodSaver {
 
     public void setTotalRecieved(double totalRecieved) {
         this.totalRecieved = totalRecieved;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     
     

@@ -4,13 +4,14 @@
  */
 package com.savrui.components;
 
-import com.kitfox.svg.SVGDiagram;
 import com.kitfox.svg.SVGElement;
 import com.kitfox.svg.SVGElementException;
 import com.kitfox.svg.SVGException;
 import com.kitfox.svg.SVGUniverse;
 import com.kitfox.svg.animation.AnimationElement;
+import com.kitfox.svg.app.beans.SVGPanel;
 import static com.savrui.components.RButton.ButtonType.HOME;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -24,6 +25,7 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -39,7 +41,7 @@ import static savr.ryan.tools.RDynamicUI.Theme.LIGHT;
  * @author ryan
  */
 
-// this was originally a good idea but became a pain of a class when SVG was implemented
+// text button or svg icon buttons
 public class RButton extends JButton {
     Color backgroundColor;
     
@@ -51,7 +53,7 @@ public class RButton extends JButton {
     private boolean roundedCorners;
     
     private BufferedImage iconImage;
-    private SVGDiagram svgIcon;
+    private SVGPanel svgPanel;
     
     private int padding = 0;
 
@@ -65,68 +67,34 @@ public class RButton extends JButton {
     
     private ButtonType buttonType;
     
-    // this svg stuff is way to static, figure out how to resize svg dynamically
-    // depending on button w and h, or dont, or does it really matter?
-    
-    // could of just used an icon ...
-    
     // load the svg icon and set it as the button icon
-    public void setIconWithSVG(String svgPath) {
-        SVGUniverse svgUniverse = new SVGUniverse();
-        // load svg into a SVGDiagram object
-        svgIcon = svgUniverse.getDiagram(svgUniverse.loadSVG(getClass().getResource(svgPath)));
-        svgIcon.setIgnoringClipHeuristic(true);
-        
-        SVGElement rootElement = svgIcon.getRoot();
-        
-        try {
-            if(buttonType == HOME) {
-                rootElement.setAttribute("fill", AnimationElement.AT_XML, "#FFFFFF");
-                rootElement.addAttribute("fill-opacity", AnimationElement.AT_CSS, "0.5");
-            }
-        } catch (SVGElementException ex) {
-            Logger.getLogger(RButton.class.getName()).log(Level.SEVERE, null, ex);
+    private void setSVGIcon() {
+        if (svgPanel == null) {
+            svgPanel = new SVGPanel();
         }
-        
-        int width = Math.max(getWidth() - padding * 2, 1);
-        int height = Math.max(getHeight() - padding * 2, 1);
-        
-        // System.out.println(String.format("%d %d", getWidth(), getHeight()));
-        
-        // render the SVGDiagram as a BufferedImage
-        iconImage = renderSVG(svgIcon, width, height);
-    }
 
-    private BufferedImage renderSVG(SVGDiagram svgIcon, int width, int height) {
-        // create a new BufferedImage
-        BufferedImage image = new BufferedImage(27, 27, BufferedImage.TYPE_INT_ARGB);
-        // get a new graphics context
-        Graphics2D g = image.createGraphics();
-        
-        // for those smooth edges
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-        g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL, RenderingHints.VALUE_STROKE_PURE);
-        
-        // set width and height of the SVG
-        //Rectangle viewport = new Rectangle(0, 0, width, height);
-        //svgIcon.setDeviceViewport(viewport);
-        
-        try {
-            // render svg to a graphics context
-            svgIcon.render(g);
-        } catch (SVGException ex) {
-            Logger.getLogger(RButton.class.getName()).log(Level.SEVERE, null, ex);
+        // RESEARCH: https://medium.com/@brunozambiazi/enhanced-switch-statements-in-java-17-31f3487763a0
+        String svgPath = switch (buttonType) {
+            case HOME -> "/resources/home.svg";
+            case SETTINGS -> "/resources/settings.svg";
+            case REFRESH -> "/resources/refresh.svg";
+            default -> null;
+        };
+
+        if (svgPath != null) {
+            try {
+                // i actually read the svgSalamander example code and documentation
+                // documentation is awful but there was a little tip that told me to use SVGPanel
+                svgPanel = new SVGPanel();
+                svgPanel.setSvgURI(getClass().getResource(svgPath).toURI());
+                svgPanel.setAntiAlias(true);
+                svgPanel.setOpaque(false);
+                setOpaque(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        
-        // RESEARCH: why i always have to do dispose
-        g.dispose();
-        
-        // DEBUG
-        // displayBufferedImage(image);
-        
-        return image;
+
     }
     
     
@@ -143,6 +111,7 @@ public class RButton extends JButton {
 
     public void setButtonType(ButtonType buttonType) {
         this.buttonType = buttonType;
+        setSVGIcon(); // set svg icon once button type is set
     }
     
     
@@ -191,7 +160,6 @@ public class RButton extends JButton {
         
         // RESEARCH: https://www.w3schools.com/java/java_conditions_shorthand.asp
         double luminancePercent = Math.max(0, Math.min(100, luminance));
-        System.out.println(luminancePercent);
         return luminancePercent > 80.0 ? Color.BLACK : Color.WHITE;
     }
     
@@ -207,7 +175,7 @@ public class RButton extends JButton {
         super.addNotify();
         setBorderPainted(false);
         backgroundColor = getBackground();
-
+        
         // attach MouseListener
         addMouseListener(new MouseAdapter() {
             @Override
@@ -252,13 +220,11 @@ public class RButton extends JButton {
     
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         
         // the perfect border radius
         int radius = Math.min(getWidth(), getHeight()) / 3;
-
-        System.out.println(isRoundBottomLeft());
         // create path for rounded rect
         Path2D.Float path = createRoundedRectangle(getWidth(), getHeight(),
                             isRoundTopLeft()     ? radius : 0,
@@ -270,46 +236,35 @@ public class RButton extends JButton {
         g2.setColor(getBackground());
         g2.fill(path);
         
-        if(getButtonType() == ButtonType.HOME) {
+        // render string, centered in the button
+        g2.setColor(calculateForeground(backgroundColor));
+        String text = getText();
+        FontMetrics fm = g2.getFontMetrics();
+        int x = (getWidth() - fm.stringWidth(text)) / 2;
+        int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+        g2.drawString(text, x, y);
+        
+        
+        if(svgPanel != null && isVisible()) {
+            // svgPanels size will be the width and height of the button
+            svgPanel.setSize(getWidth(), getHeight());
             
-            // TODO: stop hardcoding things
-            setIconWithSVG("/resources/home.svg");
+            int x2 = (getWidth() - svgPanel.getWidth()) / 2;
+            int y2 = (getHeight() - svgPanel.getHeight()) / 2 ;
             
-            if(iconImage != null) {
-                g2.drawImage(iconImage, 2,2, this);
-            }
-        } else if (getButtonType() == ButtonType.SETTINGS) {
-            // TODO: stop hardcoding things
-            setIconWithSVG("/resources/settings.svg");
+            // +2 is a hack because for some reason it was not centered, i dont know why
+            x2 = x2 + 2;
+            y2 = y2 + 2;
             
-            if(iconImage != null) {
-                g2.drawImage(iconImage, 2,2, this);
-            }
-        } else if (getButtonType() == ButtonType.REFRESH) {
-            // TODO: stop hardcoding things
-            setIconWithSVG("/resources/refresh.svg");
+            // move/translate the graphics context
+            g2.translate(x2,y2);
             
-            if(iconImage != null) {
-                g2.drawImage(iconImage, 2,2, this);
-            }
-        } else {
-            // here we render the text manually so we can draw over our rounded rect
-            g2.setColor(calculateForeground(backgroundColor));  
-            String text = getText();  // grab the text of the button
-            FontMetrics fm = g2.getFontMetrics();
-
-            // Calculate the position of the text to center it
-            int x = (getWidth() - fm.stringWidth(text)) / 2;
-            int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
-
-            // Draw the text
-            g2.drawString(text, x, y);
+            // paint was being buggy printAll seemed to work
+            // i dont know why it works but it does
+            svgPanel.printAll(g2);
+            g2.dispose();
         }
-        
         g2.dispose();
-        
-        // do what we wore ment to do originally
-        //super.paintComponent(g);
     }
     
     // magic black box

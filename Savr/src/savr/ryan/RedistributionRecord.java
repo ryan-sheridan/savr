@@ -19,21 +19,35 @@ public class RedistributionRecord {
     }
     
     private WasteSource source;
-    private FoodSaver recipient;
+    private FoodSaver saver;
     private DeliveryStatus status;
+    private Integer id;
     
-    public RedistributionRecord(WasteSource source, FoodSaver recipient, DeliveryStatus status) {
+    public RedistributionRecord(Integer id, WasteSource source, FoodSaver recipient, DeliveryStatus status) {
+        this.id = id;
         this.source = source;
-        this.recipient = recipient;
+        this.saver = recipient;
         this.status = status;
     }
 
+    public WasteSource getSource() {
+        return source;
+    }
+
+    public FoodSaver getSaver() {
+        return saver;
+    }
+
+    public DeliveryStatus getStatus() {
+        return status;
+    }
+    
     public void setSource(WasteSource source) {
         this.source = source;
     }
 
-    public void setRecipient(FoodSaver recipient) {
-        this.recipient = recipient;
+    public void setSaver(FoodSaver recipient) {
+        this.saver = recipient;
     }
 
     public void setStatus(DeliveryStatus status) {
@@ -49,4 +63,14 @@ public class RedistributionRecord {
         // logic
         return;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
+    
 }
