@@ -12,13 +12,17 @@ public class Location {
     private double latitude;
     private double longitude;
     private String address;
-
-    public Location(double latitude, double longitude) {
+    private Integer id;
+    private String country;
+    
+    public Location(Integer id, double latitude, double longitude, String country) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.country = country;
     }
 
-    public Location(String address) {
+    public Location(String address, String country) {
         this.address = address;
     }
 
@@ -48,5 +52,21 @@ public class Location {
     
     public void setAddressFromCoordinates() {
         return;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

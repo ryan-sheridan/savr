@@ -40,7 +40,7 @@ public class IndividualFoodSaver extends FoodSaver {
         return;
     }
     
-    public IndividualFoodSaver(String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location) {
-        super(firstName, lastName, saverType, contactInfo, location);
+    public IndividualFoodSaver(Integer id, String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location) {
+        super(id, firstName, lastName, saverType, contactInfo, location);
     }
 }

@@ -136,6 +136,10 @@ public class RGlassDialog extends RFadePanel {
                 // this is so much easier programatically, gui builder is weird
                 int x = (frameBounds.width - boxSize.width) / 2;
                 int y = (frameBounds.height - boxSize.height) / 2;
+                
+                centerBox.setIsAllowedLerpY(true);
+                centerBox.setTargetY(y);
+                
                 centerBox.setLocation(x, y);
             }
 
@@ -200,7 +204,7 @@ public class RGlassDialog extends RFadePanel {
             
             // when our buttons are pressed, do something
             // dismiss will simply do nothing but fade out
-            secondaryButton.addActionListener(e -> fadeOutOver());
+            secondaryButton.addActionListener(e -> dismissPress());
             primaryButton.addActionListener(e -> submitPress());
             
             // add buttons to the center box
@@ -240,6 +244,11 @@ public class RGlassDialog extends RFadePanel {
 
     // this can be overriden to add functionality
     public void submitPress() {
+        fadeOutOver();
+    }
+    
+    // this can be overriden to add functionality
+    public void dismissPress() {
         fadeOutOver();
     }
     
