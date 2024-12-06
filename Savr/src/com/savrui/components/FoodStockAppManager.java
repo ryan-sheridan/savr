@@ -304,7 +304,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         foodStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         titleLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        titleLBL.setForeground(new java.awt.Color(187, 187, 187));
         titleLBL.setText("Savr Food Stock");
 
         addBTN.setText("Add");
@@ -531,7 +530,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         viewingStockPanel.setBackground(new java.awt.Color(40, 40, 40));
 
         viewLBL.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        viewLBL.setForeground(new java.awt.Color(187, 187, 187));
         viewLBL.setText("Savr View Perishable Food Types");
 
         stockTA.setColumns(20);

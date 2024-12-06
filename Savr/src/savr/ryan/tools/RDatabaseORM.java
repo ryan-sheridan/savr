@@ -1,8 +1,5 @@
 package savr.ryan.tools;
 
-import com.formdev.flatlaf.json.ParseException;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -11,8 +8,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import savr.conor.FoodItem;
@@ -22,8 +17,9 @@ import savr.conor.PerishableFood;
 import savr.ryan.ContactInfo;
 import savr.ryan.FoodSaver;
 import savr.ryan.FoodSaver.SaverType;
+import static savr.ryan.FoodSaver.SaverType.INDIVIDUAL;
+import static savr.ryan.FoodSaver.SaverType.ORGANISATION;
 import savr.ryan.IndividualFoodSaver;
-import savr.ryan.IndividualFoodSaver.DietaryRestrictions;
 import savr.ryan.Location;
 import savr.ryan.OrganisationFoodSaver;
 import savr.ryan.RedistributionRecord;
@@ -36,39 +32,63 @@ import savr.ryan.WasteSource.SourceType;
  * @author ryan
  */
 
-// object relational mapper for the zero hunger database
-// management section
+// this class was completely redone, the main idea is to create instances of
+// WasteSource, FoodSaver, and RedistributionRecord based on the database
 
-// TODO: comment everything
-// use dry, i feel like theres alot of code repeat here
-// refactor db so it actually makes sense
-
-// TODOOOOOOOOOOOOOOOO: fix confliction errors, (conor updated constructors that are not compatible when im instanciating his food classes)
-// will fix in the new week
+// trying my best to use DRY
 
 public class RDatabaseORM {
+    
+    // SECTION: RedistributionRecord
+    
+    private static RedistributionRecord getRedistributionRecordByResultSet(ResultSet rs) throws SQLException {
+        try {
+            int id = rs.getInt("id");
+            
+            FoodSaver foodSaver = getFoodSaverById(rs.getInt("foodsaverId"));
+            DeliveryStatus deliveryStatus = DeliveryStatus.valueOf(rs.getString("status"));
+            WasteSource wasteSource = getWasteSourceById(rs.getInt("wastesourceid"));
+            
+            return new RedistributionRecord(Integer.valueOf(1), wasteSource, foodSaver, deliveryStatus);
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
 
+    public static RedistributionRecord getRedistributionRecordById(int redistributionId) {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+        FoodSaver fs;
+
+        String query = "select * from redistributionrecord where id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, redistributionId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) { 
+                return getRedistributionRecordByResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
+    
     public static ArrayList<RedistributionRecord> getRedistributionRecords() {
         RDataPersistence rdp = RDataPersistence.getInstance();
         Connection conn = rdp.getConnection();
         ArrayList<RedistributionRecord> redistributionRecords = new ArrayList<>();
 
-        String query = "SELECT * FROM RedistributionRecord";
+        String query = "select * from redistributionrecord";
 
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int wasteId = rs.getInt("waste_id");
-                int recipientId = rs.getInt("recipient_id");
-                String deliveryStatusStr = rs.getString("delivery_status").replace(" ", "_").toUpperCase();
-                DeliveryStatus deliveryStatus = DeliveryStatus.valueOf(deliveryStatusStr.replace(" ", "").toUpperCase());
-
-                WasteSource wasteSource = getWasteSourceById(wasteId);
-                FoodSaver foodSaver = getFoodSaverById(recipientId);
-
-                RedistributionRecord rr = new RedistributionRecord(wasteSource, foodSaver, deliveryStatus);
-                redistributionRecords.add(rr);
-                System.out.println(String.format("wasteid: %d, recipientid: %d, deliverystatus: %s", wasteId, recipientId, deliveryStatus));
+                if(rs != null) {
+                    RedistributionRecord rr = getRedistributionRecordByResultSet(rs);
+                    redistributionRecords.add(rr);
+                }
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -76,32 +96,185 @@ public class RDatabaseORM {
 
         return redistributionRecords;
     }
+    
+    // SECTION_END
 
+    public static ContactInfo getContactById(int contactId) {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+
+        String query = "SELECT * FROM contact_info WHERE id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, contactId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                return new ContactInfo(Integer.valueOf(id), email, phone);
+            }
+        } catch (SQLException e) {
+            System.out.print(e);
+        }
+        
+        return null;
+    }
+
+    public static Location getLocationById(int locationId) {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+
+        String query = "SELECT * FROM location WHERE id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, locationId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                int id = rs.getInt("id");
+                String country = rs.getString("country");
+                double lon = rs.getDouble("longitude");
+                double lat = rs.getDouble("latitude");
+                
+                return new Location(Integer.valueOf(id), lon, lat, country);
+            }
+        } catch (SQLException e) {
+            System.out.print(e);
+        }
+
+        return null;
+    }
+
+    // SECTION: WasteSource
+    
+    public static WasteSource getWasteSourceFromResultSet(ResultSet rs) throws SQLException {
+        try {
+            int id = rs.getInt("id");
+            String name = rs.getString("sourceName");
+            SourceType sourceType = SourceType.valueOf(rs.getString("sourceType"));
+            
+            Location location = getLocationById(rs.getInt("locationId"));
+            double wasteAmount = rs.getInt("wasteAmount");
+            
+            // singular food item, should be more than 1
+            FoodItem foodItem = getFoodItemById(id);
+            ArrayList<FoodItem> foodItems = new ArrayList<>();
+            foodItems.add(foodItem);
+            FoodStockApp fsa = new FoodStockApp(foodItems);
+            
+            WasteSource wasteSource = new WasteSource(id, name, sourceType, location, wasteAmount, fsa);
+            return wasteSource;
+        } catch (SQLException e) {
+            throw e;
+        }
+    }
+    
+    public static WasteSource getWasteSourceById(int wasteId) {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+
+        String query = "select * from wastesource where id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, wasteId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                WasteSource wasteSource = getWasteSourceFromResultSet(rs);
+                return wasteSource;
+            }
+        } catch (SQLException e) {
+            System.out.print(e);
+        }
+
+        return null;
+    }
+    
+    public static ArrayList<WasteSource> getWasteSources() {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+
+        ArrayList<WasteSource> wasteSources = new ArrayList<>();
+
+        String query = "select * from wastesource";
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                WasteSource wasteSource = getWasteSourceFromResultSet(rs);
+                if(wasteSource != null) {
+                    wasteSources.add(wasteSource);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.print(e);
+        }
+
+        return wasteSources;
+    }
+    
+    // SECTION_END
+    
+    // SECTION: FoodSaver
+    
+    private static FoodSaver getFoodSaverFromResultSet(ResultSet rs) throws SQLException {
+        try {
+            int id = rs.getInt("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+            SaverType saverType = SaverType.valueOf(rs.getString("saverType"));
+            
+            ContactInfo contactInfo = getContactById(rs.getInt("contactInfoId"));
+            Location location = getLocationById(rs.getInt("locationId"));
+            
+            // public IndividualFoodSaver(Integer id, String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location)
+            
+            if(saverType == INDIVIDUAL) {
+                return new IndividualFoodSaver(Integer.valueOf(id), firstName, lastName, saverType, contactInfo, location);
+            } else if (saverType == ORGANISATION) {
+                return new OrganisationFoodSaver(Integer.valueOf(id), firstName+lastName, saverType, contactInfo, location);
+            }
+            
+        } catch (SQLException e) {
+            throw e;
+        }
+        return null;
+    }
+
+    public static FoodSaver getFoodSaverById(int recipientId) {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+        FoodSaver fs;
+
+        String query = "select * from foodsaver where id = ?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, recipientId);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                fs = getFoodSaverFromResultSet(rs);
+                return fs;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return null;
+    }
+    
     public static ArrayList<FoodSaver> getFoodSavers() {
         RDataPersistence rdp = RDataPersistence.getInstance();
         Connection conn = rdp.getConnection();
 
         ArrayList<FoodSaver> foodSavers = new ArrayList<>();
 
-        String query = "SELECT * FROM FoodSaver";
+        String query = "select * from foodsaver";
 
         try (Statement stmt = conn.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                int recipientId = rs.getInt("recipient_id");
-                SaverType saverType = SaverType.valueOf(rs.getString("recipient_type"));
-                ContactInfo contactInfo = getContact(rs.getInt("contact_id"));
-                Location location = getLocation(rs.getInt("location_id"));
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                
-                if (saverType == SaverType.INDIVIDUAL) {
-                    IndividualFoodSaver ifs = new IndividualFoodSaver(firstName, lastName, saverType, contactInfo, location);
-                    foodSavers.add(ifs);
-                } else if (saverType == SaverType.ORGANISATION) {
-                    String name = rs.getString("name");
-                    OrganisationFoodSaver ofs = new OrganisationFoodSaver(firstName, lastName, saverType, contactInfo, location);
-                    foodSavers.add(ofs);
+                FoodSaver fs = getFoodSaverFromResultSet(rs);
+                if(fs != null) {
+                    foodSavers.add(fs);
                 }
             }
         } catch (SQLException e) {
@@ -111,250 +284,84 @@ public class RDatabaseORM {
         return foodSavers;
     }
 
-    private static ContactInfo getContact(int contactId) {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
+    // SECTION_END
+    
+    // SECTION: FoodItem
+    
+    private static FoodItem getFoodItemFromResultSet(ResultSet rs) throws SQLException {
+        try {
+            int id = rs.getInt("id");
+            int quantity = rs.getInt("quantity");
+            String foodName = rs.getString("name");
+            String foodType = rs.getString("type");
+            String dateStr = rs.getString("expiryDate");
 
-        String query = "SELECT * FROM ContactInfo WHERE contact_id = ?";
+            // parse expiry date
+            Date expiryDate = null;
+            if (dateStr != null && !dateStr.isEmpty()) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    expiryDate = sdf.parse(dateStr);
+                } catch (java.text.ParseException e) {
+                    e.printStackTrace();
+                }
+            }
 
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, contactId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String email = rs.getString("email");
-                String phone = rs.getString("phone_number");
-                return new ContactInfo(email, phone);
+            // random value for storage temp and monthly shelf life, im lazy
+            int random = Math.round((int) ThreadLocalRandom.current().nextDouble(0, 200));
+            
+            if ("PERISHABLE".equals(foodType)) {
+                return new PerishableFood(id, quantity, foodName, foodType, expiryDate.toString(), random);
+            } else if ("NON_PERISHABLE".equals(foodType)) {
+                return new NonPerishableFood(id, quantity, foodName, foodType, expiryDate.toString(), random);
             }
         } catch (SQLException e) {
-            System.out.print(e);
+            throw e;
         }
-
-        return new ContactInfo("null", "null");
-    }
-
-    private static Location getLocation(int locationId) {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
-
-        String query = "SELECT * FROM Location WHERE location_id = ?";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, locationId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String locationAddress = rs.getString("address");
-                Location newLocation = new Location(locationAddress);
-                return newLocation;
-            }
-        } catch (SQLException e) {
-            System.out.print(e);
-        }
-
-        return new Location("null");
-    }
-
-    public static ArrayList<WasteSource> getWasteSources() {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
-
-        ArrayList<WasteSource> wasteSources = new ArrayList<>();
-
-        String query = "SELECT * FROM WasteSource";
-
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                int wasteId = rs.getInt("waste_id");
-                String sourceName = rs.getString("source_name");
-                SourceType sourceType = SourceType.valueOf(rs.getString("source_type"));
-                Location sourceLocation = getLocation(rs.getInt("source_location_id"));
-                double wasteAmount = rs.getDouble("waste_amount");
-                
-                // TODOOOOOOOOOOOOOOOO
-                // FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
-                FoodItem foodItem = new PerishableFood();
-                
-                ArrayList<FoodItem> foodItems = new ArrayList<>();
-                foodItems.add(foodItem);
-                FoodStockApp sourceFsa = new FoodStockApp(foodItems);
-
-                WasteSource ws = new WasteSource(sourceName, sourceType, sourceLocation, wasteAmount, sourceFsa);
-                wasteSources.add(ws);
-            }
-        } catch (SQLException e) {
-            System.out.print(e);
-        }
-
-        return wasteSources;
-    }
-
-    private static WasteSource getWasteSourceById(int wasteId) {
-        RDataPersistence rdp = RDataPersistence.getInstance();
-        Connection conn = rdp.getConnection();
-
-        String query = "SELECT * FROM WasteSource WHERE waste_id = ?";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, wasteId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                String sourceName = rs.getString("source_name");
-                SourceType sourceType = SourceType.valueOf(rs.getString("source_type"));
-                Location sourceLocation = getLocation(rs.getInt("source_location_id"));
-                double wasteAmount = rs.getDouble("waste_amount");
-                
-                // TODOOOOOOOOOOOOOOOO
-                // FoodItem foodItem = getFoodItemById(rs.getInt("food_id"));
-                FoodItem foodItem = new PerishableFood();
-                
-                ArrayList<FoodItem> foodItems = new ArrayList<>();
-                foodItems.add(foodItem);
-                FoodStockApp sourceFsa = new FoodStockApp(foodItems);
-
-                return new WasteSource(sourceName, sourceType, sourceLocation, wasteAmount, sourceFsa);
-            }
-        } catch (SQLException e) {
-            System.out.print(e);
-        }
-
         return null;
     }
 
-    private static FoodSaver getFoodSaverById(int recipientId) {
+    public static FoodItem getFoodItemById(int foodId) {
         RDataPersistence rdp = RDataPersistence.getInstance();
         Connection conn = rdp.getConnection();
+        FoodItem foodItem = null;
 
-        String query = "SELECT * FROM FoodSaver WHERE recipient_id = ?";
+        String query = "select * from fooditem where id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, recipientId);
+            pstmt.setInt(1, foodId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                SaverType saverType = SaverType.valueOf(rs.getString("recipient_type"));
-                ContactInfo contactInfo = getContact(rs.getInt("contact_id"));
-                Location location = getLocation(rs.getInt("location_id"));
-                String firstName = rs.getString("first_name");
-                String lastName = rs.getString("last_name");
-                
-                if (saverType == SaverType.INDIVIDUAL) {
-                    
-                    IndividualFoodSaver ifs = new IndividualFoodSaver(firstName, lastName, saverType, contactInfo, location);
-                    return ifs;
-                } else if (saverType == SaverType.ORGANISATION) {
-                    String name = rs.getString("name");
-                    OrganisationFoodSaver ofs = new OrganisationFoodSaver(firstName, lastName, saverType, contactInfo, location);
-                    return ofs;
-                }
+                foodItem = getFoodItemFromResultSet(rs);
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
 
-        return null;
+        return foodItem;
+    }
+
+    public static ArrayList<FoodItem> getFoodItems() {
+        RDataPersistence rdp = RDataPersistence.getInstance();
+        Connection conn = rdp.getConnection();
+        ArrayList<FoodItem> foodItems = new ArrayList<>();
+
+        String query = "select * from foodtem";
+
+        try (Statement stmt = conn.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                FoodItem foodItem = getFoodItemFromResultSet(rs);
+                if (foodItem != null) {
+                    foodItems.add(foodItem);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("err fetching food items: " + e.getMessage());
+        }
+
+        return foodItems;
     }
     
-    // BROKEN: need to update this to use conors new constructors, will do this in the new week :)
-
-    // private static FoodItem getFoodItemById(int foodId) {
-    //     RDataPersistence rdp = RDataPersistence.getInstance();
-    //     Connection conn = rdp.getConnection();
-    //     FoodItem foodItem = null;// 
-
-    //     String query = "SELECT * FROM FoodStock WHERE food_id = ?";// 
-
-    //     try (PreparedStatement pstmt = conn.prepareStatement(query)) {
-    //         pstmt.setInt(1, foodId);
-    //         ResultSet rs = pstmt.executeQuery();
-    //         if (rs.next()) {
-    //             String foodName = rs.getString("food_name");
-    //             String foodType = rs.getString("food_type");
-    //             int quantity = rs.getInt("quantity");
-    //             String dateStr = rs.getString("expiration_date");
-    //             // parse the date, this is ugly
-    //             Date expiration = null;
-    //             if (dateStr != null && !dateStr.isEmpty()) {
-    //                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    //                 try {
-    //                     // parse date string into date object
-    //                     expiration = sdf.parse(dateStr);
-    //                 } catch (java.text.ParseException e) {
-    //                     e.printStackTrace();
-    //                 }
-    //             }
-    //             if (foodType.equals("Perishable")) {
-    //                 int storageTemp = rs.getInt("storage_temp");
-    //                 PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
-    //                 foodItem = pf;
-    //             } else if (foodType.equals("NonPerishable")) {
-    //                 NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
-    //                 foodItem = npf;
-    //             }
-    //         }
-    //     } catch (SQLException e) {
-    //         System.out.println(e);
-    //     }// 
-
-    //     return foodItem;
-    // }
-
-    // BROKEN: need to update this to use conors new constructors, will do this in the new week :)
-
-    // public static ArrayList<FoodItem> getFoodItems() {
-    //     RDataPersistence rdp = RDataPersistence.getInstance();
-    //     Connection conn = rdp.getConnection();
-    //     
-    //     ArrayList foodItems = new ArrayList<FoodItem>();
-    //     
-    //     String query = "select * from FoodStock";
-    //     
-    //     try(Statement stmt  = conn.createStatement()) {
-    //         ResultSet rs = stmt.executeQuery(query);
-    //         while(rs.next()) {
-    //             int foodId = rs.getInt("food_id");
-    //             String foodName = rs.getString("food_name");
-    //             String foodType = rs.getString("food_type");
-    //             int quantity = rs.getInt("quantity");
-    //             
-    //             // parse expiration date, this is ugly
-    //             String dateStr = rs.getString("expiration_date");
-    //             Date expiration = null;
-    //             if (dateStr != null && !dateStr.isEmpty()) {
-    //                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    //                 try {
-    //                     try {
-    //                         expiration = sdf.parse(dateStr);
-    //                     } catch (java.text.ParseException ex) {
-    //                         System.out.println("err parsing date");
-    //                     }
-    //                 } catch (ParseException e) {
-    //                     e.printStackTrace();
-    //                 }
-    //             }
-    //             
-    //             // public PerishableFood(int storageTemp, int id, int quantity, String name, String type, Date expiryDate) {
-    //             
-    //             // public PerishableFood(int id, int quantity, String name, String type, String expiryDate, int storageTemp) {
-    //             
-    //             if(foodType.equals("Perishable")) {
-    //                 // TODO: add storage temp to db
-    //                 int storageTemp = ThreadLocalRandom.current().nextInt(0, 78 + 1);
-    //                 
-    //                 
-    //                 PerishableFood pf = new PerishableFood(storageTemp, foodId, quantity, foodName, foodType, expiration);
-    //                 
-    //                 // cast to an abstract food item
-    //                 foodItems.add((FoodItem)pf);
-    //             } else if (foodType.equals("NonPerishable")) {
-    //                 // public NonPerishableFood(int id, int quantity, String name, String type, Date expiryDate) {
-    //                 NonPerishableFood npf = new NonPerishableFood(foodId, quantity, foodName, foodType, expiration);
-    //                 
-    //                 foodItems.add((FoodItem)npf);
-    //             }
-    //         }
-    //     } catch (SQLException e) {
-    //         System.out.println(e);
-    //     }
-    //     
-    //     return foodItems;
-    // }
+    // SECTION_END 
 }

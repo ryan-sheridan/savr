@@ -6,6 +6,7 @@ package com.savrui.components;
 
 import java.awt.Color;
 import java.awt.Window;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -48,6 +49,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         exitAppLBL = new javax.swing.JLabel();
         backToMenuPanel = new javax.swing.JPanel();
         backToMenuLBL = new javax.swing.JLabel();
+        menuDisplayDonoPanel = new javax.swing.JPanel();
+        menuDisplayDonoLBL = new javax.swing.JLabel();
         OverlayPanel = new javax.swing.JPanel();
         createDonorPanel = new javax.swing.JPanel();
         createItemDetailsPanel = new javax.swing.JPanel();
@@ -118,7 +121,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemDateReceivedTF = new com.ryansheridan.rfields.RTextField();
         viewItemIDLBL = new javax.swing.JLabel();
         viewItemIDTF = new com.ryansheridan.rfields.RTextField();
-        jButton1 = new javax.swing.JButton();
         viewDonorTypePanel = new javax.swing.JPanel();
         viewCorpDonorPanel = new javax.swing.JPanel();
         updateCorpBTN = new javax.swing.JButton();
@@ -152,6 +154,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSurnameLBL = new javax.swing.JLabel();
         viewIndiEmailTF = new com.ryansheridan.rfields.RTextField();
         viewIndiDonorIDLBL = new javax.swing.JLabel();
+        displayDonorPanel = new javax.swing.JPanel();
+        displaySP = new javax.swing.JScrollPane();
+        displayTA = new javax.swing.JTextArea();
+        displayDonorBTN = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(80, 80, 80));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -181,7 +187,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         menuCreateDonoPanel.setLayout(menuCreateDonoPanelLayout);
         menuCreateDonoPanelLayout.setHorizontalGroup(
             menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuCreateDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
         );
         menuCreateDonoPanelLayout.setVerticalGroup(
             menuCreateDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +209,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         });
 
         menuViewDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        menuViewDonoLBL.setText("VIEW DONATIONS");
+        menuViewDonoLBL.setText("EDIT DONATIONS");
 
         javax.swing.GroupLayout menuViewDonoPanelLayout = new javax.swing.GroupLayout(menuViewDonoPanel);
         menuViewDonoPanel.setLayout(menuViewDonoPanelLayout);
@@ -241,7 +247,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         );
         exitAppPanelLayout.setVerticalGroup(
             exitAppPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(exitAppLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(exitAppLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         backToMenuPanel.setBackground(new java.awt.Color(55, 55, 55));
@@ -269,7 +275,35 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         );
         backToMenuPanelLayout.setVerticalGroup(
             backToMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backToMenuLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(backToMenuLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        menuDisplayDonoPanel.setBackground(new java.awt.Color(55, 55, 55));
+        menuDisplayDonoPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuDisplayDonoPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                menuDisplayDonoPanelMouseExited(evt);
+            }
+        });
+
+        menuDisplayDonoLBL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuDisplayDonoLBL.setText("DISPLAY DONATIONS");
+
+        javax.swing.GroupLayout menuDisplayDonoPanelLayout = new javax.swing.GroupLayout(menuDisplayDonoPanel);
+        menuDisplayDonoPanel.setLayout(menuDisplayDonoPanelLayout);
+        menuDisplayDonoPanelLayout.setHorizontalGroup(
+            menuDisplayDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuDisplayDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        menuDisplayDonoPanelLayout.setVerticalGroup(
+            menuDisplayDonoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menuDisplayDonoLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
@@ -281,9 +315,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(menuDisplayDonoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuPanelLayout.createSequentialGroup()
                         .addComponent(backToMenuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -294,6 +329,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 .addComponent(menuCreateDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menuViewDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(menuDisplayDonoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(exitAppPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,6 +348,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         itemNameTF.setBorderBottom(false);
         itemNameTF.setPlaceholder("");
+        itemNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                itemNameTFKeyPressed(evt);
+            }
+        });
 
         ItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ItemTypeLBL.setText("Item Type:");
@@ -323,6 +365,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 itemTypeTFActionPerformed(evt);
             }
         });
+        itemTypeTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                itemTypeTFKeyPressed(evt);
+            }
+        });
 
         itemQuantityLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         itemQuantityLBL.setText("Item Quantity:");
@@ -333,6 +380,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         itemQuantityTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemQuantityTFActionPerformed(evt);
+            }
+        });
+        itemQuantityTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                itemQuantityTFKeyPressed(evt);
             }
         });
 
@@ -356,6 +408,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         itemDateReceivedTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemDateReceivedTFActionPerformed(evt);
+            }
+        });
+        itemDateReceivedTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                itemDateReceivedTFKeyReleased(evt);
             }
         });
 
@@ -426,6 +483,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 corpNameTFActionPerformed(evt);
             }
         });
+        corpNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                corpNameTFKeyPressed(evt);
+            }
+        });
 
         corpFoundingYearTF.setBorderBottom(false);
         corpFoundingYearTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
@@ -433,6 +495,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         corpFoundingYearTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 corpFoundingYearTFActionPerformed(evt);
+            }
+        });
+        corpFoundingYearTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                corpFoundingYearTFKeyPressed(evt);
             }
         });
 
@@ -448,6 +515,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         corpHQAddressTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 corpHQAddressTFActionPerformed(evt);
+            }
+        });
+        corpHQAddressTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                corpHQAddressTFKeyPressed(evt);
             }
         });
 
@@ -472,6 +544,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         corpPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 corpPhoneNumberTFActionPerformed(evt);
+            }
+        });
+        corpPhoneNumberTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                corpPhoneNumberTFKeyPressed(evt);
             }
         });
 
@@ -551,6 +628,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 indiFirstNameTFActionPerformed(evt);
             }
         });
+        indiFirstNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                indiFirstNameTFKeyPressed(evt);
+            }
+        });
 
         indiDoBLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         indiDoBLBL.setText("Date of Birth:");
@@ -573,6 +655,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiAddressTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indiAddressTFActionPerformed(evt);
+            }
+        });
+        indiAddressTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                indiAddressTFKeyPressed(evt);
             }
         });
 
@@ -599,6 +686,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 indiPhoneNumberTFActionPerformed(evt);
             }
         });
+        indiPhoneNumberTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                indiPhoneNumberTFKeyPressed(evt);
+            }
+        });
 
         addIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addIndiBTN.setText("ADD DONOR");
@@ -618,6 +710,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiSurnameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 indiSurnameTFActionPerformed(evt);
+            }
+        });
+        indiSurnameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                indiSurnameTFKeyPressed(evt);
             }
         });
 
@@ -917,6 +1014,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemNameTF.setBorderBottom(false);
         viewItemNameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
         viewItemNameTF.setPlaceholder("");
+        viewItemNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewItemNameTFKeyPressed(evt);
+            }
+        });
 
         viewItemTypeLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewItemTypeLBL.setText("Item Type:");
@@ -929,6 +1031,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 viewItemTypeTFActionPerformed(evt);
             }
         });
+        viewItemTypeTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewItemTypeTFKeyPressed(evt);
+            }
+        });
 
         viewItemQuantityLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewItemQuantityLBL.setText("Item Quantity:");
@@ -939,6 +1046,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemQuantityTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewItemQuantityTFActionPerformed(evt);
+            }
+        });
+        viewItemQuantityTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewItemQuantityTFKeyPressed(evt);
             }
         });
 
@@ -978,14 +1090,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("VIEW ALL DONATIONS");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout viewItemDetailsPanelLayout = new javax.swing.GroupLayout(viewItemDetailsPanel);
         viewItemDetailsPanel.setLayout(viewItemDetailsPanelLayout);
         viewItemDetailsPanelLayout.setHorizontalGroup(
@@ -993,7 +1097,6 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewItemDetailsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemQuantityTF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemNameTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(viewItemTypeTF, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1015,9 +1118,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewItemDetailsPanelLayout.setVerticalGroup(
             viewItemDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewItemDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewItemIDLBL)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewItemIDTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1069,6 +1170,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 viewCorpPhoneNumberTFActionPerformed(evt);
             }
         });
+        viewCorpPhoneNumberTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewCorpPhoneNumberTFKeyPressed(evt);
+            }
+        });
 
         corpPhoneNumberLBL1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         corpPhoneNumberLBL1.setText("Corporation Phone Number:");
@@ -1093,6 +1199,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 viewCorpHQAddressTFActionPerformed(evt);
             }
         });
+        viewCorpHQAddressTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewCorpHQAddressTFKeyPressed(evt);
+            }
+        });
 
         viewCorpFoundingYearTF.setBorderBottom(false);
         viewCorpFoundingYearTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
@@ -1100,6 +1211,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewCorpFoundingYearTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewCorpFoundingYearTFActionPerformed(evt);
+            }
+        });
+        viewCorpFoundingYearTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewCorpFoundingYearTFKeyPressed(evt);
             }
         });
 
@@ -1113,7 +1229,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
+        deleteCorpBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         deleteCorpBTN.setText("DELETE");
+        deleteCorpBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteCorpBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteCorpBTNActionPerformed(evt);
@@ -1129,6 +1247,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewCorpNameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewCorpNameTFActionPerformed(evt);
+            }
+        });
+        viewCorpNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewCorpNameTFKeyPressed(evt);
             }
         });
 
@@ -1209,6 +1332,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         updateIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         updateIndiBTN.setText("UPDATE");
+        updateIndiBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         updateIndiBTN.setPreferredSize(new java.awt.Dimension(113, 30));
         updateIndiBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1216,7 +1340,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             }
         });
 
+        deleteIndiBTN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         deleteIndiBTN.setText("DELETE");
+        deleteIndiBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         deleteIndiBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteIndiBTNActionPerformed(evt);
@@ -1239,6 +1365,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiPhoneNumberTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewIndiPhoneNumberTFActionPerformed(evt);
+            }
+        });
+        viewIndiPhoneNumberTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewIndiPhoneNumberTFKeyPressed(evt);
             }
         });
 
@@ -1268,6 +1399,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 viewIndiAddressTFActionPerformed(evt);
             }
         });
+        viewIndiAddressTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewIndiAddressTFKeyPressed(evt);
+            }
+        });
 
         viewIndiDOBLBL.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         viewIndiDOBLBL.setText("Date of Birth:");
@@ -1280,6 +1416,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
                 viewIndiFirstNameTFActionPerformed(evt);
             }
         });
+        viewIndiFirstNameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewIndiFirstNameTFKeyPressed(evt);
+            }
+        });
 
         viewIndiSurnameTF.setBorderBottom(false);
         viewIndiSurnameTF.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.USERNAME);
@@ -1287,6 +1428,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSurnameTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewIndiSurnameTFActionPerformed(evt);
+            }
+        });
+        viewIndiSurnameTF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                viewIndiSurnameTFKeyPressed(evt);
             }
         });
 
@@ -1419,6 +1565,47 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
         OverlayPanel.add(viewDonorPanel);
 
+        displaySP.setBackground(new java.awt.Color(102, 102, 102));
+        displaySP.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        displayTA.setEditable(false);
+        displayTA.setBackground(new java.awt.Color(80, 80, 80));
+        displayTA.setColumns(20);
+        displayTA.setRows(5);
+        displaySP.setViewportView(displayTA);
+
+        displayDonorBTN.setText("DISPLAY DONATIONS");
+        displayDonorBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayDonorBTNActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout displayDonorPanelLayout = new javax.swing.GroupLayout(displayDonorPanel);
+        displayDonorPanel.setLayout(displayDonorPanelLayout);
+        displayDonorPanelLayout.setHorizontalGroup(
+            displayDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displaySP, javax.swing.GroupLayout.DEFAULT_SIZE, 582, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayDonorPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(displayDonorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191))
+        );
+        displayDonorPanelLayout.setVerticalGroup(
+            displayDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayDonorPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(displaySP, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(displayDonorBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+
+        OverlayPanel.add(displayDonorPanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1449,9 +1636,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         menuCreateDonoPanel.setBackground(new Color(70,70,70));
         menuViewDonoPanel.setBackground(new Color(55,55,55));
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
         
         menuCreateDonoLBL.setForeground(new Color(255,255,200));
         menuViewDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(240,240,240));
         
         createDonorPanel.setVisible(true);
         viewDonorPanel.setVisible(false);
@@ -1478,6 +1667,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiAddressTF.setText("");
         indiEmailTF.setText("");
         indiPhoneNumberTF.setText("");
+        
+        displayDonorBTN.setVisible(false);
+        displaySP.setVisible(false);
+        displayTA.setVisible(false);
     }//GEN-LAST:event_menuCreateDonoPanelMouseClicked
 
     private void menuViewDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseEntered
@@ -1494,9 +1687,11 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         menuCreateDonoPanel.setBackground(new Color(55,55,55));
         menuViewDonoPanel.setBackground(new Color(70,70,70));
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
         
         menuViewDonoLBL.setForeground(new Color(255,255,200));
         menuCreateDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(240,240,240));
         
         createDonorPanel.setVisible(false);
         viewDonorPanel.setVisible(true);
@@ -1532,7 +1727,9 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiEmailTF.setText("");
         viewIndiPhoneNumberTF.setText("");
         
-        
+        displayDonorBTN.setVisible(false);
+        displaySP.setVisible(false);
+        displayTA.setVisible(false);
         //updateCorpBTN1.setVisible(false);
         //viewDonorIDTF1.setVisible(false);
     }//GEN-LAST:event_menuViewDonoPanelMouseClicked
@@ -1664,6 +1861,32 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void updateCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCorpBTNActionPerformed
         // TODO add your handling code here:
+        if (viewItemNameTF.getText().trim().isEmpty() ||
+        viewItemDateReceivedTF.getText().trim().isEmpty() ||
+        viewItemTypeTF.getText().trim().isEmpty() ||
+        viewItemQuantityTF.getText().trim().isEmpty() ||
+        viewCorpNameTF.getText().trim().isEmpty() ||
+        viewCorpFoundingYearTF.getText().trim().isEmpty() ||
+        viewCorpHQAddressTF.getText().trim().isEmpty() ||
+        viewCorpEmailTF.getText().trim().isEmpty() ||
+        viewCorpPhoneNumberTF.getText().trim().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
+        return; 
+        }
+        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
+        if(viewItemDateReceivedTF.getText().matches(regex)){
+       } else {
+           JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
+           return;
+       }
+        
+        if(viewCorpEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+      } else {
+            JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
+            return;
+        }
+        
         AgricultureUI.updateDonor();
     }//GEN-LAST:event_updateCorpBTNActionPerformed
 
@@ -1746,11 +1969,20 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiEmailTF.getText().trim().isEmpty() ||
         indiPhoneNumberTF.getText().trim().isEmpty() ||
         itemConditionCB.getSelectedItem() == null) {
-
-       
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
     }
+        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
+        if(itemDateReceivedTF.getText().matches(regex) || indiDoBTF.getText().matches(regex)){
+       } else {
+           JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
+           return;
+       }
+        if(indiEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+      } else {
+            JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
+            return;
+        }
         
         AgricultureUI.addIndi();
     }//GEN-LAST:event_addIndiBTNActionPerformed
@@ -1770,7 +2002,19 @@ public class AgricultureUIManager extends javax.swing.JPanel {
             
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
-    }
+    } 
+        
+        if(itemDateReceivedTF.getText().matches("^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$")){
+       } else {
+           JOptionPane.showMessageDialog(null, "Invalid Date format.\nUse format dd/MM/yyyy");
+           return;
+       }
+        
+        if(corpEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+      } else {
+            JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
+            return;
+        }
         AgricultureUI.addCorp();
         
         
@@ -1787,6 +2031,33 @@ public class AgricultureUIManager extends javax.swing.JPanel {
 
     private void updateIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateIndiBTNActionPerformed
         // TODO add your handling code here:
+        if (viewItemNameTF.getText().trim().isEmpty() ||
+        viewItemDateReceivedTF.getText().trim().isEmpty() ||
+        viewItemTypeTF.getText().trim().isEmpty() ||
+        viewItemQuantityTF.getText().trim().isEmpty() ||
+        viewIndiFirstNameTF.getText().trim().isEmpty() ||
+        viewIndiSurnameTF.getText().trim().isEmpty() ||
+        viewIndiDOBTF.getText().trim().isEmpty() ||
+        viewIndiAddressTF.getText().trim().isEmpty() ||
+        viewIndiEmailTF.getText().trim().isEmpty() ||
+        viewIndiPhoneNumberTF.getText().trim().isEmpty() ||
+        viewItemConditionCB.getSelectedItem() == null)
+        {
+        JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
+        return; 
+    }   String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
+        if(viewItemDateReceivedTF.getText().matches(regex) || viewIndiDOBTF.getText().matches(regex)){
+       } else {
+           JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
+           return;
+       }
+        if(viewIndiEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
+      } else {
+            JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
+            return;
+        }
+        
+        
         AgricultureUI.updateDonor();
     }//GEN-LAST:event_updateIndiBTNActionPerformed
 
@@ -1820,10 +2091,369 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiSelectorBTN.setEnabled(false);
     }//GEN-LAST:event_viewIndiSelectorBTNMouseEntered
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void displayDonorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayDonorBTNActionPerformed
         // TODO add your handling code here:
         AgricultureUI.viewDonor();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_displayDonorBTNActionPerformed
+
+    private void menuDisplayDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseClicked
+        // TODO add your handling code here:
+        menuCreateDonoPanel.setBackground(new Color(55, 55, 55));
+        menuViewDonoPanel.setBackground(new Color(55,55,55));
+        menuDisplayDonoPanel.setBackground(new Color(70, 70, 70));
+        
+        menuCreateDonoLBL.setForeground(new Color(240, 240, 240));
+        menuViewDonoLBL.setForeground(new Color(240,240,240));
+        menuDisplayDonoLBL.setForeground(new Color(255, 255, 200));
+        
+        createDonorPanel.setVisible(false);
+        viewDonorPanel.setVisible(false);
+        displayDonorPanel.setVisible(true);
+        
+        createCorpDonorPanel.setVisible(false);
+        createIndiDonorPanel.setVisible(false);
+        
+        itemNameTF.setText("");
+        itemDateReceivedTF.setText("");
+        itemTypeTF.setText("");
+        itemQuantityTF.setText("");
+        itemConditionCB.setSelectedItem("Factory New");
+        itemElectricalChB.setSelected(false);
+                
+        corpNameTF.setText("");
+        corpFoundingYearTF.setText("");
+        corpHQAddressTF.setText("");
+        corpEmailTF.setText("");
+        corpPhoneNumberTF.setText("");
+        
+        indiFirstNameTF.setText("");
+        indiSurnameTF.setText("");
+        indiDoBTF.setText("");
+        indiAddressTF.setText("");
+        indiEmailTF.setText("");
+        indiPhoneNumberTF.setText("");
+        
+        displayDonorBTN.setVisible(true);
+        displaySP.setVisible(true);
+        displayTA.setVisible(true);
+        AgricultureUI.viewDonor();
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseClicked
+
+    private void menuDisplayDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseEntered
+        // TODO add your handling code here:
+        menuDisplayDonoPanel.setBackground(new Color(40,40,40));
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseEntered
+
+    private void menuDisplayDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseExited
+        // TODO add your handling code here:
+        menuDisplayDonoPanel.setBackground(new Color(55,55,55));
+    }//GEN-LAST:event_menuDisplayDonoPanelMouseExited
+
+    private void itemNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemNameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && itemNameTF.getText().length() <= 20) {
+            itemNameTF.setEditable(true);
+        } else {
+            itemNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 20 characters.");
+            itemNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_itemNameTFKeyPressed
+
+    private void itemTypeTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemTypeTFKeyPressed
+       char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && itemTypeTF.getText().length() <= 30) {
+            itemTypeTF.setEditable(true);
+        } else {
+            itemTypeTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 30 characters.");
+            itemTypeTF.setEditable(true);
+        }
+        
+    }//GEN-LAST:event_itemTypeTFKeyPressed
+
+    private void itemQuantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemQuantityTFKeyPressed
+       char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && itemQuantityTF.getText().length() < 4) {
+            itemQuantityTF.setEditable(true);
+        } else {
+            itemQuantityTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Item Quantity must be numeric and maximum 4 digits.");
+            itemQuantityTF.setEditable(true);
+        }
+
+    }//GEN-LAST:event_itemQuantityTFKeyPressed
+
+    private void itemDateReceivedTFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemDateReceivedTFKeyReleased
+
+    }//GEN-LAST:event_itemDateReceivedTFKeyReleased
+
+    private void corpNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpNameTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && corpNameTF.getText().length() <= 20) {
+            corpNameTF.setEditable(true);
+        } else {
+            corpNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Maximum of 30 characters.");
+            corpNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_corpNameTFKeyPressed
+
+    private void corpFoundingYearTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpFoundingYearTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && corpFoundingYearTF.getText().length() < 4) {
+            corpFoundingYearTF.setEditable(true);
+        } else {
+            corpFoundingYearTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Corporation Year must be numeric and maximum 4 digits.\nBetween 1800 and 2024");
+            corpFoundingYearTF.setEditable(true);
+        }
+
+    }//GEN-LAST:event_corpFoundingYearTFKeyPressed
+
+    private void corpHQAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpHQAddressTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && corpHQAddressTF.getText().length() < 40) {
+            corpHQAddressTF.setEditable(true);
+        } else {
+            corpHQAddressTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters and numbers allowed, with a maximum of 40 characters.");
+            corpHQAddressTF.setEditable(true);
+        }  
+    }//GEN-LAST:event_corpHQAddressTFKeyPressed
+
+    private void corpPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpPhoneNumberTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && corpPhoneNumberTF.getText().length() < 9) {
+            corpPhoneNumberTF.setEditable(true);
+        } else {
+            corpPhoneNumberTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Phone Number must be numeric and maximum 9 digits,\nnot including 0 at the Start.");
+            corpPhoneNumberTF.setEditable(true);
+        }
+    }//GEN-LAST:event_corpPhoneNumberTFKeyPressed
+
+    private void indiFirstNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiFirstNameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown())
+            && indiFirstNameTF.getText().length() <= 25) {
+            indiFirstNameTF.setEditable(true);
+        } else {
+            indiFirstNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 25 characters.");
+            indiFirstNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_indiFirstNameTFKeyPressed
+
+    private void indiSurnameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiSurnameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && indiSurnameTF.getText().length() <= 25) {
+            indiSurnameTF.setEditable(true);
+        } else {
+            indiSurnameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 25 characters.");
+            indiSurnameTF.setEditable(true);
+        }                                          
+        
+    }//GEN-LAST:event_indiSurnameTFKeyPressed
+
+    private void indiAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiAddressTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && indiAddressTF.getText().length() < 40) {
+            indiAddressTF.setEditable(true);
+        } else {
+            indiAddressTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters and numbers allowed, with a maximum of 40 characters.");
+            indiAddressTF.setEditable(true);
+        }
+    }//GEN-LAST:event_indiAddressTFKeyPressed
+
+    private void indiPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiPhoneNumberTFKeyPressed
+        // TODO add your handling code here:
+          char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && indiPhoneNumberTF.getText().length() < 9) {
+            indiPhoneNumberTF.setEditable(true);
+        } else {
+            indiPhoneNumberTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Phone Number must be numeric and maximum 9 digits,\nnot including 0 at the Start.");
+            indiPhoneNumberTF.setEditable(true);
+        }
+    }//GEN-LAST:event_indiPhoneNumberTFKeyPressed
+
+    private void viewItemNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemNameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewItemNameTF.getText().length() <= 20) {
+            viewItemNameTF.setEditable(true);
+        } else {
+            viewItemNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 20 characters.");
+            viewItemNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewItemNameTFKeyPressed
+
+    private void viewItemTypeTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemTypeTFKeyPressed
+        // TODO add your handling code here:
+          char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewItemTypeTF.getText().length() <= 30) {
+            viewItemTypeTF.setEditable(true);
+        } else {
+            viewItemTypeTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 30 characters.");
+            viewItemTypeTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewItemTypeTFKeyPressed
+
+    private void viewItemQuantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemQuantityTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) &&  viewItemQuantityTF.getText().length() < 4) {
+            viewItemQuantityTF.setEditable(true);
+        } else {
+            viewItemQuantityTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Item Quantity must be numeric and maximum 4 digits.");
+            viewItemQuantityTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewItemQuantityTFKeyPressed
+
+    private void viewCorpNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpNameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewCorpNameTF.getText().length() <= 20) {
+            viewCorpNameTF.setEditable(true);
+        } else {
+            viewCorpNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Maximum of 30 characters.");
+            viewCorpNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewCorpNameTFKeyPressed
+
+    private void viewCorpFoundingYearTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpFoundingYearTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewCorpFoundingYearTF.getText().length() < 4) {
+            viewCorpFoundingYearTF.setEditable(true);
+        } else {
+            viewCorpFoundingYearTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Corporation Year must be numeric and maximum 4 digits.\nBetween 1800 and 2024");
+            viewCorpFoundingYearTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewCorpFoundingYearTFKeyPressed
+
+    private void viewCorpHQAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpHQAddressTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewCorpHQAddressTF.getText().length() < 40) {
+            corpHQAddressTF.setEditable(true);
+        } else {
+            viewCorpHQAddressTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters and numbers allowed, with a maximum of 40 characters.");
+            viewCorpHQAddressTF.setEditable(true);
+        } 
+    }//GEN-LAST:event_viewCorpHQAddressTFKeyPressed
+
+    private void viewCorpPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpPhoneNumberTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewCorpPhoneNumberTF.getText().length() < 9) {
+            viewCorpPhoneNumberTF.setEditable(true);
+        } else {
+            viewCorpPhoneNumberTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Phone Number must be numeric and maximum 9 digits,\nnot including 0 at the Start.");
+            viewCorpPhoneNumberTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewCorpPhoneNumberTFKeyPressed
+
+    private void viewIndiFirstNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiFirstNameTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown())
+            && viewIndiFirstNameTF.getText().length() <= 25) {
+            viewIndiFirstNameTF.setEditable(true);
+        } else {
+            viewIndiFirstNameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 25 characters.");
+            viewIndiFirstNameTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewIndiFirstNameTFKeyPressed
+
+    private void viewIndiSurnameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiSurnameTFKeyPressed
+        // TODO add your handling code here:
+        char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewIndiSurnameTF.getText().length() <= 25) {
+            viewIndiSurnameTF.setEditable(true);
+        } else {
+            viewIndiSurnameTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters allowed, with a maximum of 25 characters.");
+            viewIndiSurnameTF.setEditable(true);
+        }  
+    }//GEN-LAST:event_viewIndiSurnameTFKeyPressed
+
+    private void viewIndiAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiAddressTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
+            && viewIndiAddressTF.getText().length() < 40) {
+            viewIndiAddressTF.setEditable(true);
+        } else {
+            viewIndiAddressTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Only letters and numbers allowed, with a maximum of 40 characters.");
+            viewIndiAddressTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewIndiAddressTFKeyPressed
+
+    private void viewIndiPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiPhoneNumberTFKeyPressed
+        // TODO add your handling code here:
+         char keyChar = evt.getKeyChar();
+        int key = evt.getKeyCode();
+        if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewIndiPhoneNumberTF.getText().length() < 9) {
+            viewIndiPhoneNumberTF.setEditable(true);
+        } else {
+            viewIndiPhoneNumberTF.setEditable(false);
+            JOptionPane.showMessageDialog(null, "Phone Number must be numeric and maximum 9 digits,\nnot including 0 at the Start.");
+            viewIndiPhoneNumberTF.setEditable(true);
+        }
+    }//GEN-LAST:event_viewIndiPhoneNumberTFKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1855,6 +2485,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     public static javax.swing.JPanel createItemDetailsPanel;
     private javax.swing.JButton deleteCorpBTN;
     private javax.swing.JButton deleteIndiBTN;
+    public static javax.swing.JButton displayDonorBTN;
+    public static javax.swing.JPanel displayDonorPanel;
+    private javax.swing.JScrollPane displaySP;
+    public static javax.swing.JTextArea displayTA;
     private javax.swing.ButtonGroup donorTypeBTNGROUP;
     private javax.swing.JPanel donorTypePanel;
     public static javax.swing.JPanel donorTypeSelectorPanel;
@@ -1883,9 +2517,10 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     private javax.swing.JLabel itemQuantityLBL;
     public static com.ryansheridan.rfields.RTextField itemQuantityTF;
     public static com.ryansheridan.rfields.RTextField itemTypeTF;
-    private javax.swing.JButton jButton1;
     public static javax.swing.JLabel menuCreateDonoLBL;
     private javax.swing.JPanel menuCreateDonoPanel;
+    private javax.swing.JLabel menuDisplayDonoLBL;
+    private javax.swing.JPanel menuDisplayDonoPanel;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel menuViewDonoLBL;
     private javax.swing.JPanel menuViewDonoPanel;

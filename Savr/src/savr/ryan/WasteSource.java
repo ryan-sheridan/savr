@@ -4,6 +4,8 @@
  */
 package savr.ryan;
 
+import java.util.ArrayList;
+import savr.conor.FoodItem;
 import savr.conor.FoodStockApp;
 
 /**
@@ -24,8 +26,10 @@ public class WasteSource {
     private Location location;
     private double wasteAmount;
     private FoodStockApp foodDistribution;
+    private Integer id;
 
-    public WasteSource(String sourceName, SourceType sourceType, Location location, double wasteAmount, FoodStockApp foodDistribution) {
+    public WasteSource(Integer id, String sourceName, SourceType sourceType, Location location, double wasteAmount, FoodStockApp foodDistribution) {
+        this.id = id;
         this.sourceName = sourceName;
         this.sourceType = sourceType;
         this.location = location;
@@ -78,7 +82,32 @@ public class WasteSource {
     }
     
     public String getSourceDetails() {
-        return "";
+        
+        ArrayList<FoodItem> foodItems = getFoodDistribution().getFoodItem();
+        
+        return String.format(
+            "ID: %d%n" +
+            "Name: %s%n" +
+            "Source Type: %s%n" +
+            "Location: %s%n" +
+            "Amount Donated Kg: %4.3f%n" +
+            "Associated food items: %s%n",
+            getId(),
+            getSourceName(),
+            getSourceType().toString(),
+            getLocation().toString(),
+            getWasteAmount(),
+            foodItems
+        );
+    }
+
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
     
 }

@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -23,6 +24,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import savr.ryan.RedistributionRecord;
 
 /**
  *
@@ -83,7 +85,6 @@ public class RDataPersistence {
         }
         return instance;
     }
-
     
     public static void saveTheme(RDynamicUI.Theme theme) {
         try {
@@ -200,5 +201,9 @@ public class RDataPersistence {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public static ArrayList<RedistributionRecord> getSavedRedistributionRecords() {
+        return RDatabaseORM.getRedistributionRecords();
     }
 }

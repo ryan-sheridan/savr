@@ -4,22 +4,73 @@
  */
 package com.savrui.components;
 
+import com.ryansheridan.rfields.RTextField;
+import java.awt.Component;
 import java.awt.Window;
+import java.util.Arrays;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import savr.MainApplication;
+import savr.ryan.FoodSaver;
+import savr.ryan.RedistributionRecord;
+import savr.ryan.WasteSource;
+import savr.ryan.WasteSource.SourceType;
+import savr.ryan.tools.interfaces.RInformationPanelEditor;
 
 /**
  *
  * @author ryan
  */
-public class RWasteSourceController extends javax.swing.JPanel {
+public class RWasteSourceController extends javax.swing.JPanel implements RInformationPanelEditor {
 
     /**
      * Creates new form RWasteSourceController
      */
     public RWasteSourceController() {
         initComponents();
+        
+        sourceEdit.fadeIn();
+        rScrollView1.setRInformationPanelEditor(this);
     }
+
+
+    public void setSourceAddressField(String text) {
+        sourceAddressField.setText(text);
+    }
+    
+    private WasteSource selectedSource;
+    private FoodSaver selectedFoodSaver;
+    private RedistributionRecord selectedRecord;
+
+    public WasteSource getSelectedSource() {
+        return selectedSource;
+    }
+
+    public void setSelectedSource(WasteSource selectedSource) {
+        this.selectedSource = selectedSource;
+        
+    }
+
+    public FoodSaver getSelectedFoodSaver() {
+        return selectedFoodSaver;
+    }
+
+    public void setSelectedFoodSaver(FoodSaver selectedFoodSaver) {
+        this.selectedFoodSaver = selectedFoodSaver;
+    }
+
+    public RedistributionRecord getSelectedRecord() {
+        return selectedRecord;
+    }
+
+    public void setSelectedRecord(RedistributionRecord selectedRecord) {
+        this.selectedRecord = selectedRecord;
+    }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,42 +82,42 @@ public class RWasteSourceController extends javax.swing.JPanel {
     private void initComponents() {
 
         rTextField1 = new com.ryansheridan.rfields.RTextField();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        rButton5 = new com.savrui.components.RButton();
         rButton3 = new com.savrui.components.RButton();
         rButton6 = new com.savrui.components.RButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        rButton1 = new com.savrui.components.RButton();
-        rButton2 = new com.savrui.components.RButton();
+        rScrollView1 = new com.savrui.components.RScrollView();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        rButton4 = new com.savrui.components.RButton();
+        sourceEdit = new com.savrui.components.RFadePanel();
+        sourceAddressField = new com.ryansheridan.rfields.RTextField();
+        sourceNameField = new com.ryansheridan.rfields.RTextField();
+        sourceWasteAmountField = new com.ryansheridan.rfields.RTextField();
+        selectedIdLabel = new javax.swing.JLabel();
+        sourceFieldTypeCombo = new javax.swing.JComboBox<>();
+        rButton2 = new com.savrui.components.RButton();
+        submitEdit = new com.savrui.components.RButton();
+        jLabel2 = new javax.swing.JLabel();
+        rButton1 = new com.savrui.components.RButton();
 
+        rTextField1.setBackground(new java.awt.Color(50, 50, 50));
         rTextField1.setBorderBottom(false);
-        rTextField1.setBorderRight(true);
         rTextField1.setBottomLeftRadius(10);
+        rTextField1.setBottomRightRadius(10);
         rTextField1.setPlaceholder("Search Source");
-        rTextField1.setTopRightRadius(0);
         rTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rTextField1ActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Name:");
-
-        jLabel4.setText("Type:");
-
-        jLabel5.setText("Location:");
-
-        jLabel6.setText("Amount (kg):");
+        rButton5.setText("Import Data");
+        rButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rButton5ActionPerformed(evt);
+            }
+        });
 
         rButton3.setBackground(new java.awt.Color(16, 121, 234));
-        rButton3.setText("View Source Food Items");
+        rButton3.setText("Export Data");
         rButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rButton3ActionPerformed(evt);
@@ -80,127 +131,129 @@ public class RWasteSourceController extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(rButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(rButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addContainerGap())
-        );
+        jPanel1.setLayout(new java.awt.CardLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        sourceEdit.setOpacity(0f);
+        sourceEdit.setVisible(false);
+
+        sourceAddressField.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.ANY);
+        sourceAddressField.setPlaceholder("Country / Location");
+        sourceAddressField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sourceAddressFieldActionPerformed(evt);
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        });
 
-        rButton1.setText("Delete Source");
+        sourceNameField.setPlaceholder("Name");
+
+        sourceWasteAmountField.setFieldType(com.ryansheridan.rfields.RTextField.FieldType.ANY);
+        sourceWasteAmountField.setPlaceholder("Waste Amount");
+
+        selectedIdLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        selectedIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedIdLabel.setText("Selected: None");
+        selectedIdLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        sourceFieldTypeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Saver Type", "INDIVIDUAL", "ORGANISATION", "FARMER", "RETAILER", " " }));
 
         rButton2.setBackground(new java.awt.Color(34, 197, 94));
-        rButton2.setText("Add Source");
+        rButton2.setText("Create New");
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+        submitEdit.setBackground(new java.awt.Color(34, 197, 94));
+        submitEdit.setText("Submit Edit");
+        submitEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitEditActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Google Maps Placeholder");
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Make an edit");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(61, 61, 61))
+        javax.swing.GroupLayout sourceEditLayout = new javax.swing.GroupLayout(sourceEdit);
+        sourceEdit.setLayout(sourceEditLayout);
+        sourceEditLayout.setHorizontalGroup(
+            sourceEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(sourceNameField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sourceWasteAmountField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sourceAddressField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(selectedIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(sourceFieldTypeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(rButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(submitEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(sourceEditLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addContainerGap(154, Short.MAX_VALUE))
+        sourceEditLayout.setVerticalGroup(
+            sourceEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sourceEditLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(rButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceWasteAmountField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceAddressField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sourceFieldTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(selectedIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
         );
 
-        rButton4.setText("X");
-        rButton4.setRoundBottomLeft(false);
-        rButton4.setRoundTopLeft(false);
+        jPanel1.add(sourceEdit, "card3");
+
+        rButton1.setText("Delete Selected");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(rTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rScrollView1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                    .addComponent(rTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(rButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(rTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2))
+                        .addComponent(rScrollView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, 0))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(rButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -224,22 +277,68 @@ public class RWasteSourceController extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_rButton6ActionPerformed
 
+    private void rButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rButton5ActionPerformed
+
+    private void submitEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submitEditActionPerformed
+
+    private void sourceAddressFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sourceAddressFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sourceAddressFieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private com.savrui.components.RButton rButton1;
     private com.savrui.components.RButton rButton2;
     private com.savrui.components.RButton rButton3;
-    private com.savrui.components.RButton rButton4;
+    private com.savrui.components.RButton rButton5;
     private com.savrui.components.RButton rButton6;
+    private com.savrui.components.RScrollView rScrollView1;
     private com.ryansheridan.rfields.RTextField rTextField1;
+    private javax.swing.JLabel selectedIdLabel;
+    private com.ryansheridan.rfields.RTextField sourceAddressField;
+    private com.savrui.components.RFadePanel sourceEdit;
+    private javax.swing.JComboBox<String> sourceFieldTypeCombo;
+    private com.ryansheridan.rfields.RTextField sourceNameField;
+    private com.ryansheridan.rfields.RTextField sourceWasteAmountField;
+    private com.savrui.components.RButton submitEdit;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void updateSourceNameField(String text) {
+        sourceNameField.setText(text);
+    }
+
+    @Override
+    public void updateSourceAddressField(String text) {
+       sourceAddressField.setText(text);
+    }
+
+    @Override
+    public void updateWasteAmountField(String text) {
+        sourceWasteAmountField.setText(text);
+    }
+
+    @Override
+    public void clearInformationPanel() {
+        updateSourceNameField("");
+        updateSourceAddressField("");
+        updateWasteAmountField("");
+        updateSourceTypeCombo("Saver Type");
+    }
+
+    @Override
+    public void updateSourceTypeCombo(String text) {
+        sourceFieldTypeCombo.setSelectedItem(text);
+    }
+
+    @Override
+    public void updateSelectedId(String id) {
+        selectedIdLabel.setText(String.format("Selected: %d", id));
+    }
 }

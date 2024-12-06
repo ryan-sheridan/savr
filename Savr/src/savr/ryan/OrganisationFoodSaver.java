@@ -9,10 +9,11 @@ package savr.ryan;
  * @author ryan
  */
 public class OrganisationFoodSaver extends FoodSaver {
-    public double capacity;
+    private double capacity;
+    private Integer id;
 
-    public OrganisationFoodSaver(String firstName, String lastName, SaverType saverType, ContactInfo contactInfo, Location location) {
-        super(firstName, lastName, saverType, contactInfo, location);
+    public OrganisationFoodSaver(Integer id, String organisationName, SaverType saverType, ContactInfo contactInfo, Location location) {
+        super(id, organisationName, saverType, contactInfo, location);
     }
 
     public double getCapacity() {
@@ -22,6 +23,12 @@ public class OrganisationFoodSaver extends FoodSaver {
     public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
-    
-    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }

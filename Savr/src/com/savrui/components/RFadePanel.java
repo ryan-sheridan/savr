@@ -38,6 +38,42 @@ public class RFadePanel extends JPanel implements ActionListener {
     private float opacity = 1.0f;
     private boolean fadingOut = false;
     
+    private float startY = 0; 
+    private float targetY = 0;
+    private float currentY = 0;
+    private boolean allowedLerpY;
+
+    // not every fade panel should lerp on the y axis
+    public boolean isAllowedLerpY() {
+        return allowedLerpY;
+    }
+    
+    public void setIsAllowedLerpY(boolean isAllowedLerpY) {
+        this.allowedLerpY = isAllowedLerpY;
+    }
+
+    // method for linear interpolation
+    // with a start and end point we can get a point on that line
+    // by providing a % (a value between 0.0 and 1.0)
+    private float lerp(float start, float end, float t) {
+        return start + t * (end - start);
+    }
+    
+    // sets the target y position for movement
+    // the target y position is the final y position of the element
+    public void setTargetY(float targetY) {
+        this.targetY = targetY;
+        
+        if (!timer.isRunning()) {
+            timer.start();
+        }
+    }
+
+    // gets the current y position
+    public float getCurrentY() {
+        return currentY;
+    }
+    
     // set the opacity and repaint the component 
     public void setOpacity(float opacity) {
         this.opacity = opacity;
@@ -99,7 +135,6 @@ public class RFadePanel extends JPanel implements ActionListener {
         timer = new Timer(6, this);
     }
 
-
     @Override
     public void paint(Graphics g) {
         // we override to draw with opacity
@@ -138,6 +173,8 @@ public class RFadePanel extends JPanel implements ActionListener {
         super.paintComponent(grphcs);
     }
     
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         // this is called by timer repeatedly
@@ -168,6 +205,15 @@ public class RFadePanel extends JPanel implements ActionListener {
                     fadeCompleteListener.onFadeComplete(false);
                 }
             }
+        }
+        
+        // if the component is allowed to lerp on the y axis
+        if(allowedLerpY) {
+            // increase the current y axis by 10 percent closer to the final y 
+            currentY = lerp(currentY, targetY, 0.1f);
+            // set bounds because setLocation was bugging out
+            // make sure currentY is an int
+            setBounds(getX(), Math.round(currentY), getWidth(), getHeight());
         }
         
         // repaint to display changes

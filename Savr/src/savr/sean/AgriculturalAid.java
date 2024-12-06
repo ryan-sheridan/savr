@@ -4,11 +4,13 @@
  */
 package savr.sean;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sean
  */
-public class AgriculturalAid {
+public class AgriculturalAid implements Serializable{
     //declare variables
     protected String donorID;
     protected String itemID;

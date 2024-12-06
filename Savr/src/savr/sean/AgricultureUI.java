@@ -9,6 +9,7 @@ import static com.savrui.components.AgricultureUIManager.corpFoundingYearTF;
 import static com.savrui.components.AgricultureUIManager.corpHQAddressTF;
 import static com.savrui.components.AgricultureUIManager.corpNameTF;
 import static com.savrui.components.AgricultureUIManager.corpPhoneNumberTF;
+import static com.savrui.components.AgricultureUIManager.displayTA;
 import static com.savrui.components.AgricultureUIManager.indiAddressTF;
 import static com.savrui.components.AgricultureUIManager.indiDoBTF;
 import static com.savrui.components.AgricultureUIManager.indiEmailTF;
@@ -51,6 +52,12 @@ import savr.sean.CorporationDonor;
 import savr.sean.IndividualDonor;
 import static com.savrui.components.AgricultureUIManager.viewIndiDonorIDTF;
 import static com.savrui.components.AgricultureUIManager.viewIndiEmailTF;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 /**
@@ -59,16 +66,17 @@ import static com.savrui.components.AgricultureUIManager.viewIndiEmailTF;
  */
 public class AgricultureUI {
     private static ArrayList<AgriculturalAid> agriAid = new ArrayList<>();
+    private static File f = new File("AgriAid.dat");;
     
     
     //demo records 
     public static void addTempRecords(){
         //temporery records to populate the ArrayLists
-        AgriculturalAid tempI1 = new IndividualDonor("John", "Doe", "1990-05-12", "123 Maple Street, NY", "john.doe@example.com", 555123456, "Indi-001", "Item-001", "Shovel", "2024-11-30", "Hand Tool", 50, "Gently Used", false);
-        AgriculturalAid tempI2 = new IndividualDonor("Jane", "Smith", "1985-07-19", "456 Oak Avenue, CA", "jane.smith@example.com", 555987654, "Indi-002", "Item-002", "Hoe", "2024-11-15", "Hand Tool", 25, "Factory New", false);
+        AgriculturalAid tempI1 = new IndividualDonor("John", "Doe", "12/05/1990", "123 Maple Street, NY", "john.doe@example.com", 555123456, "Indi-001", "Item-001", "Shovel", "20/11/2024", "Hand Tool", 50, "Gently Used", false);
+        AgriculturalAid tempI2 = new IndividualDonor("Jane", "Smith", "19/07/1985", "456 Oak Avenue, CA", "jane.smith@example.com", 555987654, "Indi-002", "Item-002", "Hoe", "15/11/2024", "Hand Tool", 25, "Factory New", false);
 
-        AgriculturalAid tempC1 = new CorporationDonor("Helping Hands Corp.", 1994, "789 Elm Street, Chicago, IL", "contact@helpinghands.org", 555333444, "Corp-001", "Item-003", "Solar Panels", "2024-11-28", "Hardware", 10, "Like New", true);
-        AgriculturalAid tempC2 = new CorporationDonor("Green Future LLC", 2010, "321 Pine Boulevard, TX", "info@greenfuture.com", 555765432, "Corp-002", "Item-004", "Tracker", "2024-11-20", "Heavy Machinery", 100, "Moderately Used", true);
+        AgriculturalAid tempC1 = new CorporationDonor("Helping Hands Corp.", 1994, "789 Elm Street, Chicago, IL", "contact@helpinghands.org", 555333444, "Corp-001", "Item-003", "Solar Panels", "28/11/2024", "Hardware", 10, "Like New", true);
+        AgriculturalAid tempC2 = new CorporationDonor("Green Future LLC", 2010, "321 Pine Boulevard, TX", "info@greenfuture.com", 555765432, "Corp-002", "Item-004", "Tracker", "20/11/2024", "Heavy Machinery", 100, "Moderately Used", true);
     
         agriAid.add(tempI1);
         agriAid.add(tempI2);
@@ -105,6 +113,8 @@ public class AgricultureUI {
         AgriculturalAid tempI = new IndividualDonor(indiFirstName, indiSurname, indiDoB, indiAddress, indiEmail, indiPhoneNumber, donorID, itemID, item, dateReceived, itemType, itemQuantity, condition, isElectrical);
         agriAid.add(tempI);
         int i = agriAid.size() - 1;
+        
+        saveAgri();
         
         JOptionPane.showMessageDialog(null, "New Item Added!" + "\n" + agriAid.get(i).toString());
         //sets all fields to null after donor is added
@@ -156,6 +166,8 @@ public class AgricultureUI {
         agriAid.add(tempC);
         int i = agriAid.size() - 1;
         
+        saveAgri();
+        
         JOptionPane.showMessageDialog(null, "New Item Added!" + "\n" + agriAid.get(i).toString());
         
         //sets all fields to null after donor is added
@@ -180,14 +192,6 @@ public class AgricultureUI {
         indiPhoneNumberTF.setText("");
     }
     
-    public static void viewDonor(){
-        //TODO view donor logic
-         for(int i=0;i<agriAid.size();i++){
-           AgriculturalAid temp = new AgriculturalAid();
-           temp = agriAid.get(i);
-           JOptionPane.showMessageDialog(null, temp.toString());
-       }
-    }
     
     public static void searchDonor(){
         //TODO search donor logic
@@ -285,6 +289,8 @@ public class AgricultureUI {
                     JOptionPane.showMessageDialog(null, "Donation Deleted: " + temp.toString());
                     agriAid.remove(i);
                     
+                    saveAgri();
+                    
                     //sets all fields to null after donor is added
                     viewItemNameTF.setText("");
                     viewItemDateReceivedTF.setText("");
@@ -348,7 +354,9 @@ public class AgricultureUI {
             ((CorporationDonor) temp).setCorpEmail(viewCorpEmailTF.getText().trim());
             ((CorporationDonor) temp).setCorpPhoneNumber(Integer.parseInt(viewCorpPhoneNumberTF.getText().trim()));
                 
-             JOptionPane.showMessageDialog(null, "Corp Donor information updated successfully!\n" + temp.toString());
+            saveAgri();
+            
+             JOptionPane.showMessageDialog(null, "\nCorp Donor information updated successfully!\n" + temp.toString() + "\n");
             return;
         } 
         
@@ -367,7 +375,7 @@ public class AgricultureUI {
             ((IndividualDonor) temp).setIndiAddress(viewIndiAddressTF.getText().trim());
             ((IndividualDonor) temp).setIndiEmail(viewIndiEmailTF.getText().trim());
             ((IndividualDonor) temp).setIndiPhoneNumber(Integer.parseInt(viewIndiPhoneNumberTF.getText().trim()));
-             JOptionPane.showMessageDialog(null, "Indi Donor information updated successfully!\n" + temp.toString());
+             JOptionPane.showMessageDialog(null, "\nIndi Donor information updated successfully!\n" + temp.toString() + "\n");
             return;
             }
             }
@@ -455,5 +463,62 @@ public class AgricultureUI {
         }
     }
     return prefix + String.format("%03d", nextId);
+    }
+    
+    
+    public static void saveAgri(){
+        FileOutputStream fStream;
+        ObjectOutputStream oStream;
+        
+        try {
+            fStream = new FileOutputStream(f);
+            oStream = new ObjectOutputStream(fStream);
+            oStream.writeObject(agriAid);
+            oStream.close();
+            
+           // System.out.println("file saved successfully");
+        } catch (IOException e){
+            System.out.println("I/O e" + e);
+        }
+    }
+    
+    public static void loadAgri(){
+        FileInputStream fStream;
+        ObjectInputStream oStream;
+        
+        try {
+            fStream = new FileInputStream(f);
+            oStream = new ObjectInputStream(fStream);
+            
+            agriAid = (ArrayList <AgriculturalAid>)oStream.readObject();
+            oStream.close();
+        } catch(IOException | ClassNotFoundException e){
+            System.out.println("File input " + e);
+        }
+    }
+    
+    public static void viewDonor(){
+        //TODO view donor logic
+        if(agriAid.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No-One in System!");
+            return;
+        } else {
+            loadAgri();
+        displayTA.setText(" ");
+        displayTA.append("\nTotal Donors: " + agriAid.size() + "\n");
+         for(AgriculturalAid temp : agriAid){
+//           JOptionPane.showMessageDialog(null, temp.toString());
+        displayTA.append("\n" + temp.toString() + "\n");
+        displayTA.setCaretPosition(0);
+        }
+        }
+    }
+    
+    public static void mkFile(){
+        if(!f.exists()){
+            saveAgri();
+        } else {
+            loadAgri();
+        }
     }
 }

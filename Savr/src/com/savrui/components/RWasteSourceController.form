@@ -16,22 +16,23 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane2" min="-2" pref="446" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="rTextField1" min="-2" pref="404" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="rButton4" max="32767" attributes="0"/>
-                  </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="rScrollView1" pref="447" max="32767" attributes="0"/>
+                  <Component id="rTextField1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" max="32767" attributes="0"/>
-                  <Component id="rButton1" max="32767" attributes="0"/>
-                  <Component id="rButton2" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="rButton5" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rButton3" min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rButton6" min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
                   <Component id="jPanel1" max="32767" attributes="0"/>
+                  <Component id="rButton1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,28 +40,29 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="rButton4" max="32767" attributes="0"/>
-                          <Component id="rTextField1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="rTextField1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" max="32767" attributes="0"/>
+                      <Component id="rScrollView1" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="rButton2" min="-2" pref="31" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="rButton1" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="rButton5" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="rButton3" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="rButton6" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,182 +70,193 @@
   <SubComponents>
     <Component class="com.ryansheridan.rfields.RTextField" name="rTextField1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="32" green="32" red="32" type="rgb"/>
+        </Property>
         <Property name="borderBottom" type="boolean" value="false"/>
-        <Property name="borderRight" type="boolean" value="true"/>
         <Property name="bottomLeftRadius" type="int" value="10"/>
+        <Property name="bottomRightRadius" type="int" value="10"/>
         <Property name="placeholder" type="java.lang.String" value="Search Source"/>
-        <Property name="topRightRadius" type="int" value="0"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rTextField1ActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Component class="com.savrui.components.RButton" name="rButton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Import Data"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton5ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.savrui.components.RButton" name="rButton3">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ea" green="79" red="10" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Export Data"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.savrui.components.RButton" name="rButton6">
+      <Properties>
+        <Property name="buttonType" type="com.savrui.components.RButton$ButtonType" editor="org.netbeans.modules.form.editors.EnumEditor">
+          <Value id="HOME"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton6ActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="com.savrui.components.RScrollView" name="rScrollView1">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="rButton3" pref="267" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="rButton6" min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel3" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="jLabel5" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              <Component id="jLabel6" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="86" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="rButton6" max="32767" attributes="0"/>
-                      <Component id="rButton3" pref="31" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Name:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Type:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Location:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Amount (kg):"/>
-          </Properties>
-        </Component>
-        <Component class="com.savrui.components.RButton" name="rButton3">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ea" green="79" red="10" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="View Source Food Items"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton3ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="com.savrui.components.RButton" name="rButton6">
-          <Properties>
-            <Property name="buttonType" type="com.savrui.components.RButton$ButtonType" editor="org.netbeans.modules.form.editors.EnumEditor">
-              <Value id="HOME"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton6ActionPerformed"/>
-          </Events>
-        </Component>
-      </SubComponents>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
+    <Container class="javax.swing.JPanel" name="jPanel1">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable2">
-          <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                <Column editable="true" title="Title 4" type="java.lang.Object"/>
-              </Table>
-            </Property>
-          </Properties>
-        </Component>
+        <Container class="com.savrui.components.RFadePanel" name="sourceEdit">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="sourceEdit.setOpacity(0f);&#xa;sourceEdit.setVisible(false);"/>
+          </AuxValues>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+              <CardConstraints cardName="card3"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="sourceNameField" max="32767" attributes="0"/>
+                  <Component id="sourceWasteAmountField" max="32767" attributes="0"/>
+                  <Component id="sourceAddressField" alignment="1" max="32767" attributes="0"/>
+                  <Component id="selectedIdLabel" alignment="0" pref="297" max="32767" attributes="0"/>
+                  <Component id="sourceFieldTypeCombo" alignment="0" max="32767" attributes="0"/>
+                  <Component id="rButton2" alignment="1" max="32767" attributes="0"/>
+                  <Component id="submitEdit" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="rButton2" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="29" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sourceNameField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sourceWasteAmountField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sourceAddressField" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="sourceFieldTypeCombo" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="submitEdit" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="selectedIdLabel" pref="179" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="com.ryansheridan.rfields.RTextField" name="sourceAddressField">
+              <Properties>
+                <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
+                  <Value id="ANY"/>
+                </Property>
+                <Property name="placeholder" type="java.lang.String" value="Country / Location"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sourceAddressFieldActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="com.ryansheridan.rfields.RTextField" name="sourceNameField">
+              <Properties>
+                <Property name="placeholder" type="java.lang.String" value="Name"/>
+              </Properties>
+            </Component>
+            <Component class="com.ryansheridan.rfields.RTextField" name="sourceWasteAmountField">
+              <Properties>
+                <Property name="fieldType" type="com.ryansheridan.rfields.RTextField$FieldType" editor="org.netbeans.modules.form.editors.EnumEditor">
+                  <Value id="ANY"/>
+                </Property>
+                <Property name="placeholder" type="java.lang.String" value="Waste Amount"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="selectedIdLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="24" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Selected: None"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="sourceFieldTypeCombo">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="6">
+                    <StringItem index="0" value="Saver Type"/>
+                    <StringItem index="1" value="INDIVIDUAL"/>
+                    <StringItem index="2" value="ORGANISATION"/>
+                    <StringItem index="3" value="FARMER"/>
+                    <StringItem index="4" value="RETAILER"/>
+                    <StringItem index="5" value=" "/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="com.savrui.components.RButton" name="rButton2">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="5e" green="c5" red="22" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Create New"/>
+              </Properties>
+            </Component>
+            <Component class="com.savrui.components.RButton" name="submitEdit">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="5e" green="c5" red="22" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Submit Edit"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitEditActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Helvetica Neue" size="24" style="0"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="Make an edit"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="com.savrui.components.RButton" name="rButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Delete Source"/>
-      </Properties>
-    </Component>
-    <Component class="com.savrui.components.RButton" name="rButton2">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="5e" green="c5" red="22" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Add Source"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="154" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Google Maps Placeholder"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Component class="com.savrui.components.RButton" name="rButton4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="X"/>
-        <Property name="roundBottomLeft" type="boolean" value="false"/>
-        <Property name="roundTopLeft" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Delete Selected"/>
       </Properties>
     </Component>
   </SubComponents>
