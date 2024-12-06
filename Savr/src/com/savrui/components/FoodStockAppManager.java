@@ -117,7 +117,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         RightPanel = new javax.swing.JPanel();
         logoPanel = new javax.swing.JPanel();
         logoTitleLBL = new javax.swing.JLabel();
-        logopictureLBL = new javax.swing.JLabel();
+        conorLogoPanel1 = new savr.ConorLogoPanel();
         foodStockPanel = new javax.swing.JPanel();
         titleLBL = new javax.swing.JLabel();
         addBTN = new javax.swing.JButton();
@@ -273,30 +273,26 @@ public class FoodStockAppManager extends javax.swing.JPanel {
         logoTitleLBL.setText("Welcome to Savr ");
         logoTitleLBL.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        logopictureLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/SavrLogo300.jpg"))); // NOI18N
-
         javax.swing.GroupLayout logoPanelLayout = new javax.swing.GroupLayout(logoPanel);
         logoPanel.setLayout(logoPanelLayout);
         logoPanelLayout.setHorizontalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logoPanelLayout.createSequentialGroup()
-                .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(logoPanelLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(logopictureLBL))
+                .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(conorLogoPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(logoPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(logoTitleLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         logoPanelLayout.setVerticalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logoPanelLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(logoTitleLBL)
-                .addGap(18, 18, 18)
-                .addComponent(logopictureLBL)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(conorLogoPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         RightPanel.add(logoPanel);
@@ -857,6 +853,7 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JPanel checkStockPanel;
+    private savr.ConorLogoPanel conorLogoPanel1;
     public static javax.swing.JButton deleteBTN;
     public static javax.swing.JButton editBTN;
     private javax.swing.JButton exitBTN;
@@ -871,7 +868,6 @@ public class FoodStockAppManager extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JPanel logoPanel;
     private javax.swing.JLabel logoTitleLBL;
-    private javax.swing.JLabel logopictureLBL;
     private javax.swing.JLabel monthlyShelfLBL;
     public static com.ryansheridan.rfields.RTextField monthlyShelfTF;
     private javax.swing.JLabel nameLBL;
