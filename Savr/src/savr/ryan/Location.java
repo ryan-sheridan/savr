@@ -4,11 +4,13 @@
  */
 package savr.ryan;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ryan
  */
-public class Location {
+public class Location implements Serializable {
     private double latitude;
     private double longitude;
     private String address;
@@ -20,6 +22,11 @@ public class Location {
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
+    }
+    
+    public Location(Integer id, String address) {
+        this.id = id;
+        this.address = address;
     }
 
     public Location(String address, String country) {

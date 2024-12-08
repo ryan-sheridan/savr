@@ -34,6 +34,14 @@ public class RScrollView extends JPanel {
     
     // Object because were not sure of the datatype yet, could be source, saver or record
     private HashMap<Integer, ?> dataMap;
+
+    public HashMap<Integer, ?> getDataMap() {
+        return dataMap;
+    }
+
+    public void setDataMap(HashMap<Integer, ?> dataMap) {
+        this.dataMap = dataMap;
+    }
     
     public enum ScrollDataType {
         RECORD,
@@ -59,55 +67,26 @@ public class RScrollView extends JPanel {
         fadePanels = new ArrayList<>();
 
         if (!java.beans.Beans.isDesignTime()) {
-            WasteManager wasteManager = new WasteManager();
-            initializeData(wasteManager);
+            WasteManager wasteManager = WasteManager.getInstance();
+            initialiseData(wasteManager);
         }
 
         // content panel with vertical layout
         contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
         
-        boolean secondaryColour = true;
-        
-        if(dataMap == null) {
-            return;
-        }
-        
-        for (Map.Entry<Integer, ?> entry : dataMap.entrySet()) {
-            Integer key = entry.getKey();
-            Object value = entry.getValue();
-            RFadePanel panel = new RFadePanel();
-            
-            if(value instanceof WasteSource) {
-                WasteSource source = (WasteSource)value;
-                panel = createWasteSourcePanel(source);
-                contentPanel.add(panel);
-            } else if (value instanceof FoodSaver) {
-                FoodSaver saver = (FoodSaver)value;
-                panel = createFoodSaverPanel(saver);
-                contentPanel.add(panel);
-            } else if (value instanceof RedistributionRecord) {
-                RedistributionRecord record = (RedistributionRecord)value;
-                panel = createRedistributionPanel(record);
-                contentPanel.add(panel);
-            }
-            
-            if(secondaryColour) {
-                panel.setBackground(new Color(60, 60, 60));
-            }
-
-            secondaryColour = !secondaryColour;
-            
-        }
-        
         scrollPane = new JScrollPane(contentPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         add(scrollPane, BorderLayout.CENTER);
+        
+        if(dataMap != null) {
+            populateContent();
+        }
     }
     
-    private void initializeData(WasteManager wasteManager) {
+    public void initialiseData(WasteManager wasteManager) {
         // grab map from db
         if(scrollDataType == SOURCE) {
             dataMap = wasteManager.getWasteSources();
@@ -151,6 +130,8 @@ public class RScrollView extends JPanel {
                     editor.updateSourceNameField(wasteSource.getSourceName());
                     editor.updateWasteAmountField(String.valueOf(wasteSource.getWasteAmount()));
                     editor.updateSourceAddressField(wasteSource.getLocation().getCountry());
+                    editor.updateSourceTypeCombo(String.valueOf(wasteSource.getSourceType()));
+                    editor.updateSelectedId(wasteSource.getId());
                 }
             }
             @Override
@@ -212,6 +193,56 @@ public class RScrollView extends JPanel {
         panel.add(secondaryLabel, BorderLayout.EAST);
 
         return panel;
+    }
+    
+    private void populateContent() {
+        boolean secondaryColour = true;
+
+        for (Map.Entry<Integer, ?> entry : dataMap.entrySet()) {
+            Integer key = entry.getKey();
+            Object value = entry.getValue();
+            RFadePanel panel = createDataPanel();
+
+            if(value instanceof WasteSource) {
+                WasteSource source = (WasteSource)value;
+                panel = createWasteSourcePanel(source);
+                contentPanel.add(panel);
+            } else if (value instanceof FoodSaver) {
+                FoodSaver saver = (FoodSaver)value;
+                panel = createFoodSaverPanel(saver);
+                contentPanel.add(panel);
+            } else if (value instanceof RedistributionRecord) {
+                RedistributionRecord record = (RedistributionRecord)value;
+                panel = createRedistributionPanel(record);
+                contentPanel.add(panel);
+            }
+
+            if(secondaryColour) {
+                panel.setBackground(new Color(60, 60, 60));
+            }
+
+            secondaryColour = !secondaryColour;
+        }
+    }
+    
+    public void updateAll() {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                contentPanel.removeAll();
+
+                fadePanels.clear();
+
+                if (dataMap != null) {
+                    populateContent();
+                }
+
+                RDynamicUI.updateFont(contentPanel);
+                
+                contentPanel.revalidate();
+                contentPanel.repaint();
+            }
+        });
     }
     
     private RFadePanel createWasteSourcePanel(WasteSource source) {

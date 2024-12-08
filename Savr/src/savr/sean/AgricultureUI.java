@@ -114,7 +114,7 @@ public class AgricultureUI {
         agriAid.add(tempI);
         int i = agriAid.size() - 1;
         
-        saveAgri();
+        saveAgri();//saves added Individual donor to a .dat file
         
         JOptionPane.showMessageDialog(null, "New Item Added!" + "\n" + agriAid.get(i).toString());
         //sets all fields to null after donor is added
@@ -166,7 +166,7 @@ public class AgricultureUI {
         agriAid.add(tempC);
         int i = agriAid.size() - 1;
         
-        saveAgri();
+        saveAgri();//saves Corporation donor to a .dat file
         
         JOptionPane.showMessageDialog(null, "New Item Added!" + "\n" + agriAid.get(i).toString());
         
@@ -194,24 +194,25 @@ public class AgricultureUI {
     
     
     public static void searchDonor(){
-        //TODO search donor logic
         //get the searchTerm from search text field
         //check if empty, if empty display that its empty
         //if populated, get Item ID from searchTerm
         //display details in each text field based on Item ID by iterating through both Corporation and Individual donors
         //if searchTerm doesnt equal and Item ID, display an error explaining so
         
-        String searchTerm = searchTF.getText().trim();
-        if(agriAid.isEmpty()){
+        String searchTerm = searchTF.getText().trim(); //get searchTerm from search text field
+        if(agriAid.isEmpty()){//if arraylist is empty, display it to the user
             JOptionPane.showMessageDialog(null, "No-One in System!");
             return;
         } 
         boolean found = false;
         
-        for(AgriculturalAid temp: agriAid){
-        if(temp.getItemID().equals(searchTerm)){
-            found = true;
-            if(temp instanceof CorporationDonor){
+        for(AgriculturalAid temp: agriAid){ //loop through AgriculturalAid arraylist
+        if(temp.getItemID().equals(searchTerm)){//if for finding if there is an item ID in the arraylist with a given searchTerm
+            found = true; // if Item ID equals searchTerm, found is true
+            if(temp instanceof CorporationDonor){ //checks if searchTerm is within CorporationDonor 
+                
+                //if searchTerm is equal to a CorporationDonor item ID, displays all information related to that item ID
                 viewCorpSelectorBTN.setSelected(true);
                 viewCorpDonorPanel.setVisible(true);
                 viewIndiDonorPanel.setVisible(false);
@@ -234,7 +235,8 @@ public class AgricultureUI {
                 JOptionPane.showMessageDialog(null, "Corporation Donation Found!");
                 searchTF.setText("Item-00");
                 break;
-            } else if(temp instanceof IndividualDonor) {
+            } else if(temp instanceof IndividualDonor) { //checks if searchTerm is within IndividualDonor
+                //if searchTerm is equal to a IndividualDonor item ID, displays all information related to that item ID
                 viewIndiSelectorBTN.setSelected(true);
                 viewCorpDonorPanel.setVisible(false);
                 viewIndiDonorPanel.setVisible(true);
@@ -263,7 +265,7 @@ public class AgricultureUI {
             break;
         }      
         }
-        if(!found){
+        if(!found){ //if the searchTerm doesnt match any item ID in the system, display it to the user that no item ID was found
             JOptionPane.showMessageDialog(null, "No record found for Item ID: " + searchTerm);
             searchTF.setText("Item-00");
         }
@@ -277,19 +279,19 @@ public class AgricultureUI {
         //if match is found, removes donation from the ArrayList
         //sets all text fields to null once completed
         
-        String searchTerm = viewItemIDTF.getText().trim();
-        boolean found = false;
-        if(agriAid.isEmpty()){
+        String searchTerm = viewItemIDTF.getText().trim(); //sets searchTerm to viewItemID text field
+        boolean found = false; //if viewItemIDTF equals searchTerm, itemID is found
+        if(agriAid.isEmpty()){ //if array list is empty, display a message to the user the the system is empty
             JOptionPane.showMessageDialog(null, "No-One is System!");
         } else {
-            for(int i = 0; i < agriAid.size(); i++){
-               AgriculturalAid temp = agriAid.get(i);
-                if(temp.getItemID().equalsIgnoreCase(searchTerm)){
+            for(int i = 0; i < agriAid.size(); i++){ //for loop that loop through the arraylist (initially used AgriculturalAid temp: agriAid but this cause an iteration error
+               AgriculturalAid temp = agriAid.get(i); //set temp to get the position of the obj to be deleted
+                if(temp.getItemID().equalsIgnoreCase(searchTerm)){//if item ID equals searchTerm, display which record is getting deleted and remove it from the arraylist
                     found = true;
                     JOptionPane.showMessageDialog(null, "Donation Deleted: " + temp.toString());
                     agriAid.remove(i);
                     
-                    saveAgri();
+                    saveAgri();//after deletion, write to a dat file to remove the record from the system
                     
                     //sets all fields to null after donor is added
                     viewItemNameTF.setText("");
@@ -313,7 +315,7 @@ public class AgricultureUI {
                     viewIndiPhoneNumberTF.setText("");
                 }
             }
-            if(!found){
+            if(!found){//if itemID isnt found, display that no record is found for the used searchTerm
             JOptionPane.showMessageDialog(null, "No record found for Item ID: " + searchTerm);
             }
         }
@@ -327,20 +329,20 @@ public class AgricultureUI {
         //updates the text fields that were change based on if it was a Corporation donor or Individual Donor
         //if no Item ID is found, display error
         
-         String searchTerm = viewItemIDTF.getText().trim();
-        if(agriAid.isEmpty()){
+         String searchTerm = viewItemIDTF.getText().trim(); //sets searchTerm to viewItemID text field
+        if(agriAid.isEmpty()){//if system is empty display message to user telling that no-one is in the system
             JOptionPane.showMessageDialog(null, "No-One in System!");
             return;
         } 
         boolean found = false;
         
-        for(AgriculturalAid temp: agriAid){
-            if(temp.getItemID().equals(searchTerm)){
+        for(AgriculturalAid temp: agriAid){ 
+            if(temp.getItemID().equals(searchTerm)){//checks if item ID is equal to searchTerm
                 found = true;
             
-        if (temp instanceof CorporationDonor) { //updates details for corporation donors
+        if (temp instanceof CorporationDonor) { //checks if searchTerm is equal to a CorporationDonor item ID
             
-           
+            //if item iD is found, update any changed fields that are equal to the searchTerm
             temp.setItem(viewItemNameTF.getText().trim());
             temp.setDateReceived(viewItemDateReceivedTF.getText().trim());
             temp.setItemType(viewItemTypeTF.getText().trim());
@@ -354,14 +356,15 @@ public class AgricultureUI {
             ((CorporationDonor) temp).setCorpEmail(viewCorpEmailTF.getText().trim());
             ((CorporationDonor) temp).setCorpPhoneNumber(Integer.parseInt(viewCorpPhoneNumberTF.getText().trim()));
                 
-            saveAgri();
+            saveAgri(); //saves any changes to a dat file
             
-             JOptionPane.showMessageDialog(null, "\nCorp Donor information updated successfully!\n" + temp.toString() + "\n");
+             JOptionPane.showMessageDialog(null, "\nCorp Donor information updated successfully!\n" + temp.toString() + "\n");//displays the updated record
             return;
         } 
         
-        if (temp instanceof IndividualDonor) { // updates details for individual donors
+        if (temp instanceof IndividualDonor) { //checks if searchTerm is equal to a IndividualDonor item ID
             
+            //if item id is found, update any changed fields that are equal to the that item ID
             temp.setItem(viewItemNameTF.getText().trim());
             temp.setDateReceived(viewItemDateReceivedTF.getText().trim());
             temp.setItemType(viewItemTypeTF.getText().trim());
@@ -375,13 +378,16 @@ public class AgricultureUI {
             ((IndividualDonor) temp).setIndiAddress(viewIndiAddressTF.getText().trim());
             ((IndividualDonor) temp).setIndiEmail(viewIndiEmailTF.getText().trim());
             ((IndividualDonor) temp).setIndiPhoneNumber(Integer.parseInt(viewIndiPhoneNumberTF.getText().trim()));
-             JOptionPane.showMessageDialog(null, "\nIndi Donor information updated successfully!\n" + temp.toString() + "\n");
+            
+            saveAgri(); //saves any changes to a dat file
+            
+             JOptionPane.showMessageDialog(null, "\nIndi Donor information updated successfully!\n" + temp.toString() + "\n");//displays the updated record
             return;
             }
             }
         }
     
-        if(!found){
+        if(!found){//if item ID doesnt equal any searchTerm, display to the user that no item ID was found
             JOptionPane.showMessageDialog(null, "No record found for Item ID: " + searchTerm);
         }
     }
@@ -399,9 +405,9 @@ public class AgricultureUI {
     int nextId = 1; 
 
     if (agriAid != null && !agriAid.isEmpty()) {
-        for (AgriculturalAid aid : agriAid) {
-            if (aid instanceof IndividualDonor) {
-                String currentId = ((IndividualDonor) aid).getDonorID();
+        for (AgriculturalAid temp : agriAid) {
+            if (temp instanceof IndividualDonor) {
+                String currentId = ((IndividualDonor) temp).getDonorID();
                 if (currentId.startsWith(prefix)) {
                     int idNumber = Integer.parseInt(currentId.substring(prefix.length()));
                     nextId = Math.max(nextId, idNumber + 1);
@@ -427,9 +433,9 @@ public class AgricultureUI {
         int nextId = 1;
         
         if(agriAid != null && !agriAid.isEmpty()){
-            for (AgriculturalAid aid : agriAid){
-                if(aid instanceof CorporationDonor){
-                    String currentId = ((CorporationDonor) aid).getDonorID();
+            for (AgriculturalAid temp : agriAid){
+                if(temp instanceof CorporationDonor){
+                    String currentId = ((CorporationDonor) temp).getDonorID();
                     if(currentId.startsWith(prefix)){
                     int idNumber = Integer.parseInt(currentId.substring(prefix.length()));
                     nextId = Math.max(nextId, idNumber + 1);
@@ -437,7 +443,7 @@ public class AgricultureUI {
             }
         }
     }
-        return prefix + String.format("%03d", nextId);
+        return prefix + String.format("%03d", nextId); //returns next highest Corporation ID in the format Corp-000
     }
     
     public static String createItemID(){
@@ -453,11 +459,10 @@ public class AgricultureUI {
         int nextId = 1;
         
         if(agriAid != null && !agriAid.isEmpty()){
-            for (AgriculturalAid aid : agriAid){
-                    String currentId = aid.getItemID();
-                    if (currentId != null && currentId.startsWith(prefix)) {
+            for (AgriculturalAid temp : agriAid){
+                String currentId = temp.getItemID();
+                if (currentId != null && currentId.startsWith(prefix)) {
                 int idNumber = Integer.parseInt(currentId.substring(prefix.length()));
-                // Update nextId to the highest existing ID + 1
                 nextId = Math.max(nextId, idNumber + 1);
             }
         }
@@ -473,8 +478,8 @@ public class AgricultureUI {
         try {
             fStream = new FileOutputStream(f);
             oStream = new ObjectOutputStream(fStream);
-            oStream.writeObject(agriAid);
-            oStream.close();
+            oStream.writeObject(agriAid); //writes arraylist to a dat file
+            oStream.close();//close the file
             
            // System.out.println("file saved successfully");
         } catch (IOException e){
@@ -491,6 +496,7 @@ public class AgricultureUI {
             oStream = new ObjectInputStream(fStream);
             
             agriAid = (ArrayList <AgriculturalAid>)oStream.readObject();
+            //reads all elements from the arraylist object
             oStream.close();
         } catch(IOException | ClassNotFoundException e){
             System.out.println("File input " + e);
@@ -498,26 +504,25 @@ public class AgricultureUI {
     }
     
     public static void viewDonor(){
-        //TODO view donor logic
-        if(agriAid.isEmpty()){
+        if(agriAid.isEmpty()){//if arraylist is emtpy, display to the user that no-one is in the system
             JOptionPane.showMessageDialog(null, "No-One in System!");
             return;
-        } else {
+        } else {//else load the arraylist with the most up to date records and display them in a text area
             loadAgri();
         displayTA.setText(" ");
-        displayTA.append("\nTotal Donors: " + agriAid.size() + "\n");
+        displayTA.append("\nTotal Donors: " + agriAid.size() + "\n");//displays how many donors are in the system
          for(AgriculturalAid temp : agriAid){
 //           JOptionPane.showMessageDialog(null, temp.toString());
-        displayTA.append("\n" + temp.toString() + "\n");
-        displayTA.setCaretPosition(0);
+        displayTA.append("\n" + temp.toString() + "\n");//appends all the Donors information to a text area
+        displayTA.setCaretPosition(0);//sets the text area to the top if scrolling is needed
         }
         }
     }
     
     public static void mkFile(){
-        if(!f.exists()){
+        if(!f.exists()){//if no dat file exists, create the dat file and populate it with 4 records
             saveAgri();
-        } else {
+        } else { //if dat file exists load all the record in the system
             loadAgri();
         }
     }

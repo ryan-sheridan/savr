@@ -33,6 +33,7 @@
                   </Group>
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Component id="rButton1" max="32767" attributes="0"/>
+                  <Component id="rButton4" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -50,8 +51,10 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="rButton1" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="rButton4" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="rButton5" alignment="1" min="-2" pref="31" max="-2" attributes="0"/>
@@ -164,7 +167,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="submitEdit" min="-2" pref="31" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="selectedIdLabel" pref="179" max="32767" attributes="0"/>
+                      <Component id="selectedIdLabel" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -208,15 +212,18 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="6">
-                    <StringItem index="0" value="Saver Type"/>
-                    <StringItem index="1" value="INDIVIDUAL"/>
-                    <StringItem index="2" value="ORGANISATION"/>
-                    <StringItem index="3" value="FARMER"/>
-                    <StringItem index="4" value="RETAILER"/>
+                    <StringItem index="0" value="Source Type"/>
+                    <StringItem index="1" value="RETAILER"/>
+                    <StringItem index="2" value="RESTAURANT"/>
+                    <StringItem index="3" value="INDIVIDUAL"/>
+                    <StringItem index="4" value="FARMER"/>
                     <StringItem index="5" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sourceFieldTypeComboActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -228,6 +235,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Create New"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="com.savrui.components.RButton" name="submitEdit">
               <Properties>
@@ -258,6 +268,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete Selected"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="com.savrui.components.RButton" name="rButton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Clear All Entries"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rButton4ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

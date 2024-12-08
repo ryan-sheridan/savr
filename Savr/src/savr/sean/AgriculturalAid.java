@@ -21,9 +21,10 @@ public class AgriculturalAid implements Serializable{
     protected String condition;
     protected boolean isElectrical;
 
-    public AgriculturalAid() {
+    public AgriculturalAid() {//empty constructor
     }
 
+    //constructor
     public AgriculturalAid(String donorID, String itemID, String item, String dateReceived, String itemType, int itemQuantity, String condition, boolean isElectrical) {
         this.donorID = donorID;
         this.itemID = itemID;
@@ -35,6 +36,7 @@ public class AgriculturalAid implements Serializable{
         this.isElectrical = isElectrical;
     }
 
+    //setter and getters
     public void setDonorID(String donorID) {
         this.donorID = donorID;
     }
@@ -99,7 +101,7 @@ public class AgriculturalAid implements Serializable{
         return isElectrical;
     }
     
-    
+    //toString to display item details for both CorporationDonor and IndividualDonor
     public String toString() {
      return "Donor ID: " + donorID + "\n" +
             "Item ID: " + itemID + "\n" +

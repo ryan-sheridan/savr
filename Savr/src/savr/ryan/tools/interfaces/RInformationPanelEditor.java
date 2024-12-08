@@ -15,7 +15,9 @@ public interface RInformationPanelEditor {
     void updateSourceAddressField(String text);
     void updateWasteAmountField(String text);
     void updateSourceTypeCombo(String type);
-    void updateSelectedId(String id);
+    void updateSelectedId(int id);
+    
+    void refreshScrollView();
     
     void clearInformationPanel();
 }

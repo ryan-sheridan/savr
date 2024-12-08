@@ -17,9 +17,10 @@ public class IndividualDonor extends AgriculturalAid{
     private String indiEmail;
     private int indiPhoneNumber;
 
-    public IndividualDonor() {
+    public IndividualDonor() {//Empty Constructor
     }
-
+    
+    //Constructor
     public IndividualDonor(String indiFirstName, String indiSurname, String indiDoB, String indiAddress, String indiEmail, int indiPhoneNumber, String donorID, String itemID, String item, String dateReceived, String itemType, int itemQuantity, String condition, boolean isElectrical) {
         super(donorID, itemID, item, dateReceived, itemType, itemQuantity, condition, isElectrical);
         this.indiFirstName = indiFirstName;
@@ -30,6 +31,7 @@ public class IndividualDonor extends AgriculturalAid{
         this.indiPhoneNumber = indiPhoneNumber;
     }
 
+    //Setters and Getters for IndividualDonor Class
     public void setIndiFirstName(String indiFirstName) {
         this.indiFirstName = indiFirstName;
     }
@@ -78,6 +80,7 @@ public class IndividualDonor extends AgriculturalAid{
         return indiPhoneNumber;
     }
     
+    //toString for displaying IndividualDonor information
      @Override
     public String toString() {
         return "----- Individual Donor -----\n" +
@@ -88,6 +91,5 @@ public class IndividualDonor extends AgriculturalAid{
                 "Email: " + indiEmail + "\n" +
                 "Phone Number: " + indiPhoneNumber + "\n"
                  + super.toString();
-    }
-    
+    } 
 }

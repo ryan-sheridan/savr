@@ -122,7 +122,7 @@ public class RGlassDialog extends RFadePanel {
             centerBox.setRoundBottomRight(20);
 
             // the box size
-            Dimension boxSize = new Dimension(300, 200);
+            Dimension boxSize = new Dimension(350, 200);
             centerBox.setSize(boxSize);
 
             // grab the parent JFrame
@@ -149,7 +149,7 @@ public class RGlassDialog extends RFadePanel {
             // our primary button is an instance of RButton
             // set the size 
             primaryButton = new RButton();
-            Dimension buttonSize = new Dimension(60, 30);
+            Dimension buttonSize = new Dimension(320/2-3, 30);
             primaryButton.setSize(buttonSize);
 
             // to position the button and title we need the bounds of our centerBox

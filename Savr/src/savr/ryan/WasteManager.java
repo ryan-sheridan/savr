@@ -5,6 +5,7 @@
 package savr.ryan;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import savr.ryan.tools.RDataPersistence;
 
@@ -16,8 +17,10 @@ public class WasteManager {
     private HashMap<Integer, RedistributionRecord> recordMap;
     private HashMap<Integer, WasteSource> sourceMap;
     private HashMap<Integer, FoodSaver> saverMap;
+    
+    private static WasteManager instance;
 
-    public WasteManager() {
+    private WasteManager() {
         recordMap = new HashMap<>();
         sourceMap = new HashMap<>();
         saverMap = new HashMap<>();
@@ -38,7 +41,46 @@ public class WasteManager {
             }
         }
     }
+    
+    public WasteSource getWasteSourceById(Integer id) {
+        return sourceMap.get(id);
+    }
+    
+    public Integer getNewId() {
+        if(!sourceMap.isEmpty()) {
+            Integer maxKey = Collections.max(sourceMap.keySet());
+            return maxKey + 1;
+        } else {
+            return 1;
+        }
+    }   
+    
+    public void deleteWasteSourceById(Integer id) {
+        sourceMap.remove(id);
+    }
+    
+    public void clearAllSources() {
+        System.out.println("yes");
+        sourceMap.clear();
+    }
+    
+    public FoodSaver getFoodSaverById(Integer id) {
+        return saverMap.get(id);
+    }
+    
+    public RedistributionRecord getRecordById(Integer id) {
+        return recordMap.get(id);
+    }
 
+    public static WasteManager getInstance() {
+        if(instance != null) {
+            return instance;
+        } else {
+            instance = new WasteManager();
+        }
+        return instance;
+    }
+    
     public void addWasteSource(Integer id, WasteSource source) {
         sourceMap.put(id, source);
     }
