@@ -1623,31 +1623,31 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCreateDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseEntered
-        // TODO add your handling code here:
+        // highlights background of menuCreateDonoPanel when hovered over
         menuCreateDonoPanel.setBackground(new Color(40,40,40));
     }//GEN-LAST:event_menuCreateDonoPanelMouseEntered
 
     private void menuCreateDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseExited
-        // TODO add your handling code here:
+        // returns to default background color when no longer hovering
         menuCreateDonoPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_menuCreateDonoPanelMouseExited
 
     private void menuCreateDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuCreateDonoPanelMouseClicked
-        // TODO add your handling code here:
+        // highlights selected panel, sets other menu panels back to default color
         menuCreateDonoPanel.setBackground(new Color(70,70,70));
         menuViewDonoPanel.setBackground(new Color(55,55,55));
         menuDisplayDonoPanel.setBackground(new Color(55,55,55));
-        
+        //highlights selected label, sets other menu labels back to default color
         menuCreateDonoLBL.setForeground(new Color(255,255,200));
         menuViewDonoLBL.setForeground(new Color(240,240,240));
         menuDisplayDonoLBL.setForeground(new Color(240,240,240));
-        
+        //makes selected panel visible and hides all other none selected panels
         createDonorPanel.setVisible(true);
         viewDonorPanel.setVisible(false);
         
         createCorpDonorPanel.setVisible(false);
         createIndiDonorPanel.setVisible(false);
-        
+        // when selected sets all fields to be empty
         itemNameTF.setText("");
         itemDateReceivedTF.setText("");
         itemTypeTF.setText("");
@@ -1667,43 +1667,43 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiAddressTF.setText("");
         indiEmailTF.setText("");
         indiPhoneNumberTF.setText("");
-        
+        //hides all other swing elements from display panel
         displayDonorBTN.setVisible(false);
         displaySP.setVisible(false);
         displayTA.setVisible(false);
     }//GEN-LAST:event_menuCreateDonoPanelMouseClicked
 
     private void menuViewDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseEntered
-        // TODO add your handling code here:
+        // highlights selected panel
         menuViewDonoPanel.setBackground(new Color(40,40,40));
     }//GEN-LAST:event_menuViewDonoPanelMouseEntered
 
     private void menuViewDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseExited
-        // TODO add your handling code here:
+        // sets panel back to default color when no longer hovering it
         menuViewDonoPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_menuViewDonoPanelMouseExited
 
     private void menuViewDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuViewDonoPanelMouseClicked
-        // TODO add your handling code here:
+        // highlights selected panel, sets other menu panels back to default color
         menuCreateDonoPanel.setBackground(new Color(55,55,55));
         menuViewDonoPanel.setBackground(new Color(70,70,70));
         menuDisplayDonoPanel.setBackground(new Color(55,55,55));
-        
+        //highlights selected label, sets other menu labels back to default color
         menuViewDonoLBL.setForeground(new Color(255,255,200));
         menuCreateDonoLBL.setForeground(new Color(240,240,240));
         menuDisplayDonoLBL.setForeground(new Color(240,240,240));
-        
+        //makes selected panel visible and hides all other none selected panels
         createDonorPanel.setVisible(false);
         viewDonorPanel.setVisible(true);
         
         viewCorpDonorPanel.setVisible(false);
         viewIndiDonorPanel.setVisible(false);
-        
+        //sets all elements in selected panel to be visible
         viewItemDetailsPanel.setVisible(true);
         viewDonorTypeSelectorPanel.setVisible(true);
         viewDonorTypePanel.setVisible(true);
         viewSearchPanel.setVisible(true);
-        
+        // when selected sets all fields to be empty
         viewItemIDTF.setText("");
         viewDonorIDTF.setText("");
         viewIndiDonorIDTF.setText("");
@@ -1726,7 +1726,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiAddressTF.setText("");
         viewIndiEmailTF.setText("");
         viewIndiPhoneNumberTF.setText("");
-        
+        //hides all other swing elements from display panel
         displayDonorBTN.setVisible(false);
         displaySP.setVisible(false);
         displayTA.setVisible(false);
@@ -1767,11 +1767,13 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_corpPhoneNumberTFActionPerformed
 
     private void corpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_corpSelectorBTNActionPerformed
+        //sets corp donor panel to be true when radio button is selected
         createCorpDonorPanel.setVisible(true);
         createIndiDonorPanel.setVisible(false);
     }//GEN-LAST:event_corpSelectorBTNActionPerformed
 
     private void indiSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indiSelectorBTNActionPerformed
+        //sets indi donor panel to be true when radio button is selected
         createCorpDonorPanel.setVisible(false);
         createIndiDonorPanel.setVisible(true);
     }//GEN-LAST:event_indiSelectorBTNActionPerformed
@@ -1801,10 +1803,12 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_indiSurnameTFActionPerformed
 
     private void exitAppPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseClicked
+        //exits program when clicked
         System.exit(0);
     }//GEN-LAST:event_exitAppPanelMouseClicked
 
     private void backToMenuPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseClicked
+       //returns user back to MainApplication JFrame when clicked
         MainApplication zerohunger = new MainApplication();
         zerohunger.setLocationRelativeTo(null);
         zerohunger.setVisible(true);
@@ -1816,22 +1820,22 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_backToMenuPanelMouseClicked
 
     private void exitAppPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseEntered
-        // TODO add your handling code here:
+        // highlights selected panel
         exitAppPanel.setBackground(new Color(40,40,40));
     }//GEN-LAST:event_exitAppPanelMouseEntered
 
     private void exitAppPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitAppPanelMouseExited
-        // TODO add your handling code here:
+        // sets panel back to default color when no longer hovering
         exitAppPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_exitAppPanelMouseExited
 
     private void backToMenuPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseEntered
-        // TODO add your handling code here:
+        // highlights selected panel
         backToMenuPanel.setBackground(new Color(40,40,40));
     }//GEN-LAST:event_backToMenuPanelMouseEntered
 
     private void backToMenuPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backToMenuPanelMouseExited
-        // TODO add your handling code here:
+         // sets panel back to default color when no longer hovering
         backToMenuPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_backToMenuPanelMouseExited
 
@@ -1860,7 +1864,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpHQAddressTFActionPerformed
 
     private void updateCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCorpBTNActionPerformed
-        // TODO add your handling code here:
+        // checks if all fields are filled before updating Donor information
         if (viewItemNameTF.getText().trim().isEmpty() ||
         viewItemDateReceivedTF.getText().trim().isEmpty() ||
         viewItemTypeTF.getText().trim().isEmpty() ||
@@ -1870,24 +1874,24 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewCorpHQAddressTF.getText().trim().isEmpty() ||
         viewCorpEmailTF.getText().trim().isEmpty() ||
         viewCorpPhoneNumberTF.getText().trim().isEmpty()){
-            
+            //error message for if not all fields are filled in
             JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
         }
-        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
+        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$"; //date format error checking
         if(viewItemDateReceivedTF.getText().matches(regex)){
        } else {
            JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
            return;
        }
-        
+        //email format error checking
         if(viewCorpEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
       } else {
             JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
             return;
         }
         
-        AgricultureUI.updateDonor();
+        AgricultureUI.updateDonor();//updates Donor information
     }//GEN-LAST:event_updateCorpBTNActionPerformed
 
     private void viewCorpFoundingYearTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpFoundingYearTFActionPerformed
@@ -1895,36 +1899,37 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpFoundingYearTFActionPerformed
 
     private void viewDonorIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewDonorIDTFActionPerformed
-        // TODO add your handling code here:
+        // makes selected field editable to be false
         viewDonorIDTF.setEditable(false);
     }//GEN-LAST:event_viewDonorIDTFActionPerformed
 
     private void viewCorpSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNActionPerformed
-        // TODO add your handling code here:
+        // sets corp donor panel to be visible
         viewCorpSelectorBTN.setEnabled(false);
         viewCorpDonorPanel.setVisible(true);
         viewIndiDonorPanel.setVisible(false);
-        
+        //sets search button and field to be visible
         searchBTN.setVisible(true);
         searchTF.setVisible(true);
     }//GEN-LAST:event_viewCorpSelectorBTNActionPerformed
 
     private void viewIndiSelectorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiSelectorBTNActionPerformed
-        // TODO add your handling code here:
+        // sets indi donor panel to be visible
         viewIndiSelectorBTN.setEnabled(false);
         viewCorpDonorPanel.setVisible(false);
         viewIndiDonorPanel.setVisible(true);
-        
+        //sets search button and field to be visible
         searchBTN.setVisible(true);
         searchTF.setVisible(true);
     }//GEN-LAST:event_viewIndiSelectorBTNActionPerformed
 
     private void viewItemIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewItemIDTFActionPerformed
+       //makes field unable to be edited
         viewItemIDTF.setEditable(false);
     }//GEN-LAST:event_viewItemIDTFActionPerformed
 
     private void viewIndiDonorIDTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewIndiDonorIDTFActionPerformed
-        // TODO add your handling code here:
+        // makes field unable to be edited
         viewIndiDonorIDTF.setEditable(false);
     }//GEN-LAST:event_viewIndiDonorIDTFActionPerformed
 
@@ -1957,7 +1962,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpNameTFActionPerformed
 
     private void addIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIndiBTNActionPerformed
-        // TODO add your handling code here:
+        // checks if all fields have been filled before adding indi donor to the system
         if (itemNameTF.getText().trim().isEmpty() ||
         itemDateReceivedTF.getText().trim().isEmpty() ||
         itemTypeTF.getText().trim().isEmpty() ||
@@ -1969,26 +1974,27 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiEmailTF.getText().trim().isEmpty() ||
         indiPhoneNumberTF.getText().trim().isEmpty() ||
         itemConditionCB.getSelectedItem() == null) {
+            //error message for if fields have not all been filled
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
     }
-        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
+        String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";//date error checking
         if(itemDateReceivedTF.getText().matches(regex) || indiDoBTF.getText().matches(regex)){
        } else {
            JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
            return;
-       }
+       }//email error checking
         if(indiEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
       } else {
             JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
             return;
         }
         
-        AgricultureUI.addIndi();
+        AgricultureUI.addIndi();//method for adding individual donor to the system
     }//GEN-LAST:event_addIndiBTNActionPerformed
 
     private void addCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCorpBTNActionPerformed
-        // TODO add your handling code here:
+        // checks if all fields have been filled before adding indi donor to the system
         if (corpNameTF.getText().trim().isEmpty() ||
         corpFoundingYearTF.getText().trim().isEmpty() ||
         corpHQAddressTF.getText().trim().isEmpty() ||
@@ -1999,29 +2005,29 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         itemTypeTF.getText().trim().isEmpty() ||
         itemQuantityTF.getText().trim().isEmpty() ||
         itemConditionCB.getSelectedItem() == null) {
-            
+            //error message for if fields have not all been filled
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
     } 
-        
+        //date error checking
         if(itemDateReceivedTF.getText().matches("^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$")){
        } else {
            JOptionPane.showMessageDialog(null, "Invalid Date format.\nUse format dd/MM/yyyy");
            return;
        }
-        
+        //email error checking
         if(corpEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
       } else {
             JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
             return;
         }
-        AgricultureUI.addCorp();
+        AgricultureUI.addCorp();//method for adding corporation donors to the system
         
         
     }//GEN-LAST:event_addCorpBTNActionPerformed
 
     private void searchBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTNActionPerformed
-        // TODO add your handling code here:
+        // method for searching donors information using ItemID
         AgricultureUI.searchDonor();
     }//GEN-LAST:event_searchBTNActionPerformed
 
@@ -2030,7 +2036,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_searchTFActionPerformed
 
     private void updateIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateIndiBTNActionPerformed
-        // TODO add your handling code here:
+        // checks if all fields have been filled before adding indi donor to the system
         if (viewItemNameTF.getText().trim().isEmpty() ||
         viewItemDateReceivedTF.getText().trim().isEmpty() ||
         viewItemTypeTF.getText().trim().isEmpty() ||
@@ -2042,15 +2048,16 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         viewIndiEmailTF.getText().trim().isEmpty() ||
         viewIndiPhoneNumberTF.getText().trim().isEmpty() ||
         viewItemConditionCB.getSelectedItem() == null)
-        {
+        {//error message for if fields have not all been filled
         JOptionPane.showMessageDialog(null, "Please fill in all the fields!");
         return; 
+         //date error checking
     }   String regex = "^([0-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/([0-9]{4})$";
         if(viewItemDateReceivedTF.getText().matches(regex) || viewIndiDOBTF.getText().matches(regex)){
        } else {
            JOptionPane.showMessageDialog(null, "Invalid Date formate.\nUse format dd/MM/yyyy");
            return;
-       }
+       }//email error checking
         if(viewIndiEmailTF.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
       } else {
             JOptionPane.showMessageDialog(null, "Invalid Email format\nMust Include @ and .");
@@ -2058,17 +2065,17 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         }
         
         
-        AgricultureUI.updateDonor();
+        AgricultureUI.updateDonor();//method for updating Donors information
     }//GEN-LAST:event_updateIndiBTNActionPerformed
 
     private void deleteCorpBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCorpBTNActionPerformed
         // TODO add your handling code here:
-        AgricultureUI.deleteDonor();
+        AgricultureUI.deleteDonor();//method for deleting Donors from the system
     }//GEN-LAST:event_deleteCorpBTNActionPerformed
 
     private void deleteIndiBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteIndiBTNActionPerformed
         // TODO add your handling code here:
-        AgricultureUI.deleteDonor();
+        AgricultureUI.deleteDonor();//method for deleting Donors from the system
     }//GEN-LAST:event_deleteIndiBTNActionPerformed
 
     private void viewCorpSelectorBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCorpSelectorBTNMouseClicked
@@ -2092,27 +2099,27 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewIndiSelectorBTNMouseEntered
 
     private void displayDonorBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayDonorBTNActionPerformed
-        // TODO add your handling code here:
+        //method that displays all the Donors in the system in a text area
         AgricultureUI.viewDonor();
     }//GEN-LAST:event_displayDonorBTNActionPerformed
 
     private void menuDisplayDonoPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseClicked
-        // TODO add your handling code here:
+        // highlights selected panel, sets other menu panels back to default color
         menuCreateDonoPanel.setBackground(new Color(55, 55, 55));
         menuViewDonoPanel.setBackground(new Color(55,55,55));
         menuDisplayDonoPanel.setBackground(new Color(70, 70, 70));
-        
+        //highlights selected label, sets other menu labels back to default color
         menuCreateDonoLBL.setForeground(new Color(240, 240, 240));
         menuViewDonoLBL.setForeground(new Color(240,240,240));
         menuDisplayDonoLBL.setForeground(new Color(255, 255, 200));
-        
+        //sets only the selected panel to be visible
         createDonorPanel.setVisible(false);
         viewDonorPanel.setVisible(false);
         displayDonorPanel.setVisible(true);
-        
+        //hides elements from the createDonor Panel
         createCorpDonorPanel.setVisible(false);
         createIndiDonorPanel.setVisible(false);
-        
+        //sets all fields from other panels to be empty
         itemNameTF.setText("");
         itemDateReceivedTF.setText("");
         itemTypeTF.setText("");
@@ -2132,25 +2139,25 @@ public class AgricultureUIManager extends javax.swing.JPanel {
         indiAddressTF.setText("");
         indiEmailTF.setText("");
         indiPhoneNumberTF.setText("");
-        
+        //sets all elements in selected panel to be visible
         displayDonorBTN.setVisible(true);
         displaySP.setVisible(true);
         displayTA.setVisible(true);
-        AgricultureUI.viewDonor();
+        AgricultureUI.viewDonor();// method for populating the text area with all donors in the system
     }//GEN-LAST:event_menuDisplayDonoPanelMouseClicked
 
     private void menuDisplayDonoPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseEntered
-        // TODO add your handling code here:
+        // highlights selected panel
         menuDisplayDonoPanel.setBackground(new Color(40,40,40));
     }//GEN-LAST:event_menuDisplayDonoPanelMouseEntered
 
     private void menuDisplayDonoPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuDisplayDonoPanelMouseExited
-        // TODO add your handling code here:
+        // sets panel back to defualt color when no longer hovering
         menuDisplayDonoPanel.setBackground(new Color(55,55,55));
     }//GEN-LAST:event_menuDisplayDonoPanelMouseExited
 
     private void itemNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemNameTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2164,7 +2171,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_itemNameTFKeyPressed
 
     private void itemTypeTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemTypeTFKeyPressed
-       char keyChar = evt.getKeyChar();
+      // Error handling for selected field
+        char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
             && itemTypeTF.getText().length() <= 30) {
@@ -2178,7 +2186,8 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_itemTypeTFKeyPressed
 
     private void itemQuantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_itemQuantityTFKeyPressed
-       char keyChar = evt.getKeyChar();
+       // Error handling for selected field
+        char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && itemQuantityTF.getText().length() < 4) {
             itemQuantityTF.setEditable(true);
@@ -2195,7 +2204,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_itemDateReceivedTFKeyReleased
 
     private void corpNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpNameTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2209,7 +2218,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_corpNameTFKeyPressed
 
     private void corpFoundingYearTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpFoundingYearTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && corpFoundingYearTF.getText().length() < 4) {
@@ -2223,7 +2232,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_corpFoundingYearTFKeyPressed
 
     private void corpHQAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpHQAddressTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2237,7 +2246,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_corpHQAddressTFKeyPressed
 
     private void corpPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_corpPhoneNumberTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && corpPhoneNumberTF.getText().length() < 9) {
@@ -2250,7 +2259,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_corpPhoneNumberTFKeyPressed
 
     private void indiFirstNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiFirstNameTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown())
@@ -2264,7 +2273,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_indiFirstNameTFKeyPressed
 
     private void indiSurnameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiSurnameTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2279,7 +2288,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_indiSurnameTFKeyPressed
 
     private void indiAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiAddressTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2293,7 +2302,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_indiAddressTFKeyPressed
 
     private void indiPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_indiPhoneNumberTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
           char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && indiPhoneNumberTF.getText().length() < 9) {
@@ -2306,7 +2315,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_indiPhoneNumberTFKeyPressed
 
     private void viewItemNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemNameTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2320,7 +2329,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewItemNameTFKeyPressed
 
     private void viewItemTypeTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemTypeTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
           char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2334,7 +2343,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewItemTypeTFKeyPressed
 
     private void viewItemQuantityTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewItemQuantityTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) &&  viewItemQuantityTF.getText().length() < 4) {
@@ -2347,7 +2356,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewItemQuantityTFKeyPressed
 
     private void viewCorpNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpNameTFKeyPressed
-        // TODO add your handling code here:
+      // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2361,7 +2370,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpNameTFKeyPressed
 
     private void viewCorpFoundingYearTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpFoundingYearTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewCorpFoundingYearTF.getText().length() < 4) {
@@ -2374,7 +2383,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpFoundingYearTFKeyPressed
 
     private void viewCorpHQAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpHQAddressTFKeyPressed
-        // TODO add your handling code here:
+       // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2388,7 +2397,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpHQAddressTFKeyPressed
 
     private void viewCorpPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewCorpPhoneNumberTFKeyPressed
-        // TODO add your handling code here:
+      // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewCorpPhoneNumberTF.getText().length() < 9) {
@@ -2401,7 +2410,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewCorpPhoneNumberTFKeyPressed
 
     private void viewIndiFirstNameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiFirstNameTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown())
@@ -2415,7 +2424,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewIndiFirstNameTFKeyPressed
 
     private void viewIndiSurnameTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiSurnameTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
         char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isLetter(keyChar) || key == KeyEvent.VK_BACK_SPACE || evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2429,7 +2438,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewIndiSurnameTFKeyPressed
 
     private void viewIndiAddressTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiAddressTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if (((Character.isLetterOrDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE)|| evt.isShiftDown() || key == KeyEvent.VK_SPACE)
@@ -2443,7 +2452,7 @@ public class AgricultureUIManager extends javax.swing.JPanel {
     }//GEN-LAST:event_viewIndiAddressTFKeyPressed
 
     private void viewIndiPhoneNumberTFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_viewIndiPhoneNumberTFKeyPressed
-        // TODO add your handling code here:
+        // Error handling for selected field
          char keyChar = evt.getKeyChar();
         int key = evt.getKeyCode();
         if ((Character.isDigit(keyChar) || key == KeyEvent.VK_BACK_SPACE) && viewIndiPhoneNumberTF.getText().length() < 9) {
