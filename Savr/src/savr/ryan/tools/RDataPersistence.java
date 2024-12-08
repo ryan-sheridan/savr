@@ -9,12 +9,16 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
@@ -25,6 +29,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import savr.ryan.RedistributionRecord;
+import savr.ryan.WasteSource;
 
 /**
  *
@@ -166,7 +171,7 @@ public class RDataPersistence {
         }
     }
 
-    private static String getDataDirectory() {
+    public static String getDataDirectory() {
         String os = System.getProperty("os.name").toLowerCase();
         String userHome = System.getProperty("user.home");
         
@@ -186,6 +191,58 @@ public class RDataPersistence {
         } else {
             return userHome + File.separator + ".config" + File.separator + "Savr";
         }
+    }
+    
+    public static void exportObject(Object data, String filename, String directory) {
+        String fileLocation = directory + File.separator + filename;
+        
+        try (FileOutputStream fileOut = new FileOutputStream(fileLocation);
+             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
+
+            out.writeObject(data);
+            System.out.println("Object serialized and saved to " + fileLocation);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void exportObject(Object data, String filename) {
+        String directory = getDataDirectory();
+        
+        File dir = new File(directory);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        
+        exportObject(data, filename, directory);
+    }
+    
+    public static HashMap<Integer, WasteSource> importObject(String filename, String directory) {
+        String fileLocation = directory + File.separator + filename;
+        HashMap<Integer, WasteSource> result = null;
+
+        try (FileInputStream fileIn = new FileInputStream(fileLocation);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+
+            Object obj = in.readObject();
+            if (obj instanceof HashMap) {
+                result = (HashMap<Integer, WasteSource>) obj;
+                System.out.println("object deserialised from " + fileLocation);
+            } else {
+                System.err.println("deserialised object is not a HashMap<Integer, WasteSource>.");
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public static HashMap<Integer, WasteSource> importObject(String filename) {
+        String directory = getDataDirectory();
+        return importObject(filename, directory);
     }
 
     public Connection getConnection() {

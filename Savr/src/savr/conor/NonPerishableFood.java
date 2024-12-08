@@ -4,13 +4,14 @@
  */
 package savr.conor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author conor
  */
-public class NonPerishableFood extends FoodItem{
+public class NonPerishableFood extends FoodItem implements Serializable {
     
     private int monthlyShelfLife;
 

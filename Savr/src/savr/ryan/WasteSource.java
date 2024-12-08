@@ -4,6 +4,7 @@
  */
 package savr.ryan;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import savr.conor.FoodItem;
 import savr.conor.FoodStockApp;
@@ -12,7 +13,7 @@ import savr.conor.FoodStockApp;
  *
  * @author ryan
  */
-public class WasteSource {
+public class WasteSource implements Serializable {
     
     public enum SourceType {
         RETAILER,

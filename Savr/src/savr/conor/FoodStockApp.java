@@ -5,6 +5,7 @@
 package savr.conor;
 
 import com.savrui.components.FoodStockAppManager;
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * 
  * 
  */
-public class FoodStockApp {
+public class FoodStockApp implements Serializable {
     
     protected ArrayList<FoodItem> foodItem;
 

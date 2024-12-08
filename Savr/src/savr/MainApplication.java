@@ -9,11 +9,11 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import com.kitfox.svg.app.beans.SVGPanel;
 import com.savrui.components.AgricultureUIManager;
 import com.savrui.components.FoodStockAppManager;
-import com.savrui.components.RWasteManagementController;
 import java.awt.Color;
 import com.savrui.components.RButton;
 import com.savrui.components.RFadePanel;
 import com.savrui.components.RGlassDialog;
+import com.savrui.components.RWasteSourceController;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Font;
@@ -328,11 +328,11 @@ public class MainApplication extends javax.swing.JFrame {
     JFrame newFrame;
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        RWasteManagementController controllerPanel = new RWasteManagementController();
+        RWasteSourceController controllerPanel = new RWasteSourceController();
         
         newFrame = new JFrame("Waste Management Controller");
         newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        newFrame.setSize(controllerPanel.getPreferredSize());
+        newFrame.setSize(900, 550);
         newFrame.add(controllerPanel); 
         newFrame.setLocationRelativeTo(null);
         newFrame.setVisible(true); 
