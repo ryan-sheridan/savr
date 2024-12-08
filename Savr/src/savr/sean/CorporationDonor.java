@@ -16,9 +16,10 @@ public class CorporationDonor extends AgriculturalAid{
     private String corpEmail;
     private int corpPhoneNumber;
 
-    public CorporationDonor() {
+    public CorporationDonor() {//Empty Constructor
     }
 
+    //constructor
     public CorporationDonor(String corpName, int corpFoundingYear, String corpHeadquareterAddress, String corpEmail, int corpPhoneNumber, String donorID, String itemID, String item, String dateReceived, String itemType, int itemQuantity, String condition, boolean isElectrical) {
         super(donorID, itemID, item, dateReceived, itemType, itemQuantity, condition, isElectrical);
         this.corpName = corpName;
@@ -28,6 +29,7 @@ public class CorporationDonor extends AgriculturalAid{
         this.corpPhoneNumber = corpPhoneNumber;
     }
 
+    //Setter and Getters for CorporationDonor
     public void setCorpName(String corpName) {
         this.corpName = corpName;
     }
@@ -68,6 +70,7 @@ public class CorporationDonor extends AgriculturalAid{
         return corpPhoneNumber;
     }
   
+    //toString for displaying CorporationDonor information
     @Override
     public String toString(){
         return "----- Corporation Donor -----\n" +
